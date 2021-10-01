@@ -1,0 +1,233 @@
+html, body{
+	height: 100vh;
+	overflow-y: auto !important;
+}
+
+.user-page{
+	/*background-color: #efefef;*/
+	background-color: #fff;
+}
+.user-page header{
+	background-color: #efefef;
+}
+#wrap{
+	min-height: 100%;
+	height: auto;
+	
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:calc(100vw / 10.666);/* this needs to be bigger than footer height*/
+	padding-top: 50px;
+}
+
+img.head{
+	width: 100vw;
+	max-width: 100%;
+}
+#push{
+	/*height: 180px;*/
+	height: calc(100vw / 10.666);
+}
+#footer{
+	position: relative;
+	height: 50px;
+	background-color: #0baec4;
+	width: 100vw;
+	max-width: 100%;
+	margin-top: -50px;
+	clear:both;
+}
+#footer.footerlogin:before{
+	content: "";
+	background: url(../img/imgfoot.png);
+	background-size: contain;
+	height: calc(100vw / 5.647);
+	width: 100vw;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    /* right: 0; */
+    /* left: 0; */
+    margin: 0 auto;
+    display: block;
+}
+
+.mlogin{
+	background: url('../img/mondo.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 50% 50%;
+}
+
+#prefooter{
+	height: calc(100vw / 10.666);
+    background: #fff;
+    margin-top: calc(100vw / -10.666);
+}
+
+*{
+	font-family: "Open Sans", sans serif;
+}
+
+.leftbox{
+	background-color: #006589;
+	color: #fff;
+	position: relative;
+}
+
+.leftbox:before{
+	content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 30px solid #006589;
+	
+}
+
+.rightbox{
+	background-color: #0baec4;
+	color: #fff;
+	position: relative;
+}
+
+.rightbox:before{
+	content: '';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 30px solid #0baec4;
+	
+}
+
+a.mbox {
+	color: #fff;
+	min-width: 200px;
+	min-height: 200px;
+	font-weight: bold;
+	font-size: 26px;
+}
+
+.Nazioni .m-menu{
+	display: none;
+}
+
+.main-menu{
+	flex: 1;
+}
+.m-menu{
+	flex-direction: row;
+	text-transform: uppercase;
+	height: 100%;
+}
+.m-menu li{
+	padding: 0 20px;
+}
+
+.m-menu li a{
+	margin: 0 !important;
+}
+
+.m-menu .dropdown:hover .dropdown-menu{
+	display: block;
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.m-menu .dropdown .dropdown-menu{
+	display: none;
+	pointer-events: none;
+	position: absolute;
+	transition: 300ms;
+	opacity: 0;
+	margin: 0;
+}
+.m-logout a.btn{
+	background-color: transparent;
+	color: #006589;
+	border: none;
+}
+.m-logout a.btn:hover{
+	background-color: #006589;
+	color: #fff;
+}
+a{
+	color: #006589;
+}
+
+h2.title{
+	color: #006666;
+}
+.richiesto{
+	color: red;
+}
+.nascondi{
+    display: none;
+}
+.red{
+    
+    color:red;
+}
+
+#embed{
+	border: none;
+	margin: 30px 0;
+}
+
+input[value="@"]{
+	font-size: 25px;
+    text-align: center;
+}
+
+.boxes{
+	flex: 0 0 50%;
+}
+
+@media (max-width: 500px){
+	.boxes{
+	flex: 0 0 100%;
+	}
+	.flex-direction{
+		flex-direction: column;
+	}
+	a.mbox{
+		margin: 30px auto !important;
+	}
+	.mlogout{
+		display: none;
+	}
+}
+
+body.world .m-menu li[data-id="16"],
+body.world .boxes:nth-child(3){
+	
+	display: none !important;
+	pointer-events: none !important;
+	
+}
+
+.align-buttons{
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.align-buttons a{
+	margin-left: 1rem;
+}
+
+/* nicpaola 07-2020 */
+img.socialImage {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 37px;
+}

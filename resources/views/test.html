@@ -1,0 +1,50 @@
+<form id="rendered-form">
+    <div class="rendered-form">
+        <div class="fb-text form-group field-nome">
+            <label for="nome" class="fb-text-label">Nome<span class="fb-required">*</span></label><input type="text"
+                                                                                                         class="form-control"
+                                                                                                         name="nome"
+                                                                                                         id="nome"
+                                                                                                         required="required"
+                                                                                                         aria-required="true">
+        </div>
+        <div class="fb-text form-group field-cognome"><label for="cognome" class="fb-text-label">Cognome<span
+                class="fb-required">*</span></label><input type="text" class="form-control" name="cognome" id="cognome"
+                                                           required="required" aria-required="true"></div>
+        <div class="fb-radio-group form-group field-tipologia"><label for="tipologia" class="fb-radio-group-label">Filiale/Ufficio</label>
+            <div class="radio-group">
+                <div class="radio-inline"><input name="tipologia" id="tipologia-0" value="filiale" type="radio"><label
+                        for="tipologia-0">Filiale</label></div>
+                <div class="radio-inline"><input name="tipologia" id="tipologia-1" value="ufficio" type="radio"><label
+                        for="tipologia-1">Ufficio</label></div>
+            </div>
+        </div>
+        <div class="fb-select form-group field-professionista"><label for="professionista" class="fb-select-label">Figura
+            professionale<span class="fb-required">*</span></label><select class="form-control" name="professionista"
+                                                                           id="professionista" required="required"
+                                                                           aria-required="true">
+            <option value="1" selected="true" id="professionista-0">operai</option>
+            <option value="option-3" id="professionista-1">Option 3</option>
+        </select></div>
+        <div class="fb-number form-group field-preftel"><label for="preftel" class="fb-number-label">Prefisso
+            tel</label><input type="number" class="form-control" name="preftel" id="preftel"></div>
+        <div class="fb-number form-group field-telefono"><label for="telefono"
+                                                                class="fb-number-label">Telefono</label><input
+                type="number" class="form-control" name="telefono" id="telefono"></div>
+        <div class="fb-number form-group field-preffax"><label for="preffax"
+                                                               class="fb-number-label">prefFax</label><input
+                type="number" class="form-control" name="preffax" id="preffax"></div>
+        <div class="fb-number form-group field-fax"><label for="fax" class="fb-number-label">Fax</label><input
+                type="number" class="form-control" name="fax" id="fax"></div>
+        <div class="fb-number form-group field-prefcell"><label for="prefcell" class="fb-number-label">pref Cell</label><input
+                type="number" class="form-control" name="prefcell" id="prefcell"></div>
+        <div class="fb-number form-group field-cell"><label for="cell" class="fb-number-label">Cellulare</label><input
+                type="number" class="form-control" name="cell" id="cell"></div>
+        <div class="fb-text form-group field-email"><label for="email" class="fb-text-label">Email<span
+                class="fb-required">*</span></label><input type="email" class="form-control" name="email" id="email"
+                                                           required="required" aria-required="true"></div>
+        <div class="fb-button form-group field-caf">
+            <button type="button" class="btn btn-info" name="caf" style="info" id="caf">Crea Anteprima Firma</button>
+        </div>
+    </div>
+</form>
