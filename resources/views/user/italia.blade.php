@@ -3,15 +3,16 @@
 @section('container', 'container')
 
 @section('content')
-
 <div class="stepsContainer">
 	<div id="step1" class="d-flex justify-content-center align-items-center flex-direction gap-default">
 		<div class="boxes step-1">
 			<a id="creafirme" class="mbox leftbox d-flex justify-content-center align-items-center p-5 mr-5 text-center" href="#">{!! trans('campi.creazione_firme')  !!}</a>
 		</div>
-		<div class="boxes step-1">
-			<a id="creabiglietti" class="mbox rightbox d-flex justify-content-center align-items-center p-5 text-center" href="#">{!! trans('campi.creazione_biglietti') !!}</a>
-		</div>
+		@if(\Request::getRequestUri() !== '/world')
+			<div class="boxes step-1">
+				<a id="creabiglietti" class="mbox rightbox d-flex justify-content-center align-items-center p-5 text-center" href="#">{!! trans('campi.creazione_biglietti') !!}</a>
+			</div>
+		@endif
 	</div>
 	<div id="selType-creafirme" class="d-none justify-content-center align-items-center  gap-default">
 		<div class="boxes">

@@ -52,12 +52,12 @@
                             <div style="display:none;" id="check-address">{!! trans('campi.campo') !!} Address {!! trans('campi.required') !!}!</div>
                         </div>
                     @endif
-				
+
                 @if(Session::get('tipoFlag') != 'bigliettiP' && Session::get('tipoFlag') != 'bigliettiF')
                 <!-- nicpaola 07-2020
 				<div class="form-row">
                     <div class="fb-radio-group form-group field-tipologia col-md-2">
-						
+
                         <div class="radio-group  form-check-inline mr-0 ">
                             <div class="radio-inline mr-3">
                                 <input name="tipologia" id="tipologia-0" value="filiale" type="radio">
@@ -93,9 +93,9 @@
                 @endif
             @endif
             @if(Session::get('nazione') != 11 && Session::get('tipoFlag') == 'firmaP')
-			
+
                 <div class="fb-text form-group field-job">
-					
+
                     <label for="job" class="fb-text-label">Job title</label>
                     <input type="text" class="form-control" name="job" id="job" >
                     <div style="display:none;" id="check-job">{!! trans('campi.campo') !!} Job title {!! trans('campi.required') !!}!</div>
@@ -248,7 +248,7 @@
                     </div>
                 @endif
             </div>
-            
+
             <!--fine dominio-->
 
             @if(Session::get('tipoFlag') != 'bigliettiP' && Session::get('tipoFlag') != 'bigliettiF')
@@ -273,7 +273,7 @@
                     <div style="color:red;font-size:11pt">{!! trans('campi.sponsorrules') !!}</div>
                 </div>
             </div>
-						
+
 						<!-- mirco 05-05-2021 - add campo Link Sponsor -->
 						<div class="fb-text form-group field-sponsor_image_link">
 							<label for="sponsor_image_link" class="fb-text-label">{!! trans('campi.firmalink') !!}</label>
@@ -283,9 +283,9 @@
 
             <div class="fb-button form-group field-caf">
 				<div class="align-buttons">
-					
+
                 	<button type="button" class="btn btn-info" name="caf"  id="caf">{!! trans('campi.creaatntep') !!}</button>
-				
+
 					<div class="fb-button field-stampa" style="display:none;">
 					@if(Session::get('tipoFlag') == 'firmaP' || Session::get('tipoFlag') == 'firmaF')
 						<a href="#"  class="btn btn-info" name="stampa"  id="stampa" target="_blank">{!! trans('campi.apriinnuovapag') !!}</a>
@@ -294,17 +294,18 @@
 						@if($permission == 3)
 						<a href="#"  class="btn btn-info" name="stampa"  id="stampa" target="_blank">Visualizza Biglietto</a>
 						@endif
-						<a href="/ordina"  class="btn btn-info" name="ordina"  id="ordina" >Ordina</a> 
+						<a href="/ordina"  class="btn btn-info" name="ordina"  id="ordina" >Ordina</a>
 					@endif
 					 @if(Session::get('nazione') == 11)
 						<a class="btn btn-danger" href="mailto:grafica@concreo.eu?subject=SEGNALAZIONE%20PER%20PORTALE%20FIRME%20E%20BIGLIETTI">Segnala una modifica</a>
 					@endif
 					</div>
 				</div>
-			
+
 				<iframe id="embed" src="" width="100%" height="580px"></iframe>
+                <div id="embed" width="100%" height="580px"></div>
             </div>
-            
+
         </div>
 
     </div>
@@ -327,7 +328,7 @@
     <input type="hidden" id="nomefiliale" name="nomefiliale" value="">
 
     <!-- nicpaola 07-2020 - add campi social -->
-    <input type="hidden" id="socialCount" name="socialCount" value="0">    
+    <input type="hidden" id="socialCount" name="socialCount" value="0">
 
 </form>
 

@@ -39,7 +39,7 @@ $('input').blur(function(){
 
 });
 
-var _validFileExtensions = [".jpg", ".jpeg", ".png"];    
+var _validFileExtensions = [".jpg", ".jpeg", ".png"];
 function validateFileExtension(oForm) {
     var arrInputs = oForm.getElementsByTagName("input");
     for (var i = 0; i < arrInputs.length; i++) {
@@ -55,7 +55,7 @@ function validateFileExtension(oForm) {
                         break;
                     }
                 }
-                
+
                 if (!blnValid) {
                     alert("Attenzione, l'immagine di sponsor deve essere in uno dei seguenti formati: " + _validFileExtensions.join(", "));
                     return false;
@@ -63,26 +63,26 @@ function validateFileExtension(oForm) {
             }
         }
     }
-  
+
     return true;
 }
 
-function validateFileSize(oForm) { 
-    var fi = document.getElementById('sponsor_image'); 
-    // Check if any file is selected. 
-    if (fi!=null && fi.files.length > 0) { 
-        for (var i = 0; i <= fi.files.length - 1; i++) { 
-            var fsize = fi.files.item(i).size; 
-            var file = Math.round((fsize / 1024)); 
-            // The size of the file. 
-            if (file > 400) { 
-                alert("Attenzione, l'immagine di sponsor non deve superare le dimensioni di 400 kB."); 
+function validateFileSize(oForm) {
+    var fi = document.getElementById('sponsor_image');
+    // Check if any file is selected.
+    if (fi!=null && fi.files.length > 0) {
+        for (var i = 0; i <= fi.files.length - 1; i++) {
+            var fsize = fi.files.item(i).size;
+            var file = Math.round((fsize / 1024));
+            // The size of the file.
+            if (file > 400) {
+                alert("Attenzione, l'immagine di sponsor non deve superare le dimensioni di 400 kB.");
                 return false;
             } else {
                 return true;
-            } 
-        } 
-    } 
+            }
+        }
+    }
     return true;
 }
 
@@ -97,7 +97,7 @@ $('#caf').click(function(){
         var form = $('#formPers1')[0];
 
         if(tipoFirma!="bigliettiP" && tipoFirma!="bigliettiF") {
-            // VALIDATE FILE 
+            // VALIDATE FILE
             if(!validateFileExtension(form)) {
                 return false;
             } else if(!validateFileSize(form)) {
@@ -122,11 +122,18 @@ $('#caf').click(function(){
             contentType: false,
             success: function(msg)
             {
-							
+
                 $('#stampa').attr('href',msg);
                 $('#scarica').attr('href',msg);
                  $('.field-stampa').css('display','block');
-			    $('#embed').attr('src', msg);
+
+                if(tipoFirma!="bigliettiP" || tipoFirma!="bigliettiF") {
+                        $('#embed').attr('src', msg);
+                }
+                else{
+                    $('#embed').html(msg);
+                }
+
 
             },
             error: function(xhr, status, error) {
@@ -157,42 +164,42 @@ $('a').on('click', function() {
 
 $('select').on('change', function() {
     var  campoId = this.id;
-	 
+
     if(campoId == 'societa_id'){
 
         getdivisioni(this.value);
         getfiliali(this.value);
         getregioni(this.value);
-		
+
 	}else if(campoId=='divisioni_id'){
-		
+
         getLogoDiv(this.value);
         if($('#filiali_id').val()!=null && $('#filiali_id').val()!=undefined && $('#filiali_id').val()!="")
             getField($('#filiali_id').val());
-		
+
     }else if(campoId=='regioni_id'){
-		
+
         getfiliali(this.value);
-		
+
     }else if(campoId=='filiali_id'){
-				
+
         getField(this.value);
-		
+
     }else if(campoId == 'nazioni_id'){
-		
+
         getSocieta(this.value);
-		
+
     }else if(campoId == 'societa_idE'){
-        /* nicpaola 07-2020 */   
+        /* nicpaola 07-2020 */
         $('#divisioni_idE').val('');
         $('#divisioni_idE').html('');
         getdivisioniEstero(this.value);
         getFieldEstero(campoId, this.value);
-        
+
     }else if(campoId=='divisioni_idE'){
-        /* nicpaola 07-2020 */   
+        /* nicpaola 07-2020 */
         getFieldEstero(campoId, this.value);
-        
+
     }else{
         return false;
     }
@@ -300,7 +307,7 @@ function getFieldEstero(campoId, val){
                             socialStringHtml += '<div style="color:red;font-size:11pt">e.g. https://www.linkedin.com/company/gi-group</div>';
                         } else {
                             socialStringHtml += '<div style="color:red;font-size:11pt">e.g. https://www.website.com/Company-Name</div>';
-                        } 
+                        }
                         socialStringHtml += '</div>';
                     }
                 }
@@ -331,7 +338,7 @@ function getField(val){
             if(data[0].fax !== null){
 				numFax = data[0].fax.split(' ');
 			}
-            
+
             $('#preftel').val(numTel[0]);
             $('#prefax').val(numFax[0]);
             $('#telefono').val(numTel[1]);
@@ -398,7 +405,7 @@ function getField(val){
             if(data[0].layoutS=="2") {
                 $('#sponsorContainer').hide();
                 $('.field-sponsor_image_link').hide();
-								
+
             } else {
                 $('#sponsorContainer').show();
                 $('.field-sponsor_image_link').show();
@@ -445,11 +452,11 @@ function getField(val){
             $("#firmaImgLink").val(data[0].firmaImgLink);
             //$(".privacy").html(data[0].privacy);
 			var provincia = '';
-			
+
 			if(data[0].fprovincia != null){
 				provincia = data[0].fprovincia;
 			}
-			
+
             $('#indirizzoC').val(data[0].indirizzo+' - '+data[0].cap1+' '+data[0].citta+' '+provincia);
             /* nicpaola 07-2020 */
             $('#indirizzoC1').val(data[0].indirizzo);
@@ -464,18 +471,18 @@ $('#sponsor_image').on('change', function(){
 	let $sponsorPreviewImg = $(document).find('#sponsorPreview img');
 	if (input.files && input.files[0]) {
     var reader = new FileReader();
-    
+
     reader.onload = function(e) {
       $sponsorPreviewImg.attr('src', e.target.result);
     }
-    
+
     reader.readAsDataURL(input.files[0]); // convert to base64 string
   }
 	else
 		{
 			$sponsorPreviewImg.attr('src', $sponsorPreviewImg.attr('data-backend-sponsor'));
 		}
-	
+
 });
 
 
@@ -489,11 +496,11 @@ function getLogoDiv(val){
 			if($('#divisioni_id').val() > 0){
 			    alert($('#divisioni_id').val());
 				//$("#logoSC").val(data[0].logoDv);
-				
+
 			}
-			
+
 		}
-	
+
 	});*/
 }
 function getregioni(val) {
@@ -543,12 +550,12 @@ function getfiliali() {
     var societa_id = 0;
 	var divisioni_id = 0;
     var regioni_id =0;
-    
+
 
     if($('#societa_id').val() > 0)  societa_id = $('#societa_id').val();
 	//if($('#divisioni_id').val() > 0) divisioni_id = $('#divisioni_id').val();
     if($('#regioni_id').val() > 0) regioni_id = $('#regioni_id').val();
-    
+
 
     $.ajax({
         type: "get",
