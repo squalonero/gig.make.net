@@ -15,8 +15,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- Theme style -->
     <link href="{{asset('vendor/crudbooster/assets/adminlte/dist/css/AdminLTE.min.css')}}" rel="stylesheet" type="text/css"/>
-	<!-- custom css mirco // nicpaola 07-2020-->
-	<link href="{{asset('css/mycustom.css')}}?time=<?php echo filemtime('css/mycustom.css') ?>" rel="stylesheet" type="text/css"/>
+
 
     <link href="{{asset('css/demo.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('css/jquery-ui.css')}}" rel="stylesheet" type="text/css"/>
@@ -38,6 +37,11 @@
 
 
     <link rel='stylesheet' href='{{asset("vendor/crudbooster/assets/css/main.css")}}'/>
+
+    <!-- custom css mirco // nicpaola 07-2020-->
+	<link href="{{asset('css/mycustom.css')}}?time=<?= time() ?>" rel="stylesheet" type="text/css"/>
+
+
     <style type="text/css">
         .login-page, .register-page {
             /*background: {{ CRUDBooster::getSetting("login_background_color")?:'#dddddd'}} url('{{ CRUDBooster::getSetting("login_background_image")?asset(CRUDBooster::getSetting("login_background_image")):asset('vendor/crudbooster/assets/bg_blur3.jpg') }}');*/
@@ -67,4 +71,3 @@
     </style>
 
 <!--<body class="login-page">-->
-	

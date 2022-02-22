@@ -17,6 +17,7 @@ use Excel;
 use App;
 use App\Ordini; // nicpaola 07-2020
 use App\Libraries\SimpleImage; // nicpaola 07-2020
+use App\Models\ImnSignatureLayout; //mirco 22-02-2022
 
 class QueryController extends Controller
 {
@@ -54,14 +55,21 @@ class QueryController extends Controller
         }
         return $str;
     }
+    /**
+     * Zankiller.exe
+     * Refactoring mirco 22-02-2022
+     * - Manage layout with laravel blade view system
+     * - Remove html from controller
+     * - Put some reasonable logic
+     */
     public function getlayout(Request $request){
+
         if(Session::get('nazione') == 11){
             App::setLocale('it');
         }else{
             App::setLocale('en');
         }
-        //$var = $request->all();
-     //   $noHtml = 0;
+
         $idProf = 0;
         if(isset($request->professione) && $request->professione !='') {
             $prof = DB::select('select * from professionis where LOWER(professione) = "' . strtolower($request->professione) . '"');
@@ -116,28 +124,28 @@ $testo_prova ="<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" 
     <title>Firma</title>
 </head>
 <body>";
-		
+
 
 if($request->tipoFirma == 'firmaP' || $request->tipoFirma == 'firmaF') {
     //layout 1 inizio
     if ($tipo_layout_prova == 1) {
-		
+
         $testo_prova .= "<div style=\"text-align:left;\">";
-		
+
         if ($request->tipoFirma == 'firmaP') {
-			
+
             $testo_prova .= "<span style=\"font-weight:bold; font-size:10pt; color:rgba(100, 100, 100, 1);color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\" class=\"nome\">" . $request->nome . " " . $request->cognome . "</span><br />";
             //estero
             if($request->job != '') $testo_prova .= "<span style=\"font-weight:normal; font-size:10pt; color:rgba(100, 100, 100, 1);color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\" class=\"job\">" . $request->job . "</span>";
             //fine estero
 			if($request->professione != ''){
-				
+
             $testo_prova .= "<span style=\"font-weight:normal; font-size:10pt; color:rgba(100, 100, 100, 1);color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\" class=\"professione\">" . ucwords(strtolower($request->professione)) . "</span>";
-				
+
 				if($request->tipologia == '' && $request->place == '' || $request->tipologia == '' || $request->place == '') $testo_prova .= '<div style="font-size:10pt"><br /></div>';
-				
+
 			}
-			
+
 			if($request->professione == '' && $request->tipologia == '' && $request->place == '') $testo_prova .= '<div style="font-size:10pt"><br /></div>';
         }
 
@@ -149,19 +157,19 @@ if($request->tipoFirma == 'firmaP' || $request->tipoFirma == 'firmaF') {
 
                 $testo_prova .= "<i><span style=\"font-weight:normal; font-size:10pt; color:#65656A; font-family:Helvetica,FuturaTahoma,Arial,sans-serif;\" class=\"tipologia\">" . ucfirst($tipo) . ucfirst($request->place) . "</span>
                                                 <span style=\"font-weight:normal; font-size:10pt; color:#65656A; font-family:Helvetica,FuturaTahoma,Arial,sans-serif;\" class=\"comune\"></span></i><br />";
-				
+
             } else {
-				
+
                 $testo_prova .= "<span style=\"font-weight:bold; font-size:10pt; color:#65656A; font-family:Helvetica,FuturaTahoma,Arial,sans-serif;\" class=\"tipologia\">" . ucfirst($tipo) .  ucfirst($request->place) . "</span>
                                                 <span style=\"font-weight:bold; font-size:10pt; color:#65656A; font-family:Helvetica,FuturaTahoma,Arial,sans-serif;\" class=\"comune\"></span><br />";
 				//$testo_prova .= '<br />';
             }
-			
+
         } else {
             //$testo_prova .= '<br />';
         }
         // if ($request->societaC==1){
-		
+
         $testo_prova .= "<span style=\"font-weight:bold; font-size:13pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\"><div " . $display . ">
                                 <img class=\"logoS\" src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->logoSC . "\" alt='' title=\"\"  >
                                 </div>" /*$next_20*/ . "
@@ -180,7 +188,7 @@ if($request->tipoFirma == 'firmaP' || $request->tipoFirma == 'firmaF') {
         */
 
         $testo_prova .= "<div style=\"text-align:left;\">";
-				
+
 
         //estero
         if($request->address != '') {
@@ -257,30 +265,30 @@ if($request->tipoFirma == 'firmaP' || $request->tipoFirma == 'firmaF') {
                 $testo_prova .= "</div>";
             }
         }
-				
+
 			//mirco 05-05-2021 use endorsment image (DB: firma) in Layout 2 (GiGroup) as sponsor if loaded, add sponsor link
         if(!is_null($sponsorFilePath) || (isset($request->firmaImg) && $request->firmaImg)) {
             $testo_prova .= "<div style=\"font-size:10pt\"><br /></div>";
             $testo_prova .= "<div style=\"text-align:left;\">";
-					
+
 						if(isset($request->firmaImgLink) && trim($request->firmaImgLink)!="") {
 							$testo_prova .= "<a href='".$request->firmaImgLink."' alt='Sponsor Url'>"; //link immagine sponsor
 						}
-						
+
 						$img = ($sponsorFilePath) ? $sponsorFilePath : $request->firmaImg;
             $testo_prova .= "<img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $img . "\" style=\"width:166px\" alt=\"sponsorImage\" />";
-					
+
 						if(isset($request->firmaImgLink) && trim($request->firmaImgLink)!="") {
 							$testo_prova .= "</a>";
 						}
-						
+
             //$testo_prova .= "<img src=\"http://" . $_SERVER['HTTP_HOST'] . "/checkSponsorImage?id=1\" style=\"width:160px\" alt=\"sponsorImage\" />";
-            $testo_prova .= "</div>";   
+            $testo_prova .= "</div>";
         }
 
         $testo_prova .= "</div>";
 
-        /* nicpaola 07-2020        
+        /* nicpaola 07-2020
         $testo_prova .= "<div style=\"text-align:left; font-weight:normal; font-size:13pt; color:#65656A; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\"><img src=\"http://" . $_SERVER['HTTP_HOST'] . "/img/Linea_273_8px.gif\" width=\"305px\" height=\"16px\" ></div>";
         */
 
@@ -292,10 +300,10 @@ if($request->tipoFirma == 'firmaP' || $request->tipoFirma == 'firmaF') {
     } else {
         //inizio layout 2 (Altre società)
         $testo_prova .= "<div style=\"text-align:left;\">";
-		
+
         if ($request->tipoFirma == 'firmaP') {
-			
-			
+
+
              $testo_prova .= "<span style=\"font-weight:bold; font-size:10pt; color:#65656A; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\" class=\"nome\">" . $request->nome . " " . $request->cognome . "</span><br />";
 
             //estero
@@ -303,47 +311,47 @@ if($request->tipoFirma == 'firmaP' || $request->tipoFirma == 'firmaF') {
             //fine estero
 
 			if($request->professione != ''){
-				
+
             $testo_prova .= "<span style=\"font-weight:normal; font-size:10pt; color:#65656A; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\" class=\"professione\">" . ucwords(strtolower($request->professione)) . "</span><br />";
-				
+
 				if($request->tipologia == '' && $request->place == '' || $request->tipologia == '' || $request->place == '') $testo_prova .= '<br />';
 			}
-			
+
 			if($request->professione == '' && $request->tipologia == '' && $request->place == '') $testo_prova .= '<br />';
         }
-		
+
         if ($request->tipologia != '' && $request->place != '') {
             if($request->tipologia == 'filiale')  $tipo = trans('campi.filialedi');
             if($request->tipologia == 'ufficio')  $tipo = trans('campi.ufficiodi');
             if ($request->tipoFirma == 'firmaP') {
-				
+
                 $testo_prova .= "<i><span style=\"font-weight:normal; font-size:10pt; color:#65656A; font-family:Helvetica,FuturaTahoma,Arial,sans-serif;\" class=\"tipologia\">" . ucfirst($tipo) . ucfirst($request->place) . "</span>
                                                 <span style=\"font-weight:normal; font-size:10pt; color:#65656A; font-family:Helvetica,FuturaTahoma,Arial,sans-serif;\" class=\"comune\"></span></i><br /><br />";
-				
+
             } else {
-				
+
                 $testo_prova .= "<span style=\"font-weight:bold; font-size:10pt; color:#65656A; font-family:Helvetica,FuturaTahoma,Arial,sans-serif;\" class=\"tipologia\">" . ucfirst($tipo) .  ucfirst($request->place) . "</span>
                                                 <span style=\"font-weight:bold; font-size:10pt; color:#65656A; font-family:Helvetica,FuturaTahoma,Arial,sans-serif;\" class=\"comune\"></span><br /><br />";
             }
-			
+
         } else {
             //$testo_prova .= '<br />';
         }
-		
+
         if ($societa_prova != 13) {
-			
+
             $testo_prova .= "<span style=\"font-weight:bold; font-size:9pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\">
-                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->logoSC . "\" alt=\"$ragsoc_prova\" title=\"$ragsoc_prova\"  > 
+                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->logoSC . "\" alt=\"$ragsoc_prova\" title=\"$ragsoc_prova\"  >
                 </span>";
-			
+
         } else {
-			
+
             $testo_prova .= "<span style=\"font-weight:bold; font-size:9pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\">
-                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->logoSC . "\" alt=\"$ragsoc_prova\" title=\"$ragsoc_prova\"   >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src=\"http://" . $_SERVER['HTTP_HOST'] . "/img/star-logo.gif\" alt=\"Career Star Group\"    > 
+                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->logoSC . "\" alt=\"$ragsoc_prova\" title=\"$ragsoc_prova\"   >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src=\"http://" . $_SERVER['HTTP_HOST'] . "/img/star-logo.gif\" alt=\"Career Star Group\"    >
                 </span>";
-			
+
         }
-		
+
         $testo_prova .= "</div>
             <div style=\"text-align:left; font-weight:normal; font-size:13pt; color:#65656A; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\"><img src=\"http://" . $_SERVER['HTTP_HOST'] . "/img/Linea_273_8px.gif\" width=\"305px\" height=\"16px\" /></div>";
         $testo_prova .= "<div style=\"text-align:left;\">";
@@ -374,19 +382,19 @@ if($request->tipoFirma == 'firmaP' || $request->tipoFirma == 'firmaF') {
 
         $testo_prova .= "</div>";
         $testo_prova .= "<div style=\"text-align:left; font-weight:normal; font-size:13pt; color:#65656A; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\"><img src=\"http://" . $_SERVER['HTTP_HOST'] . "/img/Linea_273_8px.gif\" width=\"305px\" height=\"16px\" /></div>";
-				
-				
+
+
         if(isset($request->firmaImg) && trim($request->firmaImg)!="") {
             $testo_prova .= "<span style=\"font-weight:bold; font-size:9pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\">
-                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->firmaImg . "\" alt=\"Gi Group\" title=\"$ragsoc_prova\" > 
+                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->firmaImg . "\" alt=\"Gi Group\" title=\"$ragsoc_prova\" >
                 </span>";
         }
-				
+
         $testo_prova .= "<div style=\"text-align:left;\">
                 <span style=\"text-align:left; font-size:7pt; color:#65656A; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\" class='privacy'><br />" . $request->privacyC . "</span>
-        
+
             </div>";
-			
+
         //fine layout 2
     }
 }else{
@@ -394,78 +402,78 @@ if($request->tipoFirma == 'firmaP' || $request->tipoFirma == 'firmaF') {
 	$trattino = '';
 //	$noHtml = 1;
     if ($request->tipoFirma == 'bigliettiP') {
-		
+
         $testo_prova .= '<p>';
 		$testo_prova .= "<span style=\"font-weight:bold; font-size:9pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\">
-                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->logoSC . "\" alt=\"$ragsoc_prova\" title=\"$ragsoc_prova\"  > 
+                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->logoSC . "\" alt=\"$ragsoc_prova\" title=\"$ragsoc_prova\"  >
                 </span><br/><br/>";
         $testo_prova .= strtoupper($request->nome) . ' ' . strtoupper($request->cognome);
-		
+
 		if( $request->professione != '') $testo_prova .= '<br />' . ucwords(strtolower($request->professione));
-        
+
         $testo_prova .= '<br /><br />' . $request->societaN;
         $testo_prova .= '<br />' . $request->indirizzoC . '<br/>';
 
         if ($request->telefono != '') {
             $testo_prova .= "Tel. " . $request->prefnaz . " " . $request->preftel . " " . $request->telefono;
         }
-        
+
 		$trattino = '';
         if ($request->fax != '') {
-			
+
 			if($request->telefono != '' ) $trattino = ' - ';
             $testo_prova .= $trattino . "Fax " . $request->prefnaz1 . " " . $request->prefax . " " . $request->fax;
         }
 		$trattino = '';
 		if ($request->cell != '' ) {
-			
+
 			if($request->telefono != '' || $request->fax != '') $trattino = ' - ';
             $testo_prova .= $trattino . "Cell. " . $request->cellnaz . " " . $request->precell . " " . $request->cell;
         }
        // $testo_prova .= substr($testo_prova, 0, -2);
         $trattino = '';
-		
+
 		if($request->emailBF != '' || $request->email) $trattino = ' - ';
 		$mail = ($request->emailBF !='')? $request->emailBF : $request->email;
-            $testo_prova .= '<br />' . $mail . $request->at . $request->emaildomain . $trattino . 'www.' . $request->domain;        
+            $testo_prova .= '<br />' . $mail . $request->at . $request->emaildomain . $trattino . 'www.' . $request->domain;
        // $testo_prova .= '<br />' . $request->email . $request->at . $request->emaildomain . '  www.' . $request->cdominio;
       //  $testo_prova .= substr($testo_prova, 0, -2);
         $testo_prova .= '<br /></p>';
     }else{
-		
+
         $testo_prova .= '<p>';
 		$testo_prova .= "<span style=\"font-weight:bold; font-size:9pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\">
-                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->logoSC . "\" alt=\"$ragsoc_prova\" title=\"$ragsoc_prova\"  > 
+                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->logoSC . "\" alt=\"$ragsoc_prova\" title=\"$ragsoc_prova\"  >
                 	</span><br/><br/>";
         $testo_prova .= $request->societaN;
         $testo_prova .= '<br />' . $request->indirizzoC;
          if ($request->telefono != '') {
             $testo_prova .= "<br />Tel. " . $request->prefnaz . " " . $request->preftel . " " . $request->telefono;
         }
-        
+
 		$trattino = '';
         if ($request->fax != '') {
-			
+
 			if($request->telefono != '' ) {
 				$trattino = ' - ';
 			}else{
-				$testo_prova .= '<br />'; 
+				$testo_prova .= '<br />';
 			};
             $testo_prova .= $trattino . "Fax " . $request->prefnaz1 . " " . $request->prefax . " " . $request->fax;
         }
 		$trattino = '';
 		if ($request->cell != '' ) {
-			
+
 			if($request->telefono != '' || $request->fax != '') $trattino = ' - ';
             $testo_prova .= $trattino . "Cell. " . $request->cellnaz . " " . $request->precell . " " . $request->cell;
         }
       //  $testo_prova .= substr($testo_prova, 0, -2);
-		
+
 		$trattino = '';
-		
+
 		if($request->emailBF != '') $trattino = ' - ';
-       
-            $testo_prova .= '<br />' . $request->emailBF . $trattino . 'www.' . $request->domain;        
+
+            $testo_prova .= '<br />' . $request->emailBF . $trattino . 'www.' . $request->domain;
 
       //  $testo_prova .= substr($testo_prova, 0, -2);
         $testo_prova .= '<br /></p>';
@@ -498,9 +506,9 @@ $file = '';
         $profess = DB::select('select intAttivo from professionis where professione ="'.$request->professione.'"');
         $intAttivo = '';
         if($profess[0]->intAttivo == 'No') $intAttivo = '***';
-        
+
         $codSocieta = DB::select('select codice from societas where id='.$request->societaC);
-        
+
         $arrayPost = array(
             'coddipendente' => $triplette[0]->dipendente,
             'cognome' => $request->cognome,
@@ -535,11 +543,11 @@ $file = '';
             'at'=>$request->at,
             'emaildomain'=>$request->emaildomain,
             'cdominio'=>$request->domain,
-			
+
         //    'file' => '<p><a href="http://'.$_SERVER['HTTP_HOST'].'/filehtml/'.$nome. '" target="_blank">'.$nome.'</a><br></p>'
             'file' => $file,
             'pathFile' => "filehtml/".$nome
-			
+
         );
         Session::put('arrayOrdine', $arrayPost);
         Session::put('linkordine', '/filehtml/'.$nome.'"');
@@ -625,7 +633,7 @@ $file = '';
         $societa_id = $request->societa_id;
 		$divisioni_id = $request->divisioni_id;
         $regioni_id = $request->regioni_id;
-        
+
 
         $where = '';
 
@@ -638,7 +646,7 @@ $file = '';
         } else {
             $where = ' intAttivo = "Si"';
         }
-        
+
 
     //  $result = DB::select("select  * from filialis where societa_id =".$societa_id." and nazioni_id =  ".$nazioni_id." and regioni_id=".$regioni_id);
         $result = DB::select('select id,nomefiliale from filialis where '.$where.' order by nomefiliale asc');
@@ -658,7 +666,7 @@ $file = '';
         $id = $request->id;
         $flagDiv = 0;
         if($request->divisione_id > 0){
-            $resultDiv = DB::select("select 
+            $resultDiv = DB::select("select
 							coalesce(d.logo,'') as logoDv,coalesce(d.divisione,'') as divisione,coalesce(d.id,'') as idDivisione
 							from divisionis d
 							where
@@ -666,7 +674,7 @@ $file = '';
             $flagDiv = 1;
         }
         // coalesce(d.layout_id,1) as layoutD,coalesce(d.logo,'') as logoDv,coalesce(d.divisione,'') as divisione,coalesce(d.id,'') as idDivisioni,
-		$result = DB::select("select 
+		$result = DB::select("select
                                 f.*,
 																f.cap as cap1,
                                 s.societa,
@@ -679,12 +687,12 @@ $file = '';
 																coalesce(s.firmalink,'') as firmaImgLink,
 																coalesce(s.id,'') as idSocieta,
                                 s.privacy,
-                               
+
                                 coalesce(p.id,'') as idProvincia,coalesce(p.provincia,'') as provincia,coalesce(p.siglapv,'') as provincia,
 								coalesce(f.provincia) as fprovincia,
                                 coalesce(r.id,'') as idRegione,coalesce(r.regione,'') as regione,
                                 coalesce(n.prefisso,'') as prefisso
-                                from filialis as f 
+                                from filialis as f
                                 inner join societas as s on f.societa_id = s.id
                                 left join divisionis as d on f.divisioni_id = d.id
                                 left join provinces as p on f.province_id = p.id
@@ -692,15 +700,15 @@ $file = '';
                                 inner join nazionis as n on r.nazioni_id = n.id
                                 where f.intAttivo = 'Si' and f.id =".$id);
 
-        // nicpaola 07-2020 
+        // nicpaola 07-2020
         $resultSocial = DB::select("SELECT
 				id,
 				label,url,
-				image 
-				FROM societa_social 
-				WHERE societa_id = ".$result[0]->societa_id." 
+				image
+				FROM societa_social
+				WHERE societa_id = ".$result[0]->societa_id."
 				ORDER BY sort_order");
-			
+
         $result[0]->socialArray = $resultSocial;
 
         if($flagDiv == 1){
@@ -711,32 +719,32 @@ $file = '';
 
         return $result;
     }
-	
+
 	public function getLogoDivisione(Request $request){
 		$id = $request->id;
-		
-		$result = DB::select("select 
+
+		$result = DB::select("select
 							coalesce(d.logo,'') as logoDv,coalesce(d.divisione,'') as divisione,coalesce(d.id,'') as idDivisioni
 							from divisionis d
 							where
 							d.id=".$id);
 		return $result;
-		
+
 	}
-	
+
     public function getfieldE(Request $request){
         $id = $request->id;
-        // nicpaola 07-2020 
+        // nicpaola 07-2020
         $flagDiv = 0;
         if($request->divisione_id > 0){
-            $resultDiv = DB::select("select 
+            $resultDiv = DB::select("select
                             coalesce(d.logo,'') as logoDv,coalesce(d.divisione,'') as divisione,coalesce(d.id,'') as idDivisione
                             from divisionis d
                             where
                             d.id=".$request->divisione_id);
             $flagDiv = 1;
         }
-        $result = DB::select("SELECT 
+        $result = DB::select("SELECT
 				s.societa,
 				coalesce(s.layout_id,1) as layoutS,
 				coalesce(s.urlweb,'') as urlweb,
@@ -746,12 +754,12 @@ $file = '';
 				coalesce(s.firma,'') as firmaImg,
 				coalesce(s.firmalink,'') as firmaImgLink,
 				coalesce(s.id,'') as idSocieta,s.privacy,
-        n.* 
-				FROM societas as s 
-        INNER JOIN nazionis as n ON s.nazioni_id = n.id 
+        n.*
+				FROM societas as s
+        INNER JOIN nazionis as n ON s.nazioni_id = n.id
 				WHERE s.id=".$id);
 
-        // nicpaola 07-2020 
+        // nicpaola 07-2020
         $resultSocial = DB::select("select id,label,url,image from societa_social WHERE societa_id = ".$result[0]->idSocieta);
         $result[0]->socialArray = $resultSocial;
 
@@ -889,7 +897,7 @@ $file = '';
         header('Cache-Control: max-age=60, must-revalidate');
         header("Content-type: text/csv");
         header('Content-Disposition: attachment; filename="EsportazioneOrdini-'.time().'.csv"');
-        
+
         $fp = fopen('php://output', 'wb');
         $headerArray = explode(";", "Codice Dipendente;Cognome;Nome;Professione;Codice Societa;Societa;Divisione;Codice Filiale;Filiale;Qt.a;Business;Concatena CDC;Concatena Location;Data Presentazione;File;Stato;Tripletta;Tripletta esiste;Nome Cognome;Professione;m.;Mobile;t.;Tel.;Indirizzo;CAP;Città;Prov;Mail;Sito");
         fputcsv($fp, $headerArray, ";");
@@ -1019,7 +1027,7 @@ $file = '';
         DB::table('professionis')->where('id',$id)->update(['intAttivo'=>"Si"]);
          DB::statement('update ordinis set professione = REPLACE(professione,"*","") where idProf = '.$id);
          return redirect('/admin/professionis');
-        
+
     }
 
     // nicpaola 07-2020

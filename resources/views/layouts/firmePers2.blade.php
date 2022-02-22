@@ -1,5 +1,4 @@
 <hr/>
-pers2
 <div class="">
     <div class="col-md-12">
 
