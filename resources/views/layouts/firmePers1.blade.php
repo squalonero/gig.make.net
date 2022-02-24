@@ -302,8 +302,8 @@
 					</div>
 				</div>
 
-				<iframe id="embed" src="" width="100%" height="580px"></iframe>
-                <div id="embed" width="100%" height="580px"></div>
+				<iframe id="embed" src="" width="100%" height="580px" style="display: none"></iframe>
+                <div id="embedDiv" width="100%" height="580px" style="display: none"></div>
             </div>
 
         </div>

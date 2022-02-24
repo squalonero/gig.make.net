@@ -147,7 +147,7 @@
                         $socialImgVarName = 'socialImage_' . $socialIndex;
                         $socialLabelVarName = 'socialLabel_' . $socialIndex;
                         if (trim($viewData['request']->$socialHrefVarName) != '') {
-                            $social_output .= '<a href="' . $viewData['request']->$socialHrefVarName . '" target="_blank" style="text-decoration:none"><img src="http://' . $_SERVER['HTTP_HOST'] . '/' . $viewData['request']->$socialImgVarName . '" style="width:30px" width="30" alt="" . $socialLabelVarName . "" /></a><span style="color:#fff">&nbsp;</span>';
+                            $social_output .= '<a href="' . $viewData['request']->$socialHrefVarName . '" target="_blank" style="text-decoration:none"><img src="http://' . $_SERVER['HTTP_HOST'] . '/' . $viewData['request']->$socialImgVarName . '" style="width:30px" width="30" alt="" /></a><span style="color:#fff">&nbsp;</span>';
                         }
                     }
                     $social_output .= '</div>';

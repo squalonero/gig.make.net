@@ -154,7 +154,7 @@ class QueryController extends Controller
         ];
 
 
-        $testo_prova =    "";
+        $testo_prova = "";
 
 
         if ($request->tipoFirma == 'firmaP' || $request->tipoFirma == 'firmaF')

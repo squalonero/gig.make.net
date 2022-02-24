@@ -1,3 +1,5 @@
-@extends('22signatures.layouts.2_OtherCompany.signature')
+@extends('22signatures.layouts.3_GiHolding.signature')
 @section('signature-specific')
+
+
 @endsection
