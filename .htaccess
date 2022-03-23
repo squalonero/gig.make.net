@@ -1,11 +1,4 @@
-
-# SP BEGIN php handler
-<IfModule mod_fcgid.c>
-          AddHandler fcgid-script .php .php5 .php7 .phtml
-          FcgidWrapper    /usr/local/cpanel/cgi-sys/sp-ea-php72 .php
-          FcgidWrapper    /usr/local/cpanel/cgi-sys/sp-ea-php72 .php5
-          FcgidWrapper    /usr/local/cpanel/cgi-sys/sp-ea-php72 .php7
-          FcgidWrapper    /usr/local/cpanel/cgi-sys/sp-ea-php72 .phtml
-</IfModule>
-# SP END php handler
-
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^public
+RewriteRule ^(.*)$ public/$1 [L]
