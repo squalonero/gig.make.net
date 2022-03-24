@@ -106,7 +106,7 @@ function validateFileSize(oForm)
     return true;
 }
 
-$('#caf, #stampa').click(function ()
+$('#caf').on('click', function ()
 {
     var error = check();
     var tipoFirma = $('#tipoFirma').val();
@@ -137,12 +137,6 @@ $('#caf, #stampa').click(function ()
         //build http query
         _getData = _getData.map(x => `${ encodeURIComponent(x[0]) }=${ encodeURIComponent(x[1]) }`).join('&');
 
-        if (req == 'stampa')
-        {
-            window.location.href = APPDOMAIN + '/getlayout?' + _getData;
-            return false;
-        }
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -159,6 +153,7 @@ $('#caf, #stampa').click(function ()
             contentType: false,
             success: function (msg)
             {
+                $('#stampa').attr('href', APPDOMAIN + '/getlayout?' + _getData);
                 $('#scarica').attr('href', APPDOMAIN + '/getlayout?' + _getData);
                 $('#scarica').attr('download', 'signature.html');
 

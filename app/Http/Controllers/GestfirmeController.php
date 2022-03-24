@@ -18,44 +18,50 @@ use CRUDBooster;
 
 class GestfirmeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
-				if (CRUDBooster::myPrivilegeName() == "User" || CRUDBooster::myPrivilegeName() == "Admin" )
-	{
-        $permission = Session('admin_privileges');
-        $comboSocieta = MyFuncs::getComboSocieta('societas', 'societa', 'societa_id');
-        $comboNazione = MyFuncs::getComboNazioni('nazioni', 'nazione', 'nazioni_id');
-        if(Session::get('nazione') == 11){
-            App::setLocale('it');
-        }else{
-            App::setLocale('en');
+        if (CRUDBooster::myPrivilegeName() !== NULL)
+        {
+            $permission = Session('admin_privileges');
+            $comboSocieta = MyFuncs::getComboSocieta('societas', 'societa', 'societa_id');
+            $comboNazione = MyFuncs::getComboNazioni('nazioni', 'nazione', 'nazioni_id');
+            if (Session::get('nazione') == 11)
+            {
+                App::setLocale('it');
+            }
+            else
+            {
+                App::setLocale('en');
+            }
+
+            /**
+             * @todo check if the next 5 lines can be deleted
+             */
+            $files = glob($_SERVER['DOCUMENT_ROOT'] . '/filehtml/*'); // get all file names
+
+            foreach ($files as $file)
+            { // iterate files
+                if (is_file($file))
+                    unlink($file); // delete file
+            }
+            $comboProf = MyFuncs::getComboProf();
+
+
+
+
+
+            return View('firpersonalizzate')
+                ->with('societa', $comboSocieta)
+                ->with('nazioni', $comboNazione)
+                ->with('professioni', $comboProf)
+                // ->with('tabella',$tableImg)
+                ->with('permission', $permission);
         }
+        else
+        {
 
-
-        $files = glob($_SERVER['DOCUMENT_ROOT'].'/filehtml/*'); // get all file names
-
-        foreach($files as $file){ // iterate files
-            if(is_file($file))
-               unlink($file); // delete file
+            return view('login');
         }
-        $comboProf = MyFuncs::getComboProf();
-		
-		
-		
-
-		
-        return View('firpersonalizzate')
-            ->with('societa', $comboSocieta)
-            ->with('nazioni', $comboNazione)
-            ->with('professioni', $comboProf)
-            // ->with('tabella',$tableImg)
-            ->with('permission', $permission);
-			
-			}else{
-			
-		return view('login');
-		
-		}
     }
-
 }

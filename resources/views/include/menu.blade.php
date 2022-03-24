@@ -1,4 +1,4 @@
-<div class="container">    
+<div class="container">
 <section class="m-navigation nav">
 
         <div class='main-menu navbar collapse-navbar'>
@@ -64,7 +64,7 @@
 
 
 
-                @if(CRUDBooster::isSuperadmin())
+                {{-- @if(CRUDBooster::isSuperadmin())
                     <li class="header">{{ trans('crudbooster.SUPERADMIN') }}</li>
                     <li class='treeview'>
                         <a href='#'><i class='fa fa-key'></i> <span>{{ trans('crudbooster.Privileges_Roles') }}</span> <i
@@ -102,14 +102,15 @@
                             <li class="{{ (Request::is(config('crudbooster.ADMIN_PATH').'/settings/add*')) ? 'active' : '' }}"><a
                                         href='{{route("SettingsControllerGetAdd")}}'><i class='fa fa-plus'></i>
                                     <span>{{ trans('crudbooster.Add_New_Setting') }}</span></a></li>
-                            <?php
+                            @php
                             $groupSetting = DB::table('cms_settings')->groupby('group_setting')->pluck('group_setting');
-                            foreach($groupSetting as $gs):
+                            @foreach($groupSetting as $gs):
                             ?>
-                            <li class="<?=($gs == Request::get('group')) ? 'active' : ''?>"><a
+                            <li class="{{ ($gs == Request::get('group')) ? 'active' : '' }}"><a
                                         href='{{route("SettingsControllerGetShow")}}?group={{urlencode($gs)}}&m=0'><i class='fa fa-wrench'></i>
                                     <span>{{$gs}}</span></a></li>
-                            <?php endforeach;?>
+                            @endforeach
+                            @endphp
                         </ul>
                     </li>
                     <li class='treeview'>
@@ -169,13 +170,13 @@
 
                     <li class="{{ (Request::is(config('crudbooster.ADMIN_PATH').'/logs*')) ? 'active' : '' }}"><a href='{{Route("LogsControllerGetIndex")}}'><i
                                     class='fa fa-flag'></i> <span>{{ trans('crudbooster.Log_User_Access') }}</span></a></li>
-                @endif
-				
+                @endif --}}
+
             </ul>
 			<ul class="m-logout navbar-nav ml-auto">
 			<li>
 				<!-- Logout box sa aggiungere al tag a del logout
-					
+
 						onclick="swal({
                                         title: '{{trans('crudbooster.alert_want_to_logout')}}',
                                         type:'info',
@@ -197,5 +198,5 @@
         </div>
 
     </section>
-	
+
 </div>

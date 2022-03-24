@@ -18,24 +18,24 @@ use CRUDBooster;
 
 class UserController extends Controller
 {
-	
-	
-	
+
+
+
     public function index(){
 		//var_dump(CRUDBooster::myPrivilegeName());exit();
-		
-		if ( CRUDBooster::myPrivilegeName() == "User" || CRUDBooster::myPrivilegeName() == "Admin")
+
+		if (CRUDBooster::myPrivilegeName() !== NULL)
 	{
-			
+
      	return view('user.nazioni');
-			
+
 	}else{
-			
+
 		return view('login');
-		
+
 	}
-        
+
     }
-	
-	
+
+
 }

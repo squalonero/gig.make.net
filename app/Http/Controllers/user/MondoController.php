@@ -19,23 +19,23 @@ use Collective\Html\FormFacade as Form;
 class MondoController extends Controller
 {
     public function index(){
-       
+
 		Session::put('italia','world');
         Session::put('nazione','12');
         App::setLocale('en');
         $menu =  CRUDBooster::sidebarMenu();
-		
-		if ( CRUDBooster::myPrivilegeName() == "User" || CRUDBooster::myPrivilegeName() == "Admin" )
+
+		if ( CRUDBooster::myPrivilegeName() !== NULL )
 		{
 
         return view('user.italia')->with('arrayMenu',$menu);
-		
+
 		}else{
-			
+
 		return view('login');
-		
+
 		}
-        
+
         //return view('user.world');
     }
 }

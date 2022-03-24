@@ -51,7 +51,7 @@
             <div class="form-row">
                 <div class="fb-text form-group field-email col-md-12">
                     <label for="email"  class="fb-text-label">Email:</label>
-                    <input type="text" size="50" id="mail" readonly></input>
+                    <input type="text" size="50" id="mail" readonly />
                 </div>
             </div>
             <div class="form-row">

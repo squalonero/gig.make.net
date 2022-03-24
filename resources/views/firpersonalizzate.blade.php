@@ -1,5 +1,5 @@
 
-@extends(($permission == 2) ? "layouts.user" : "crudbooster::admin_template")
+@extends("layouts.user")
 @if(Session::get('tipoFlag') == 'bigliettiP')
         @section('title', trans('campi.biglietti_personalizzati'))
 @elseif(Session::get('tipoFlag') == 'firmaP')
@@ -102,7 +102,7 @@
 
     <hr>
    <script src="vendor/crudbooster/assets/adminlte/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <script src="js/custom.js?time=<?php echo filemtime('js/custom.js') ?>"></script>
+    <script src="js/custom.js?time=<?= time() ?>"></script>
 
 <script>
     var emailObb = "<?php echo Session::get('tipoFlag');?>";

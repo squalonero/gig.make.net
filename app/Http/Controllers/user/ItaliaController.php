@@ -19,20 +19,20 @@ use Collective\Html\FormFacade as Form;
 class ItaliaController extends Controller
 {
     public function index(){
-       
+
 		Session::put('italia','italia');
         Session::put('nazione','11');
         App::setLocale('it');
       $menu =  CRUDBooster::sidebarMenu();
-		
-		if ( CRUDBooster::myPrivilegeName() == "User" || CRUDBooster::myPrivilegeName() == "Admin" )
+
+		if ( CRUDBooster::myPrivilegeName() !== NULL )
 	{
 				return view('user.italia')->with('arrayMenu',$menu);
 		}else{
-			
+
 		return view('login');
-		
+
 	}
-		
+
     }
 }

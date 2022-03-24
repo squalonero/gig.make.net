@@ -249,30 +249,29 @@
                 @endif
             </div>
 
-            <!--fine dominio-->
-
+            <!-- fine dominio -->
             @if(Session::get('tipoFlag') != 'bigliettiP' && Session::get('tipoFlag') != 'bigliettiF')
-            <!-- nicpaola 07-2020 - add campi skype -->
-            <div class="form-row" id="container-field-skype">
-                <div class="fb-text form-group field-email col-md-1">
-                </div>
-                <div class="fb-text form-group field-email-domain col-md-11">
-                    <label for="skype"  class="fb-text-label">Skype</label>
-                    <input type="text" class="form-control" name="skype" id="skype">
-                </div>
-            </div>
+                        <!-- nicpaola 07-2020 - add campi skype -->
+                        <div class="form-row" id="container-field-skype">
+                            <div class="fb-text form-group field-email col-md-1">
+                            </div>
+                            <div class="fb-text form-group field-email-domain col-md-11">
+                                <label for="skype"  class="fb-text-label">Skype</label>
+                                <input type="text" class="form-control" name="skype" id="skype">
+                            </div>
+                        </div>
 
-            <!-- nicpaola 07-2020 - add campi social -->
-            <div class="form-row" id="socialContainer"></div>
+                        <!-- nicpaola 07-2020 - add campi social -->
+                        <div class="form-row" id="socialContainer"></div>
 
-            <!-- nicpaola 07-2020 - add campo sponsor -->
-            <div class="form-row" id="sponsorContainer">
-                <div class="fb-text form-group field-email-domain col-md-12">
-                    <label for="sponsor_image"  class="fb-text-label">{!! trans('campi.sponsorfileinput') !!}</label>
-                    <input type="file" class="form-control" name="sponsor_image" id="sponsor_image" />
-                    <div style="color:red;font-size:11pt">{!! trans('campi.sponsorrules') !!}</div>
-                </div>
-            </div>
+                        <!-- nicpaola 07-2020 - add campo sponsor -->
+                        <div class="form-row" id="sponsorContainer">
+                            <div class="fb-text form-group field-email-domain col-md-12">
+                                <label for="sponsor_image"  class="fb-text-label">{!! trans('campi.sponsorfileinput') !!}</label>
+                                <input type="file" class="form-control" name="sponsor_image" id="sponsor_image" />
+                                <div style="color:red;font-size:11pt">{!! trans('campi.sponsorrules') !!}</div>
+                            </div>
+                        </div>
 
 						<!-- mirco 05-05-2021 - add campo Link Sponsor -->
 						<div class="fb-text form-group field-sponsor_image_link">
