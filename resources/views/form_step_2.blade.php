@@ -36,7 +36,7 @@
                 </div>
                     <!-- fine aggiunta quantità-->
                 @endif
-                <!--amostro tipologia se sono firme-->
+                <!--mostro tipologia se sono firme-->
                     @if(Session::get('nazione') <> 11 && Session::get('tipoFlag') == 'firmaF')
                         <div class="fb-text form-group field-address">
                             <label for="address" class="fb-text-label">Address<span class="red">*</span></label>
@@ -130,8 +130,7 @@
                     <input type="text" class="form-control" name="telefono" id="telefono">
                 </div>
             </div>
-            <!-- nicpaola 07-2020 - remove campo fax -->
-            <div class="form-row" id="container-field-fax" style="display:none">
+            <div class="form-row" id="container-field-fax">
                 <div class="fb-text form-group field-email col-md-1">
                     <label for="prefnaz" class="fb-number-label">&nbsp;</label>
 
@@ -301,7 +300,7 @@
 					</div>
 				</div>
                 @if(Session::get('tipoFlag') == 'bigliettiP' || Session::get('tipoFlag') == 'bigliettiF')
-                    <div class="danger">
+                    <div class="text-danger my-3">
                         ANTEPRIMA PER VERIFICA DATI INSERITI - LA GRAFICA SARÀ SECONDO LAYOUT DELLE RISPETTIVE SOCIETÀ
                     </div>
                 @endif
@@ -315,11 +314,11 @@
     </div>
 
     <input type="hidden" id="tipoFirma" name="tipoFirma" value="{{ Session::get('tipoFlag') }}">
-<input type="hidden" id="societaC" name="societaC" value="">
+    <input type="hidden" id="societaC" name="societaC" value="">
     <input type="hidden" id="societaN" name="societaN" value="">
-<input type="hidden" id="nazioneC" name="nazioneC" value="">
-<input type="hidden" id="divisioneC" name="divisioneC" value="">
-<input type="hidden" id="logoSC" name="logoSC" value="">
+    <input type="hidden" id="nazioneC" name="nazioneC" value="">
+    <input type="hidden" id="divisioneC" name="divisioneC" value="">
+    <input type="hidden" id="logoSC" name="logoSC" value="">
     <input type="hidden" id="firmaImg" name="firmaImg" value="">
     <input type="hidden" id="indirizzoC" name="indirizzoC" value="">
     <input type="hidden" id="indirizzoC1" name="indirizzoC1" value="">

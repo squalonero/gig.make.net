@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Http\Controllers;
 
 use DB;
@@ -14,6 +14,6 @@ class CBHook extends Controller {
 	|
 	*/
 	public function afterLogin() {
-		return view('gfirme');
+		return view('admin');
 	}
 }
