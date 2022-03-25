@@ -144,13 +144,14 @@ $('#caf').on('click', function ()
         });
 
         $.ajax({
-            type: "post",
+            type: "POST",
             url: "getlayout",
             data: dati,
             cache: false,
             dataType: 'html',
             processData: false,
             contentType: false,
+            timeout: 10000,
             success: function (msg)
             {
                 $('#stampa').attr('href', APPDOMAIN + '/getlayout?' + _getData);
@@ -161,16 +162,7 @@ $('#caf').on('click', function ()
 
                 if (req == 'caf')
                 {
-                    if (tipoFirma == "bigliettiP" || tipoFirma == "bigliettiF")
-                    {
-                        $('#embed').attr('src', msg).show();
-                        $('#embedDiv').hide();
-                    }
-                    else
-                    {
-                        $('#embed').hide();
-                        $('#embedDiv').html(msg).show();
-                    }
+                    $('#embedDiv').html(msg).show();
                 }
 
             },

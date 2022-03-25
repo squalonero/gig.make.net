@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Session;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\View;
 use MyFuncs;
 use Auth;
 use Validator;
@@ -114,6 +114,7 @@ class QueryController extends Controller
          */
         $viewData = [
             'ID_societa' => $request->societaC,
+            'nome_societa' => $request->societaN,
 
             'name' => $request->nome,
             'lastname' => $request->cognome,
@@ -140,11 +141,13 @@ class QueryController extends Controller
 
             'email' => strtolower($request->email) . $request->at . $request->emaildomain,
             'email_company' => strtolower($request->cmailF),
+            'email_filiale' => $request->emailBF ?? $request->email,
+            'email_domain' => $request->emaildomain,
 
             'domain' => $request->domain,
 
             'socialCount' => $request->socialCount,
-            'request' => $request,
+            //'request' => $request,
 
             'sponsorFilePath' => $sponsorFilePath,
             'firmaImg' => trim($request->firmaImg),
@@ -152,9 +155,6 @@ class QueryController extends Controller
 
             'privacyC' => $request->privacyC
         ];
-
-
-        $testo_prova = "";
 
 
         if ($request->tipoFirma == 'firmaP' || $request->tipoFirma == 'firmaF')
@@ -199,190 +199,112 @@ class QueryController extends Controller
 
         if ($request->tipoFirma == 'bigliettiP' || $request->tipoFirma == 'bigliettiF')
         {
-            //biglietti
-            $trattino = '';
-            //	$noHtml = 1;
-            if ($request->tipoFirma == 'bigliettiP')
+
+            // $file = '';
+            // // if($noHtml == 0){
+            // $data = date('ymd');
+            // $nome = $data . substr(mt_rand(1, 9999), 0, 4) . substr(mt_rand(1, 9999999), 3, 4) . '.html';
+            // $identificatore_prova = fopen("filehtml/" . $nome, "w");
+            // fwrite($identificatore_prova, $testo_prova);
+            // fclose($identificatore_prova);
+            // $file = '<p><a href="http://' . $_SERVER['HTTP_HOST'] . '/filehtml/' . $nome . '" target="_blank">' . $nome . '</a><br></p>';
+            //   }
+            if ($request->divisioneC != '')
             {
-
-                $testo_prova .= '<p>';
-                $testo_prova .= "<span style=\"font-weight:bold; font-size:9pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\">
-                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->logoSC . "\" alt=\"$ragsoc_prova\" title=\"$ragsoc_prova\"  >
-                </span><br/><br/>";
-                $testo_prova .= strtoupper($request->nome) . ' ' . strtoupper($request->cognome);
-
-                if ($request->professione != '') $testo_prova .= '<br />' . ucwords(strtolower($request->professione));
-
-                $testo_prova .= '<br /><br />' . $request->societaN;
-                $testo_prova .= '<br />' . $request->indirizzoC . '<br/>';
-
-                if ($request->telefono != '')
-                {
-                    $testo_prova .= "Tel. " . $request->prefnaz . " " . $request->preftel . " " . $request->telefono;
-                }
-
-                $trattino = '';
-                if ($request->fax != '')
-                {
-
-                    if ($request->telefono != '') $trattino = ' - ';
-                    $testo_prova .= $trattino . "Fax " . $request->prefnaz1 . " " . $request->prefax . " " . $request->fax;
-                }
-                $trattino = '';
-                if ($request->cell != '')
-                {
-
-                    if ($request->telefono != '' || $request->fax != '') $trattino = ' - ';
-                    $testo_prova .= $trattino . "Cell. " . $request->cellnaz . " " . $request->precell . " " . $request->cell;
-                }
-                // $testo_prova .= substr($testo_prova, 0, -2);
-                $trattino = '';
-
-                if ($request->emailBF != '' || $request->email) $trattino = ' - ';
-                $mail = ($request->emailBF != '') ? $request->emailBF : $request->email;
-                $testo_prova .= '<br />' . $mail . $request->at . $request->emaildomain . $trattino . 'www.' . $request->domain;
-                // $testo_prova .= '<br />' . $request->email . $request->at . $request->emaildomain . '  www.' . $request->cdominio;
-                //  $testo_prova .= substr($testo_prova, 0, -2);
-                $testo_prova .= '<br /></p>';
+                $divisione = DB::select("select divisione from divisionis where id=" . $request->divisioneC);
             }
-            else
+            //codsocieta e codice
+            if ($request->nome != '' && $request->cognome != '')
             {
-
-                $testo_prova .= '<p>';
-                $testo_prova .= "<span style=\"font-weight:bold; font-size:9pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;\">
-                    <img src=\"http://" . $_SERVER['HTTP_HOST'] . "/" . $request->logoSC . "\" alt=\"$ragsoc_prova\" title=\"$ragsoc_prova\"  >
-                	</span><br/><br/>";
-                $testo_prova .= $request->societaN;
-                $testo_prova .= '<br />' . $request->indirizzoC;
-                if ($request->telefono != '')
+                $codSocieta = 0;
+                if ($request->societaC != '')  $codSocieta = DB::select('select codice from societas where id=' . $request->societaC);
+                $codice = '';
+                if (count($codSocieta) > 0)
                 {
-                    $testo_prova .= "<br />Tel. " . $request->prefnaz . " " . $request->preftel . " " . $request->telefono;
+                    $codice = ' codsocieta =' . $codSocieta[0]->codice . ' and ';
                 }
 
-                $trattino = '';
-                if ($request->fax != '')
+                $triplette = DB::select('select id,dipendente,business,conccdc,conclocation,location,cdc,concbusiness from dipendentis where ' . $codice . ' LOWER(nome) = "' . strtolower($request->nome) . '" and LOWER(cognome) = "' . strtolower($request->cognome) . '"');
+            }
+            $profess = DB::select('select intAttivo from professionis where professione ="' . $request->professione . '"');
+            $intAttivo = '';
+            if ($profess[0]->intAttivo == 'No') $intAttivo = '***';
+
+            $codSocieta = DB::select('select codice from societas where id=' . $request->societaC);
+
+            /**
+             * Prepare data to send BIGLIETTI DATA ?
+             */
+
+            $idProf = 0;
+            if (isset($request->professione) && $request->professione != '')
+            {
+                $prof = DB::select('select * from professionis where LOWER(professione) = "' . strtolower($request->professione) . '"');
+                if (count($prof) == 0)
                 {
-
-                    if ($request->telefono != '')
-                    {
-                        $trattino = ' - ';
-                    }
-                    else
-                    {
-                        $testo_prova .= '<br />';
-                    };
-                    $testo_prova .= $trattino . "Fax " . $request->prefnaz1 . " " . $request->prefax . " " . $request->fax;
+                    $dati = array('professione' => $request->professione, 'intAttivo' => 'No');
+                    $idProf = DB::table('professionis')->insertGetId($dati);
                 }
-                $trattino = '';
-                if ($request->cell != '')
-                {
+            }
 
-                    if ($request->telefono != '' || $request->fax != '') $trattino = ' - ';
-                    $testo_prova .= $trattino . "Cell. " . $request->cellnaz . " " . $request->precell . " " . $request->cell;
-                }
-                //  $testo_prova .= substr($testo_prova, 0, -2);
+            $arrayPost = array(
+                'coddipendente' => $triplette[0]->dipendente,
+                'cognome' => $request->cognome,
+                'nome' => $request->nome,
+                'idProf'   => $idProf,
+                'professione' => $intAttivo . $request->professione . $intAttivo,
+                'codsocieta' => $codSocieta[0]->codice,
+                // 'codsocieta' => $request->societaC,
+                'societa' => $request->societaN,
+                'divisione' => $divisione[0]->divisione,
+                'codfiliale' => $request->codice,
+                'filiale' => $request->nomefiliale,
+                'qt' => $request->qtbiglietti,
+                'business' => $triplette[0]->business,
+                'concacdc' => $triplette[0]->conccdc,
+                'location' => $triplette[0]->location,
+                'cdc' => $triplette[0]->cdc,
+                'concbusiness' => substr($triplette[0]->concbusiness, 1),
+                'concalocation' => $triplette[0]->conclocation,
+                'indirizzo' => $request->indirizzoC,
+                'prefnaz' => $request->prefnaz,
+                'preftel' => $request->preftel,
+                'telefono' => $request->telefono,
+                'prefnaz1' => $request->prefnaz1,
+                'prefax' => $request->prefax,
+                'fax' => $request->fax,
+                'cellnaz' => $request->cellnaz,
+                'prefcell' => $request->precell,
+                'cell' => $request->cell,
+                'emailBF' => $request->emailBF,
+                'email' => $request->email,
+                'at' => $request->at,
+                'emaildomain' => $request->emaildomain,
+                'cdominio' => $request->domain,
 
-                $trattino = '';
+                //    'file' => '<p><a href="http://'.$_SERVER['HTTP_HOST'].'/filehtml/'.$nome. '" target="_blank">'.$nome.'</a><br></p>'
+                'file' => null,
+                'pathFile' => "filehtml/" . null
 
-                if ($request->emailBF != '') $trattino = ' - ';
+            );
+            Session::put('arrayOrdine', $arrayPost);
 
-                $testo_prova .= '<br />' . $request->emailBF . $trattino . 'www.' . $request->domain;
-
-                //  $testo_prova .= substr($testo_prova, 0, -2);
-                $testo_prova .= '<br /></p>';
+            try
+            {
+                if ($request->tipoFirma == 'bigliettiP')
+                    return view('22bdv.pers', compact('viewData'));
+                else
+                    return view('22bdv.fil', compact('viewData'));
+            }
+            catch (\Exception $e)
+            {
+                die($e->getMessage());
             }
         } //end biglietti
 
-        $file = '';
-        // if($noHtml == 0){
-        $data = date('ymd');
-        $nome = $data . substr(mt_rand(1, 9999), 0, 4) . substr(mt_rand(1, 9999999), 3, 4) . '.html';
-        $identificatore_prova = fopen("filehtml/" . $nome, "w");
-        fwrite($identificatore_prova, $testo_prova);
-        fclose($identificatore_prova);
-        $file = '<p><a href="http://' . $_SERVER['HTTP_HOST'] . '/filehtml/' . $nome . '" target="_blank">' . $nome . '</a><br></p>';
-        //   }
-        if ($request->divisioneC != '')
-        {
-            $divisione = DB::select("select divisione from divisionis where id=" . $request->divisioneC);
-        }
-        //codsocieta e codice
-        if ($request->nome != '' && $request->cognome != '')
-        {
-            $codSocieta = 0;
-            if ($request->societaC != '')  $codSocieta = DB::select('select codice from societas where id=' . $request->societaC);
-            $codice = '';
-            if (count($codSocieta) > 0)
-            {
-                $codice = ' codsocieta =' . $codSocieta[0]->codice . ' and ';
-            }
 
-            $triplette = DB::select('select id,dipendente,business,conccdc,conclocation,location,cdc,concbusiness from dipendentis where ' . $codice . ' LOWER(nome) = "' . strtolower($request->nome) . '" and LOWER(cognome) = "' . strtolower($request->cognome) . '"');
-        }
-        $profess = DB::select('select intAttivo from professionis where professione ="' . $request->professione . '"');
-        $intAttivo = '';
-        if ($profess[0]->intAttivo == 'No') $intAttivo = '***';
-
-        $codSocieta = DB::select('select codice from societas where id=' . $request->societaC);
-
-        /**
-         * Prepare data to send BIGLIETTI DATA ?
-         */
-
-        $idProf = 0;
-        if (isset($request->professione) && $request->professione != '')
-        {
-            $prof = DB::select('select * from professionis where LOWER(professione) = "' . strtolower($request->professione) . '"');
-            if (count($prof) == 0)
-            {
-                $dati = array('professione' => $request->professione, 'intAttivo' => 'No');
-                $idProf = DB::table('professionis')->insertGetId($dati);
-            }
-        }
-
-        $arrayPost = array(
-            'coddipendente' => $triplette[0]->dipendente,
-            'cognome' => $request->cognome,
-            'nome' => $request->nome,
-            'idProf'   => $idProf,
-            'professione' => $intAttivo . $request->professione . $intAttivo,
-            'codsocieta' => $codSocieta[0]->codice,
-            // 'codsocieta' => $request->societaC,
-            'societa' => $request->societaN,
-            'divisione' => $divisione[0]->divisione,
-            'codfiliale' => $request->codice,
-            'filiale' => $request->nomefiliale,
-            'qt' => $request->qtbiglietti,
-            'business' => $triplette[0]->business,
-            'concacdc' => $triplette[0]->conccdc,
-            'location' => $triplette[0]->location,
-            'cdc' => $triplette[0]->cdc,
-            'concbusiness' => substr($triplette[0]->concbusiness, 1),
-            'concalocation' => $triplette[0]->conclocation,
-            'indirizzo' => $request->indirizzoC,
-            'prefnaz' => $request->prefnaz,
-            'preftel' => $request->preftel,
-            'telefono' => $request->telefono,
-            'prefnaz1' => $request->prefnaz1,
-            'prefax' => $request->prefax,
-            'fax' => $request->fax,
-            'cellnaz' => $request->cellnaz,
-            'prefcell' => $request->precell,
-            'cell' => $request->cell,
-            'emailBF' => $request->emailBF,
-            'email' => $request->email,
-            'at' => $request->at,
-            'emaildomain' => $request->emaildomain,
-            'cdominio' => $request->domain,
-
-            //    'file' => '<p><a href="http://'.$_SERVER['HTTP_HOST'].'/filehtml/'.$nome. '" target="_blank">'.$nome.'</a><br></p>'
-            'file' => $file,
-            'pathFile' => "filehtml/" . $nome
-
-        );
-        Session::put('arrayOrdine', $arrayPost);
-        Session::put('linkordine', '/filehtml/' . $nome . '"');
-        return "/filehtml/" . $nome;
+        // Session::put('linkordine', '/filehtml/' . $nome . '"');
+        // return "/filehtml/" . $nome;
     }
     public function getnazioni(Request $request)
     {

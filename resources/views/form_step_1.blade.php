@@ -93,7 +93,7 @@
 
     <div class="row layout1" style="display:none;">
         <!-- firmePers1 = layout 1-->
-        @include('layouts.firmePers1')
+        @include('form_step_2')
     </div>
 
     <div id="divFirma" style="display:none">

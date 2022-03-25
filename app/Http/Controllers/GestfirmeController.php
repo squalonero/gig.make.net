@@ -35,9 +35,7 @@ class GestfirmeController extends Controller
                 App::setLocale('en');
             }
 
-            /**
-             * @todo check if the next 5 lines can be deleted
-             */
+
             $files = glob($_SERVER['DOCUMENT_ROOT'] . '/filehtml/*'); // get all file names
 
             foreach ($files as $file)
@@ -51,7 +49,7 @@ class GestfirmeController extends Controller
 
 
 
-            return View('firpersonalizzate')
+            return View('form_step_1')
                 ->with('societa', $comboSocieta)
                 ->with('nazioni', $comboNazione)
                 ->with('professioni', $comboProf)

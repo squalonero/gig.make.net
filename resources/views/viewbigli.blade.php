@@ -14,18 +14,18 @@
 	</style>
 <p>
 	@if($request[0]->divisione)
-	
+
 		<span class="mdivisione">Nome Divisione:<br />
 		{!! $request[0]->divisione !!}</span><br>
-	
+
 	@endif
-	
+
 	@if($request[0]->nome != '' && $request[0]->cognome != '')
-	
-    	<br/>{!! strtoupper($request[0]->nome) !!} {!! strtoupper($request[0]->cognome) !!}<br />
-	
+
+    	<br/>{!! ucfirst($request[0]->nome) !!} {!! ucfirst($request[0]->cognome) !!}<br />
+
 	@endif
-	
+
     @if( $request[0]->professione != '')
         {!! ucwords(strtolower($request[0]->professione)) !!}<br />
     @endif
