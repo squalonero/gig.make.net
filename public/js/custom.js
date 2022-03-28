@@ -311,17 +311,17 @@ function getFieldEstero(campoId, val)
             $('#privacyC').val(data[0].privacy);
 
             // nicpaola 07-2020 - add social
-            if (data[0].layoutS == "2")
-            {
-                $('#sponsorContainer').hide();
-                $('#container-field-fax').show();
-                $('#container-field-skype').hide();
-            } else
-            {
+            // if (data[0].layoutS == "2")
+            // {
+            //     $('#sponsorContainer').hide();
+            //     //$('#container-field-fax').show();
+            //     $('#container-field-skype').hide();
+            // } else
+            // {
                 $('#sponsorContainer').show();
-                $('#container-field-fax').hide();
+                //$('#container-field-fax').hide();
                 $('#container-field-skype').show();
-            }
+            // }
 
             $('#socialCount').val(data[0].socialArray.length);
             $('#socialContainer').html('');
@@ -408,15 +408,15 @@ function getField(val)
             $('#prefax').val(numFax[0]);
             $('#telefono').val(numTel[1]);
             $('#fax').val(numFax[1]);
-            if (data[0].layoutS == "2")
-            {
-                $('#container-field-fax').show();
-                $('#container-field-skype').hide();
-            } else
-            {
-                $('#container-field-fax').hide();
-                $('#container-field-skype').show();
-            }
+            // if (data[0].layoutS == "2")
+            // {
+            //     //$('#container-field-fax').show();
+            //     $('#container-field-skype').hide();
+            // } else
+            // {
+            //     //$('#container-field-fax').hide();
+            //     $('#container-field-skype').show();
+            // }
             $('#mail').val(data[0].email);
             $('#emailBF').val(data[0].email);
             //firma Filiale
@@ -477,13 +477,13 @@ function getField(val)
             }
 
             // nicpaola 07-2020 - add social
-            if (data[0].layoutS == "2")
-            {
-                $('#sponsorContainer').hide();
-                $('.field-sponsor_image_link').hide();
+            // if (data[0].layoutS == "2")
+            // {
+            //     $('#sponsorContainer').hide();
+            //     $('.field-sponsor_image_link').hide();
 
-            } else
-            {
+            // } else
+            // {
                 $('#sponsorContainer').show();
                 $('.field-sponsor_image_link').show();
                 $('#sponsorPreview').remove();
@@ -496,7 +496,7 @@ function getField(val)
 								</div>
 								`);
                 }
-            }
+            // }
 
             $('#socialCount').val(data[0].socialArray.length);
             $('#socialContainer').html('');
