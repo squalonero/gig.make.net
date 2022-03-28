@@ -313,32 +313,32 @@
 
     </div>
 
-    <input type="hidden" id="tipoFirma" name="tipoFirma" value="{{ Session::get('tipoFlag') }}">
-    <input type="hidden" id="societaC" name="societaC" value="">
-    <input type="hidden" id="societaN" name="societaN" value="">
-    <input type="hidden" id="nazioneC" name="nazioneC" value="">
-    <input type="hidden" id="divisioneC" name="divisioneC" value="">
+    <input type="hidden" id="tipoFirma" name="tipoFirma" value="{{ Session::get('tipoFlag') }}" />
+    <input type="hidden" id="societaC" name="societaC" value="" />
+    <input type="hidden" id="societaN" name="societaN" value="" />
+    <input type="hidden" id="nazioneC" name="nazioneC" value="" />
+    <input type="hidden" id="divisioneC" name="divisioneC" value="" />
 
-    <input type="hidden" id="logoSC" name="logoSC" value="">
-    <input type="hidden" id="logo_width" name="logo_width" value="">
-    <input type="hidden" id="endorsement" name="endorsement" value="">
-    <input type="hidden" id="endorsement_width" name="endorsement_width" value="">
-    <input type="hidden" id="endorsementLink" name="endorsementLink" value="">
-    <input type="hidden" id="sponsor" name="sponsor" value="">
-    <input type="hidden" id="sponsor_width" name="sponsor_width" value="">
+    <input type="hidden" id="logoSC" name="logoSC" value="" />
+    <input type="hidden" id="logo_width" name="logo_width" value="" />
+    <input type="hidden" id="endorsement" name="endorsement" value="" />
+    <input type="hidden" id="endorsement_width" name="endorsement_width" value="" />
+    <input type="hidden" id="endorsementLink" name="endorsementLink" value="" />
+    <input type="hidden" id="sponsor" name="sponsor" value="" />
+    <input type="hidden" id="sponsor_width" name="sponsor_width" value="" />
 
-    <input type="hidden" id="indirizzoC" name="indirizzoC" value="">
-    <input type="hidden" id="indirizzoC1" name="indirizzoC1" value="">
-    <input type="hidden" id="indirizzoC2" name="indirizzoC2" value="">
-    <input type="hidden" id="privacyC" name="privacyC" value="">
-    <input type="hidden" id="layout" name="layout" value="">
-    <input type="hidden" id="cmailF" name="cmailF" value="">
-    <input type="hidden" id="cdominio" name="cdominio" value="">
-    <input type="hidden" id="codice" name="codice" value="">
-    <input type="hidden" id="nomefiliale" name="nomefiliale" value="">
+    <input type="hidden" id="indirizzoC" name="indirizzoC" value="" />
+    <input type="hidden" id="indirizzoC1" name="indirizzoC1" value="" />
+    <input type="hidden" id="indirizzoC2" name="indirizzoC2" value="" />
+    <input type="hidden" id="privacyC" name="privacyC" value="" />
+    <input type="hidden" id="layout" name="layout" value="" />
+    <input type="hidden" id="cmailF" name="cmailF" value="" />
+    <input type="hidden" id="cdominio" name="cdominio" value="" />
+    <input type="hidden" id="codice" name="codice" value="" />
+    <input type="hidden" id="nomefiliale" name="nomefiliale" value="" />
 
     <!-- nicpaola 07-2020 - add campi social -->
-    <input type="hidden" id="socialCount" name="socialCount" value="0">
+    <input type="hidden" id="socialCount" name="socialCount" value="0" />
 
 </form>
 
