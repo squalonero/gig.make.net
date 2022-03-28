@@ -305,9 +305,16 @@ function getFieldEstero(campoId, val)
             $('#societaC').val(data[0].id);
             $("#domain").val(str);
             $('.layout1').css('display', 'block');
+
             $("#logoSC").val(data[0].logoS);
-            $("#firmaImg").val(data[0].firmaImg);
-            $("#firmaImgLink").val(data[0].firmaImgLink);
+            $("#logo_width").val(data[0].logo_width);
+            $("#endorsement").val(data[0].endorsement);
+            $("#endorsement_width").val(data[0].endorsement_width);
+            $("#endorsementLink").val(data[0].endorsementLink);
+            $("#sponsor").val(data[0].sponsorFilePath);
+            $("#sponsor_width").val(data[0].sponsor_width);
+            $("#sponsorLink").val(data[0].sponsorLink);
+
             $('#privacyC').val(data[0].privacy);
 
             // nicpaola 07-2020 - add social
@@ -440,8 +447,15 @@ function getField(val)
             {
                 $('.societa').html(data[0].idSocieta);
             }
-            // questo logo pio essere o della società o della divisione a secondo di cosa ha scleto l utente
+
             $("#logoSC").val(data[0].logoS);
+            $("#logo_width").val(data[0].logo_width);
+            $("#endorsement").val(data[0].endorsement);
+            $("#endorsement_width").val(data[0].endorsement_width);
+            $("#endorsementLink").val(data[0].endorsementLink);
+            $("#sponsor").val(data[0].sponsorFilePath);
+            $("#sponsor_width").val(data[0].sponsor_width);
+            $("#sponsorLink").val(data[0].sponsorLink);
             //creo menu a tendina con ordine domini default email
 
             var str = '';
@@ -528,8 +542,8 @@ function getField(val)
             $("#sitoweb").val(data[0].dominio);
             $('.layout1').css('display', 'block');
 
-            $("#firmaImg").val(data[0].firmaImg);
-            $("#firmaImgLink").val(data[0].firmaImgLink);
+            $("#endorsement").val(data[0].endorsement);
+            $("#endorsementLink").val(data[0].endorsementLink);
             //$(".privacy").html(data[0].privacy);
             var provincia = '';
 

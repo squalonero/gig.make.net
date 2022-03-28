@@ -2,6 +2,9 @@
 
 @php
     $style_default = 'display:block;font-weight:normal; line-height: 1.1; color:rgba(100, 100, 100, 1); color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;';
+    $logo_width = $viewData['logo_width'] ? 'width="'.$viewData['logo_width'].'" style=max-width:'.$viewData['logo_width'].'px': '';
+    $endorsement_width = $viewData['endorsement_width'] ? 'width="'.$viewData['endorsement_width'].'" style=max-width:'.$viewData['endorsement_width'].'px': '';
+    $sponsor_width = $viewData['sponsor_width'] ? 'width="'.$viewData['sponsor_width'].'" style=max-width:'.$viewData['sponsor_width'].'px': '';
 @endphp
 @section('content')
 	<div style="text-align:left;">
@@ -11,8 +14,7 @@
 		<span
 			style="font-weight:bold; font-size:13pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;">
 			<div style='display:inline-block'>
-				<img class="logoS" src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['logoSC'] }}" alt=''
-					title="">
+				<img class="logoS" src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['logoSC'] }}" {{ $logo_width }} >
 			</div>
 		</span>
 
@@ -115,10 +117,10 @@
 				</div>
 				<div style="text-align:left;">
 					@if ($viewData['endorsementLink'])
-						<a href="{{ $viewData['endorsementLink'] }}" title="Endorsement Link">
+						<a href="{{ $viewData['endorsementLink'] }}">
 					@endif
 
-					    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['endorsement'] }} " alt="endorsement" />
+					    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['endorsement'] }} " alt="endorsement" {{ $endorsement_width }}/>
 
 					@if ($viewData['endorsementLink'])
 						</a>
@@ -129,7 +131,7 @@
 
             {{-- Logo More Than Work --}}
             <div style="text-align:left; margin:10px 0px">
-                <a href="https://www.gigroupholding.it/" title="www.gigroupholding.it">
+                <a href="https://www.gigroupholding.it/">
                     <img src="{{ asset('img/morethanwork.svg') }} " alt="Logo More than work" width="145"/>
                 </a>
             </div>
@@ -137,9 +139,15 @@
 
             @if($viewData['sponsorFilePath'])
             <div style="text-align:left; margin:10px 0px">
-                <a href="{{ $viewData['sponsorLink'] }}" title="Sponsor link">
-                    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['sponsorFilePath'] }} "/>
+                @if ($viewData['sponsorLink'])
+                <a href="{{ $viewData['sponsorLink'] }}">
+                @endif
+
+                    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['sponsorFilePath'] }} " {{ $sponsor_width }} />
+
+                @if ($viewData['sponsorLink'])
                 </a>
+                @endif
             </div>
             @endif
 

@@ -318,8 +318,14 @@
     <input type="hidden" id="societaN" name="societaN" value="">
     <input type="hidden" id="nazioneC" name="nazioneC" value="">
     <input type="hidden" id="divisioneC" name="divisioneC" value="">
+
     <input type="hidden" id="logoSC" name="logoSC" value="">
-    <input type="hidden" id="firmaImg" name="firmaImg" value="">
+    <input type="hidden" id="logo_width" name="logo_width" value="">
+    <input type="hidden" id="endorsement" name="endorsement" value="">
+    <input type="hidden" id="endorsement_width" name="endorsement_width" value="">
+    <input type="hidden" id="endorsementLink" name="endorsementLink" value="">
+    <input type="hidden" id="sponsor_width" name="sponsor_width" value="">
+
     <input type="hidden" id="indirizzoC" name="indirizzoC" value="">
     <input type="hidden" id="indirizzoC1" name="indirizzoC1" value="">
     <input type="hidden" id="indirizzoC2" name="indirizzoC2" value="">

@@ -161,6 +161,7 @@ class QueryController extends Controller
             'place' => ucfirst($request->place),
             'layoutID' => $layoutID,
             'logoSC' => $request->logoSC,
+            'logo_width' => $request->logo_width,
 
             'address' => $request->address,
             'address_2' => $request->address_2,
@@ -184,9 +185,10 @@ class QueryController extends Controller
             'social_count' => $request->socialCount,
             'social_output' => self::getSocialOutput($request),
 
-            'sponsorFilePath' => $sponsorFilePath,
-            'endorsement' => trim($request->firmaImg),
-            'endorsementLink' => trim($request->firmaImgLink),
+            'sponsorFilePath' => $request->$sponsorFilePath,
+            'endorsement' => trim($request->endorsement),
+            'endorsementLink' => trim($request->endorsementLink),
+            'endorsement_width' => $request->endorsement_width,
 
             'privacyC' => $request->privacyC
         ];
@@ -495,10 +497,13 @@ class QueryController extends Controller
 																coalesce(s.urlweb,'') as urlweb,
 																coalesce(s.urlweb1,'') as urlweb1,
 																coalesce(s.dominio,'') as dominio,
-                                coalesce(s.logo,'') as logoS,
-																coalesce(s.endorsement,'') as firmaImg,
-																coalesce(s.endorsement_link,'') as firmaImgLink,
+                                                                coalesce(s.logo,'') as logoS,
+                                                                coalesce(s.logo_width,'') as logo_width,
+																coalesce(s.endorsement,'') as endorsement,
+																coalesce(s.endorsement_width,'') as endorsement_width,
+																coalesce(s.endorsement_link,'') as endorsementLink,
 																coalesce(s.sponsor_img,'') as sponsorFilePath,
+																coalesce(s.sponsor_width,'') as sponsor_width,
 																coalesce(s.sponsor_img_link,'') as sponsorLink,
 																coalesce(s.id,'') as idSocieta,
                                 s.privacy,
