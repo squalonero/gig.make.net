@@ -137,13 +137,13 @@
             </div>
             {{-- End logo More Than Work --}}
 
-            @if($viewData['sponsorFilePath'])
+            @if($viewData['sponsor_image'])
             <div style="text-align:left; margin:10px 0px">
                 @if ($viewData['sponsorLink'])
                 <a href="{{ $viewData['sponsorLink'] }}">
                 @endif
 
-                    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['sponsorFilePath'] }} " {{ $sponsor_width }} />
+                    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['sponsor_image'] }} " {{ $sponsor_width }} />
 
                 @if ($viewData['sponsorLink'])
                 </a>

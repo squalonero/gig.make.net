@@ -185,7 +185,7 @@ class QueryController extends Controller
             'social_count' => $request->socialCount,
             'social_output' => self::getSocialOutput($request),
 
-            'sponsorFilePath' => $request->$sponsorFilePath,
+            'sponsor_image' => $sponsorFilePath ?? $request->sponsor, //$sponsorFilePath is uploaded by user while sponsor is from company
             'endorsement' => trim($request->endorsement),
             'endorsementLink' => trim($request->endorsementLink),
             'endorsement_width' => $request->endorsement_width,

@@ -324,6 +324,7 @@
     <input type="hidden" id="endorsement" name="endorsement" value="">
     <input type="hidden" id="endorsement_width" name="endorsement_width" value="">
     <input type="hidden" id="endorsementLink" name="endorsementLink" value="">
+    <input type="hidden" id="sponsor" name="sponsor" value="">
     <input type="hidden" id="sponsor_width" name="sponsor_width" value="">
 
     <input type="hidden" id="indirizzoC" name="indirizzoC" value="">
