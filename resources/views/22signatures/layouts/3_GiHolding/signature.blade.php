@@ -79,11 +79,11 @@ Logo #ChangeLives
         @endif
 		{{-- End Social --}}
 
-		{{-- Sponsor image --}}
+		{{-- Endorsement image --}}
 		@if ($viewData['sponsorFilePath'] || $viewData['endorsement'])
 			<div style="margin-top:10px;">
 				@if ($viewData['endorsementLink'])
-					<a href="{{ $viewData['endorsementLink'] }}" alt="Sponsor Url">
+					<a href="{{ $viewData['endorsementLink'] }}">
 				@endif
 
 				<img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['sponsorFilePath'] ? $viewData['sponsorFilePath'] : $viewData['endorsement'] }} "
@@ -94,8 +94,27 @@ Logo #ChangeLives
 				@endif
 			</div>
 		@endif
-		{{-- End Sponsor image --}}
+		{{-- End Endorsement image --}}
+
+		{{-- Logo More Than Work --}}
+		<div style="text-align:left; margin:10px 0px">
+			<a href="https://www.gigroupholding.it/">
+				<img src="{{ asset('img/morethanwork.svg') }} " alt="Logo More than work" width="145"/>
+			</a>
+		</div>
+		{{-- End Logo More Than Work --}}
 
 	</div>
+
+	@if($viewData['privacyC'])
+			<div style="text-align:left;">
+				<div style="font-size:10pt">
+					<br />
+				</div>
+				<span style="text-align:left; font-size:7pt; color:#65656A; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;">
+					{{ $viewData['privacyC'] }}<br />
+				</span>
+			</div>
+		@endif
 
 @endsection

@@ -275,7 +275,7 @@
 						<!-- mirco 05-05-2021 - add campo Link Sponsor -->
 						<div class="fb-text form-group field-sponsor_image_link">
 							<label for="sponsor_image_link" class="fb-text-label">{!! trans('campi.firmalink') !!}</label>
-							<input type="text" class="form-control" name="firmaImgLink" id="firmaImgLink">
+							<input type="text" class="form-control" name="sponsorLink" id="sponsorLink">
 						</div>
             @endif
 

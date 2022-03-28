@@ -496,8 +496,10 @@ class QueryController extends Controller
 																coalesce(s.urlweb1,'') as urlweb1,
 																coalesce(s.dominio,'') as dominio,
                                 coalesce(s.logo,'') as logoS,
-																coalesce(s.firma,'') as firmaImg,
-																coalesce(s.firmalink,'') as firmaImgLink,
+																coalesce(s.endorsement,'') as firmaImg,
+																coalesce(s.endorsement_link,'') as firmaImgLink,
+																coalesce(s.sponsor_img,'') as sponsorFilePath,
+																coalesce(s.sponsor_img_link,'') as sponsorLink,
 																coalesce(s.id,'') as idSocieta,
                                 s.privacy,
 
@@ -567,8 +569,8 @@ class QueryController extends Controller
 				coalesce(s.urlweb1,'') as urlweb1,
 				coalesce(s.dominio,'') as dominio,
         coalesce(s.logo,'') as logoS,
-				coalesce(s.firma,'') as firmaImg,
-				coalesce(s.firmalink,'') as firmaImgLink,
+				coalesce(s.endorsement,'') as firmaImg,
+				coalesce(s.endorsement_link,'') as firmaImgLink,
 				coalesce(s.id,'') as idSocieta,s.privacy,
         n.*
 				FROM societas as s
@@ -743,7 +745,7 @@ class QueryController extends Controller
                 //  $sheet->fromArray($data, '', '', '', $arrayHeaders);
             });
         })->export('xlsx');
-        rerturn;
+        return;
     }
 
 

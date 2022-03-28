@@ -487,11 +487,11 @@ function getField(val)
                 $('#sponsorContainer').show();
                 $('.field-sponsor_image_link').show();
                 $('#sponsorPreview').remove();
-                if (data[0].firmaImg !== '')
+                if (data[0].sponsorFilePath)
                 {
                     $('#sponsorContainer label').after(`
 								<div style="margin-bottom:20px;" id="sponsorPreview">
-								<span><img data-backend-sponsor="/${ data[0].firmaImg }" src="/${ data[0].firmaImg }" style="max-width:100px;"></span>
+								<span><img data-backend-sponsor="/${ data[0].sponsorFilePath }" src="/${ data[0].sponsorFilePath }" style="max-width:100px;"></span>
 								<span style="margin-left:20px;">${ trans.currentSponsor }</span>
 								</div>
 								`);

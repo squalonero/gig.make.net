@@ -38,7 +38,7 @@
 			$this->col[] = ["label"=>"Default Email","name"=>"urlweb1"];
 			$this->col[] = ["label"=>"Default Sito","name"=>"dominio"];
 			$this->col[] = ["label"=>"Dominio Alternativo","name"=>"urlweb"];
-			$this->col[] = ["label"=>"Endorsment-Img","name"=>"firma","image"=>true];
+			$this->col[] = ["label"=>"Endorsment-Img","name"=>"endorsement","image"=>true];
 			$this->col[] = ["label"=>"Privacy","name"=>"privacy"];
 			$this->col[] = ["label"=>"Attivo","name"=>"intAttivo"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
@@ -53,10 +53,12 @@
 			$this->form[] = ['label'=>'Default Email','name'=>'urlweb1','type'=>'text','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Default Sito','name'=>'dominio','type'=>'text','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Dominio Alternativo','name'=>'urlweb','type'=>'text','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'Endorsment - Immagine','name'=>'firma','type'=>'upload','validation'=>'min:1|max:5000','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'Link Endorsement','name'=>'firmalink','type'=>'text','validation'=>'nullable','width'=>'col-sm-9','help'=>'Se inserito, l\'endorsement sarà incapsulato in questo link'];
+			$this->form[] = ['label'=>'Endorsement','name'=>'endorsement','type'=>'upload','validation'=>'min:1|max:5000','width'=>'col-sm-9'];
+			$this->form[] = ['label'=>'Endorsement Link','name'=>'endorsement_link','type'=>'text','validation'=>'nullable','width'=>'col-sm-9','help'=>'Se inserito, l\'endorsement sarà incapsulato in questo link'];
+			$this->form[] = ['label'=>'Sponsor','name'=>'sponsor_img','type'=>'upload','width'=>'col-sm-9','help'=>'Solo Layout 1'];
+			$this->form[] = ['label'=>'Sponsor Link','name'=>'sponsor_img_link','type'=>'text','width'=>'col-sm-9','help'=>'Solo Layout 1'];
 			$this->form[] = ['label'=>'Privacy','name'=>'privacy','type'=>'textarea','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'Attivo','name'=>'intAttivo','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Si;No'];
+			$this->form[] = ['label'=>'Attivo','name'=>'intAttivo','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'1|Si;0|No','value'=>'1'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
@@ -69,10 +71,12 @@
 			//$this->form[] = ['label'=>'Default Email','name'=>'urlweb1','type'=>'text','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Default Sito','name'=>'dominio','type'=>'text','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Dominio Alternativo','name'=>'urlweb','type'=>'text','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Endorsment - Immagine','name'=>'firma','type'=>'upload','validation'=>'min:1|max:5000','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Link Endorsement','name'=>'firmalink','type'=>'text','validation'=>'nullable','width'=>'col-sm-9'];
+			//$this->form[] = ['label'=>'Endorsement','name'=>'endorsement','type'=>'upload','validation'=>'min:1|max:5000','width'=>'col-sm-9'];
+			//$this->form[] = ['label'=>'Endorsement Link','name'=>'endorsement_link','type'=>'text','validation'=>'nullable','width'=>'col-sm-9','help'=>'Se inserito, l\'endorsement sarà incapsulato in questo link'];
+			//$this->form[] = ['label'=>'Sponsor','name'=>'sponsor_img','type'=>'upload','width'=>'col-sm-9','help'=>'Solo Layout 1'];
+			//$this->form[] = ['label'=>'Sponsor Link','name'=>'sponsor_img_link','type'=>'text','width'=>'col-sm-9','help'=>'Solo Layout 1'];
 			//$this->form[] = ['label'=>'Privacy','name'=>'privacy','type'=>'textarea','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Attivo','name'=>'intAttivo','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Si;No'];
+			//$this->form[] = ['label'=>'Attivo','name'=>'intAttivo','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			# OLD END FORM
 
 			/*

@@ -1,8 +1,7 @@
 @extends('22signatures.index')
 
 @php
-    $style_default = 'font-weight:normal; line-height: 1.1; color:rgba(100, 100, 100, 1); color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;';
-    $style_bold = '';
+    $style_default = 'display:block;font-weight:normal; line-height: 1.1; color:rgba(100, 100, 100, 1); color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;';
 @endphp
 @section('content')
 	<div style="text-align:left;">
@@ -63,7 +62,7 @@
 			@if($viewData['cell'])
 				<div style="{{ $style_default }} font-size:9pt;">
 					<span style="display:inline-block;width:16px">
-						<strong style="{{ $style_default }} letter-spacing:7px; font-size:9pt;">M </strong>
+						<strong style="{{ $style_default }} letter-spacing:7px; font-size:9pt; font-weight:700;">M </strong>
 					</span>
 					{{ $viewData['cell'] }}
 				</div>
@@ -72,7 +71,7 @@
 			@if($viewData['tel'])
 				<div style="{{ $style_default }} font-size:9pt;">
 					<span style="display:inline-block;width:16px">
-						<strong style="{{ $style_default }} letter-spacing:7px; font-size:9pt;">T </strong>
+						<strong style="{{ $style_default }} letter-spacing:7px; font-size:9pt; font-weight:700;">T </strong>
 					</span>
 					{{ $viewData['tel'] }}
 				</div>
@@ -80,17 +79,17 @@
 
 			@if($viewData['skype'])
 				<div style="{{ $style_default }} font-size:9pt;">
-					<strong>Skype </strong>{{ $viewData['skype'] }}
+					<strong style="font-weight:700;">Skype </strong>{{ $viewData['skype'] }}
 				</div>
 			@endif
 
 			@if($viewData['email'])
 				<div style="{{ $style_default }} font-size:9pt;">
-					<strong>E-mail </strong>{{ $viewData['email'] }}
+					<strong style="font-weight:700;">E-mail </strong>{{ $viewData['email'] }}
 				</div>
 			@elseif($viewData['email_company'])
 				<div style="{{ $style_default }} font-size:9pt;">
-					<strong>E-mail </strong>{{ $viewData['email_company'] }}
+					<strong style="font-weight:700;">E-mail </strong>{{ $viewData['email_company'] }}
 				</div>
 			@endif
 
@@ -109,24 +108,40 @@
 			@endif
 			{{-- End Social --}}
 
-			{{-- Sponsor image --}}
-			@if($viewData['sponsorFilePath'] || $viewData['endorsement'])
+			{{-- Endorsement image --}}
+			@if($viewData['endorsement'])
 				<div style="font-size:10pt">
 					<br />
 				</div>
 				<div style="text-align:left;">
 					@if ($viewData['endorsementLink'])
-						<a href="{{ $viewData['endorsementLink'] }}" alt="Sponsor Url">
+						<a href="{{ $viewData['endorsementLink'] }}" title="Endorsement Link">
 					@endif
 
-					    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['sponsorFilePath'] ? $viewData['sponsorFilePath'] : $viewData['endorsement'] }} " alt="sponsorImage" />
+					    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['endorsement'] }} " alt="endorsement" />
 
 					@if ($viewData['endorsementLink'])
 						</a>
 					@endif
 				</div>
 			@endif
-			{{-- End Sponsor image --}}
+			{{-- End Endorsement image --}}
+
+            {{-- Logo More Than Work --}}
+            <div style="text-align:left; margin:10px 0px">
+                <a href="https://www.gigroupholding.it/" title="www.gigroupholding.it">
+                    <img src="{{ asset('img/morethanwork.svg') }} " alt="Logo More than work" width="145"/>
+                </a>
+            </div>
+            {{-- End logo More Than Work --}}
+
+            @if($viewData['sponsorFilePath'])
+            <div style="text-align:left; margin:10px 0px">
+                <a href="{{ $viewData['sponsorLink'] }}" title="Sponsor link">
+                    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['sponsorFilePath'] }} "/>
+                </a>
+            </div>
+            @endif
 
 		</div>
 
