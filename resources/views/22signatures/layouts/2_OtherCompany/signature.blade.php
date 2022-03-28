@@ -85,9 +85,9 @@
 		<img src="http://{{ $_SERVER['HTTP_HOST'] }}/img/Linea_273_8px.gif" width="305px" height="16px" />
 	</div>
 
-	@if ($viewData['firmaImg'])
+	@if ($viewData['endorsement'])
 		<span style="font-weight:bold; font-size:9pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;">
-			<img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['firmaImg'] }}" alt="Gi Group" title="$ragsoc_prova">
+			<img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['endorsement'] }}" alt="Gi Group" title="$ragsoc_prova">
 		</span>
 	@endif
 

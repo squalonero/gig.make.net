@@ -61,11 +61,46 @@ class QueryController extends Controller
     /**
      * Zankiller.exe
      * Refactoring mirco 22-02-2022
-     * - Manage layout with laravel blade view system
-     * - Remove html from controller
-     * - Put some reasonable logic
-     * - Keep rendered code as-it-is to avoid output surprises
+     * - Manage layout with laravel blade view system ✔
+     * - Remove html from controller ✔
+     * - Put some reasonable logic ✔
+     * - Keep rendered code as-it-is to avoid output surprises ✔
      */
+
+    static function getSocialOutput($request)
+    {
+        $totalSocial = $request->socialCount;
+        $social_output = '';
+        // check if at least a social has been compiled
+        $oneSocialCompiled = false;
+        for ($socialIndex = 0; $socialIndex < $totalSocial; $socialIndex++)
+        {
+            $socialHrefVarNameCheck = 'social_' . $socialIndex;
+            if (trim($request->$socialHrefVarNameCheck) != '')
+            {
+                $oneSocialCompiled = true;
+                break;
+            }
+        }
+
+        if ($oneSocialCompiled)
+        {
+            $social_output .= '<div style="font-size:10pt"><br /></div>';
+            $social_output .= '<div style="text-align:left;height:30px;">';
+            for ($socialIndex = 0; $socialIndex < $totalSocial; $socialIndex++)
+            {
+                $socialHrefVarName = 'social_' . $socialIndex;
+                $socialImgVarName = 'socialImage_' . $socialIndex;
+                $socialLabelVarName = 'socialLabel_' . $socialIndex;
+                if (trim($request->$socialHrefVarName) != '')
+                {
+                    $social_output .= '<a href="' . $request->$socialHrefVarName . '" target="_blank" style="text-decoration:none"><img src="http://' . $_SERVER['HTTP_HOST'] . '/' . $request->$socialImgVarName . '" style="width:30px" width="30" alt="" /></a><span style="color:#fff">&nbsp;</span>';
+                }
+            }
+            $social_output .= '</div>';
+        }
+        return $social_output;
+    }
 
     public function getlayout(Request $request)
     {
@@ -110,7 +145,7 @@ class QueryController extends Controller
         }
 
         /**
-         * Pass those to the vews
+         * Pass those to the views
          */
         $viewData = [
             'ID_societa' => $request->societaC,
@@ -134,24 +169,24 @@ class QueryController extends Controller
             'address_it_2' => $request->indirizzoC2,
             'address_it' => $request->indirizzoC,
 
-            'cell' => $request->cellnaz . ' ' . $request->precell . ' ' . $request->cell,
-            'tel' => $request->prefnaz . ' ' . $request->preftel . ' ' . $request->telefono,
-            'fax' => $request->prefnaz1 . ' ' . $request->prefax . ' ' . $request->fax,
+            'cell' => $request->cell ? $request->cellnaz . ' ' . $request->precell . ' ' . $request->cell : null,
+            'tel' => $request->telefono ? $request->prefnaz . ' ' . $request->preftel . ' ' . $request->telefono : null,
+            'fax' => $request->fax ? $request->prefnaz1 . ' ' . $request->prefax . ' ' . $request->fax : null,
             'skype' => $request->skype,
 
-            'email' => strtolower($request->email) . $request->at . $request->emaildomain,
+            'email' => $request->email ? strtolower($request->email) . $request->at . $request->emaildomain : null,
             'email_company' => strtolower($request->cmailF),
             'email_filiale' => $request->emailBF ?? $request->email,
             'email_domain' => $request->emaildomain,
 
             'domain' => $request->domain,
 
-            'socialCount' => $request->socialCount,
-            //'request' => $request,
+            'social_count' => $request->socialCount,
+            'social_output' => self::getSocialOutput($request),
 
             'sponsorFilePath' => $sponsorFilePath,
-            'firmaImg' => trim($request->firmaImg),
-            'firmaImgLink' => trim($request->firmaImgLink),
+            'endorsement' => trim($request->firmaImg),
+            'endorsementLink' => trim($request->firmaImgLink),
 
             'privacyC' => $request->privacyC
         ];

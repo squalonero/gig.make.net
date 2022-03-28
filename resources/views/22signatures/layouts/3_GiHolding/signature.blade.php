@@ -73,51 +73,23 @@ Logo #ChangeLives
 		@endif
 		{{-- End Estero @notverified --}}
 
-		{{-- Social @toimprove --}}
-		@if ($viewData['socialCount'] > 0)
-			<?php
-			$totalSocial = $viewData['socialCount'];
-			$social_output = '';
-			// check if at least a social has been compiled
-			$oneSocialCompiled = false;
-			for ($socialIndex = 0; $socialIndex < $totalSocial; $socialIndex++) {
-			    $socialHrefVarNameCheck = 'social_' . $socialIndex;
-			    if (trim($viewData['request']->$socialHrefVarNameCheck) != '') {
-			        $oneSocialCompiled = true;
-			        break;
-			    }
-			}
-
-			if ($oneSocialCompiled) {
-			    $social_output .= '<div style="margin-top:10px;"><span style="display:inline-block;font:400 8pt/10pt \'Lato\', sans-serif; color:rgb(0, 20, 90);">Follow us </span>';
-			    for ($socialIndex = 0; $socialIndex < $totalSocial; $socialIndex++) {
-			        $socialHrefVarName = 'social_' . $socialIndex;
-			        $socialImgVarName = 'socialImage_' . $socialIndex;
-			        $socialLabelVarName = 'socialLabel_' . $socialIndex;
-			        if (trim($viewData['request']->$socialHrefVarName) != '') {
-			            $social_output .= '<a href="' . $viewData['request']->$socialHrefVarName . '" target="_blank" style="display:inline-block;vertical-align:middle;">
-							<img src="http://' . $_SERVER['HTTP_HOST'] . '/' . $viewData['request']->$socialImgVarName . '" style="height:10pt;margin-left:3pt" alt="" /></a>
-							<span style="">&nbsp;</span>';
-			        }
-			    }
-			    $social_output .= '</div>';
-			}
-			echo $social_output;
-			?>
-		@endif
+		{{-- Social --}}
+		@if ($viewData['social_count'] > 0)
+                {!! $viewData['social_output'] !!}
+        @endif
 		{{-- End Social --}}
 
 		{{-- Sponsor image --}}
-		@if ($viewData['sponsorFilePath'] || $viewData['firmaImg'])
+		@if ($viewData['sponsorFilePath'] || $viewData['endorsement'])
 			<div style="margin-top:10px;">
-				@if ($viewData['firmaImgLink'])
-					<a href="{{ $viewData['firmaImgLink'] }}" alt="Sponsor Url">
+				@if ($viewData['endorsementLink'])
+					<a href="{{ $viewData['endorsementLink'] }}" alt="Sponsor Url">
 				@endif
 
-				<img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['sponsorFilePath'] ? $viewData['sponsorFilePath'] : $viewData['firmaImg'] }} "
+				<img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['sponsorFilePath'] ? $viewData['sponsorFilePath'] : $viewData['endorsement'] }} "
 					style="max-width:112px;" alt="sponsorImage" width="112"/>
 
-				@if ($viewData['firmaImgLink'])
+				@if ($viewData['endorsementLink'])
 					</a>
 				@endif
 			</div>

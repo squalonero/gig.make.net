@@ -1,19 +1,19 @@
 @extends('22signatures.layouts.1_Gigroup.signature')
 @section('signature-specific')
-	<span style="font-weight:bold; font-size:10pt; color:rgba(100, 100, 100, 1);color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;" class="nome">
+	<span style="font-weight:bold; line-height: 1.1; font-size:10pt; color:rgba(100, 100, 100, 1);color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;" class="nome">
 		{{ $viewData['name'] }} {{ $viewData['lastname'] }}
 	</span>
 
 	@if ($viewData['job'])
-		<span style="font-weight:normal; font-size:10pt; color:rgba(100, 100, 100, 1);color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;" class="job">
+		<div style="font-weight:normal; line-height: 1.1; font-size:10pt; color:rgba(100, 100, 100, 1);color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;" class="job">
 			{{ $viewData['job'] }}
-		</span>
+		</div>
 	@endif
 
 	@if ($viewData['job_it'])
-		<span style="font-weight:normal; font-size:10pt; color:rgba(100, 100, 100, 1);color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;" class="professione">
-			{{ $viewData['job_it))'] }}
-		</span>
+		<div style="font-weight:normal; line-height: 1.1; font-size:10pt; color:rgba(100, 100, 100, 1);color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;" class="professione">
+			{{ $viewData['job_it'] }}
+		</div>
 	@endif
 
 	@if (!$viewData['type'] || !$viewData['place'])

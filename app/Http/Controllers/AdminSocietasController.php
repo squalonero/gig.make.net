@@ -54,7 +54,7 @@
 			$this->form[] = ['label'=>'Default Sito','name'=>'dominio','type'=>'text','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Dominio Alternativo','name'=>'urlweb','type'=>'text','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Endorsment - Immagine','name'=>'firma','type'=>'upload','validation'=>'min:1|max:5000','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'Link Immagine Sponsor (Firma)','name'=>'firmalink','type'=>'text','validation'=>'nullable','width'=>'col-sm-9'];
+			$this->form[] = ['label'=>'Link Endorsement','name'=>'firmalink','type'=>'text','validation'=>'nullable','width'=>'col-sm-9','help'=>'Se inserito, l\'endorsement sarà incapsulato in questo link'];
 			$this->form[] = ['label'=>'Privacy','name'=>'privacy','type'=>'textarea','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Attivo','name'=>'intAttivo','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Si;No'];
 			# END FORM DO NOT REMOVE THIS LINE
@@ -70,7 +70,7 @@
 			//$this->form[] = ['label'=>'Default Sito','name'=>'dominio','type'=>'text','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Dominio Alternativo','name'=>'urlweb','type'=>'text','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Endorsment - Immagine','name'=>'firma','type'=>'upload','validation'=>'min:1|max:5000','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Link Immagine Sponsor (Firma)','name'=>'firmalink','type'=>'text','validation'=>'nullable','width'=>'col-sm-9'];
+			//$this->form[] = ['label'=>'Link Endorsement','name'=>'firmalink','type'=>'text','validation'=>'nullable','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Privacy','name'=>'privacy','type'=>'textarea','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Attivo','name'=>'intAttivo','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Si;No'];
 			# OLD END FORM
