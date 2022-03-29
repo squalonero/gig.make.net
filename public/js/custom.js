@@ -281,27 +281,9 @@ function getFieldEstero(campoId, val)
             //creo menu a tendina con ordine domini default email
             var str = '';
             str = data[0].urlweb1;
-            /*   if(data[0].urlweb1 != '' ){
-                str +='<option value="'+data[0].urlweb1+'">'+data[0].urlweb1+'</option>';
-            }
-            if(data[0].dominio != ''){
-                str +='<option value="'+data[0].dominio+'">'+data[0].dominio+'</option>';
-            }
-            if(data[0].urlweb !=''  ){
-                str +='<option value="'+data[0].urlweb+'">'+data[0].urlweb+'</option>';
-            }*/
             $("#emaildomain").val(str);
             var str = '';
             str = data[0].dominio;
-            /*  if(data[0].dominio != ''){
-                  str +='<option value="'+data[0].dominio+'">'+data[0].dominio+'</option>';
-              }
-              if(data[0].urlweb1 != '' ){
-                  str +='<option value="'+data[0].urlweb1+'">'+data[0].urlweb1+'</option>';
-              }
-              if(data[0].urlweb !=''  ){
-                  str +='<option value="'+data[0].urlweb+'">'+data[0].urlweb+'</option>';
-              }*/
             $('#societaC').val(data[0].id);
             $("#domain").val(str);
             $('.layout1').css('display', 'block');
@@ -317,18 +299,29 @@ function getFieldEstero(campoId, val)
 
             $('#privacyC').val(data[0].privacy);
 
-            // nicpaola 07-2020 - add social
-            // if (data[0].layoutS == "2")
-            // {
-            //     $('#sponsorContainer').hide();
-            //     //$('#container-field-fax').show();
-            //     $('#container-field-skype').hide();
-            // } else
-            // {
-                $('#sponsorContainer').show();
-                //$('#container-field-fax').hide();
-                $('#container-field-skype').show();
-            // }
+            if (data[0].layoutS == "3") //Layout Gi Holding
+            {
+                $('#sponsorContainer').hide();
+                $('#container-field-skype').hide();
+                $('#container-field-fax').hide();
+                $('#more_than_work_Container-estero').hide(); //only layout 1 + Estero
+            }
+            else
+            {
+                $('#container-field-human_resources').hide();
+            }
+
+            $('#sponsorPreview').remove();
+            if (data[0].sponsorFilePath)
+            {
+                $('#sponsorContainer label').after(`
+								<div style="margin-bottom:20px;" id="sponsorPreview">
+								<span><img data-backend-sponsor="/${ data[0].sponsorFilePath }" src="/${ data[0].sponsorFilePath }" style="max-width:100px;"></span>
+								<span style="margin-left:20px;">${ trans.currentSponsor }</span>
+								</div>
+								`);
+            }
+
 
             $('#socialCount').val(data[0].socialArray.length);
             $('#socialContainer').html('');
@@ -415,15 +408,7 @@ function getField(val)
             $('#prefax').val(numFax[0]);
             $('#telefono').val(numTel[1]);
             $('#fax').val(numFax[1]);
-            // if (data[0].layoutS == "2")
-            // {
-            //     //$('#container-field-fax').show();
-            //     $('#container-field-skype').hide();
-            // } else
-            // {
-            //     //$('#container-field-fax').hide();
-            //     $('#container-field-skype').show();
-            // }
+
             $('#mail').val(data[0].email);
             $('#emailBF').val(data[0].email);
             //firma Filiale
@@ -490,27 +475,32 @@ function getField(val)
                 str += '<option value="' + data[0].urlweb + '">' + data[0].urlweb + '</option>';
             }
 
-            // nicpaola 07-2020 - add social
-            // if (data[0].layoutS == "2")
-            // {
-            //     $('#sponsorContainer').hide();
-            //     $('.field-sponsor_image_link').hide();
 
-            // } else
-            // {
-                $('#sponsorContainer').show();
-                $('.field-sponsor_image_link').show();
-                $('#sponsorPreview').remove();
-                if (data[0].sponsorFilePath)
-                {
-                    $('#sponsorContainer label').after(`
+            if (data[0].layoutS == "3") //Layout Gi Holding
+            {
+                $('#sponsorContainer').hide();
+                $('#container-field-skype').hide();
+                $('#container-field-fax').hide();
+            }
+            else
+            {
+                $('#container-field-human_resources').hide();
+            }
+
+            $('#more_than_work_Container-estero').hide(); //hide because only world
+
+            $('.field-sponsor_image_link').show();
+            $('#sponsorPreview').remove();
+            if (data[0].sponsorFilePath)
+            {
+                $('#sponsorContainer label').after(`
 								<div style="margin-bottom:20px;" id="sponsorPreview">
 								<span><img data-backend-sponsor="/${ data[0].sponsorFilePath }" src="/${ data[0].sponsorFilePath }" style="max-width:100px;"></span>
 								<span style="margin-left:20px;">${ trans.currentSponsor }</span>
 								</div>
 								`);
-                }
-            // }
+            }
+
 
             $('#socialCount').val(data[0].socialArray.length);
             $('#socialContainer').html('');

@@ -2,10 +2,11 @@
 @section('content')
 @php
     $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === 0 ? 'https://' : 'http://';
+    $logo_width = $viewData['logo_width'] ? 'width="'.$viewData['logo_width'].'" style=max-width:'.$viewData['logo_width'].'px': '';
 @endphp
 <p>
     <span style="font-weight:bold; font-size:9pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;">
-        <img src="{{ $protocol. $_SERVER['HTTP_HOST'] .'/' .$viewData['logoSC'] }}" alt="" title=""  />
+        <img src="{{ $protocol. $_SERVER['HTTP_HOST'] .'/' .$viewData['logoSC'] }}" {{ $logo_width }} />
     </span><br/><br/>
     {{ ucfirst($viewData['name']) . ' ' . ucfirst($viewData['lastname']) }}
 

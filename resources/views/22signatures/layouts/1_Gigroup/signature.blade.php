@@ -1,7 +1,14 @@
 @extends('22signatures.index')
 
 @php
-    $style_default = 'display:block;font-weight:normal; line-height: 1.1; color:rgba(100, 100, 100, 1); color:#646464; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;';
+    $style_default = '
+	display:block;
+	font-weight:normal;
+	line-height: 1.1;
+	color:rgba(100, 100, 100, 1);
+	color:#646464;
+	font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;
+	';
     $logo_width = $viewData['logo_width'] ? 'width="'.$viewData['logo_width'].'" style=max-width:'.$viewData['logo_width'].'px': '';
     $endorsement_width = $viewData['endorsement_width'] ? 'width="'.$viewData['endorsement_width'].'" style=max-width:'.$viewData['endorsement_width'].'px': '';
     $sponsor_width = $viewData['sponsor_width'] ? 'width="'.$viewData['sponsor_width'].'" style=max-width:'.$viewData['sponsor_width'].'px': '';
@@ -131,8 +138,12 @@
 
             {{-- Logo More Than Work --}}
             <div style="text-align:left; margin:10px 0px">
-                <a href="https://www.gigroupholding.it/">
-                    <img src="{{ asset('img/morethanwork.svg') }} " alt="Logo More than work" width="145"/>
+				@if($viewData['mdw_replace_link'])
+				<a href="{{ $viewData['mdw_replace_link'] }}">
+				@else
+                <a href="https://www.gigroupholding.{{ $viewData['isItalia'] ? 'it':'com' }}/">
+				@endif
+                    <img src="{{ $viewData['mdw_replace_image'] ? $viewData['mdw_replace_image'] : asset('img/morethanwork.svg') }} " alt="Logo More than work" width="145"/>
                 </a>
             </div>
             {{-- End logo More Than Work --}}

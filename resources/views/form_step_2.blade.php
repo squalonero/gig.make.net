@@ -1,5 +1,10 @@
 <hr>
 
+{{--
+    Session::get('italia') = 'italia'|'world'
+    Session::get('tipoFlag') = 'firmaF'|'firmaP'|'bigliettiF'|'bigliettiP'
+--}}
+
 <form id="formPers1" name="formPers1" method="get" action="#">
 
 <meta name="_token" content="{{ csrf_token() }}"/>
@@ -25,7 +30,7 @@
                         <div style="display:none;" id="check-cognome">{!! trans('campi.campo') !!} {!! trans('campi.cognome') !!} {!! trans('campi.required') !!}!</div>
                     </div>
                 @endif
-                <!--aggiungo campo quantità nei biglietti-->
+                <!-- aggiungo campo quantità nei biglietti -->
                 @if(Session::get('tipoFlag') == 'bigliettiP' || Session::get('tipoFlag') == 'bigliettiF')
                 <div class="fb-text form-group field-biglietti">
                     <label for="qtbiglietti" class="fb-text-label">{!! trans('campi.qta') !!}
@@ -34,7 +39,7 @@
                     <input type="text" class="form-control" name="qtbiglietti" id="qtbiglietti" value="200" readonly>
                     <div style="display:none;" id="check-qtbiglietti">{!! trans('campi.campo') !!} {!! trans('campi.qta') !!} {!! trans('campi.required') !!}!</div>
                 </div>
-                    <!-- fine aggiunta quantità-->
+                <!-- fine aggiunta quantità-->
                 @endif
                 <!--mostro tipologia se sono firme-->
                     @if(Session::get('nazione') <> 11 && Session::get('tipoFlag') == 'firmaF')
@@ -249,7 +254,7 @@
             </div>
 
             <!-- fine dominio -->
-            @if(Session::get('tipoFlag') != 'bigliettiP' && Session::get('tipoFlag') != 'bigliettiF')
+            @if(in_array(Session::get('tipoFlag'),['firmaP','firmaF']))
                         <!-- nicpaola 07-2020 - add campi skype -->
                         <div class="form-row" id="container-field-skype">
                             <div class="fb-text form-group field-email col-md-1">
@@ -268,15 +273,41 @@
                             <div class="fb-text form-group field-email-domain col-md-12">
                                 <label for="sponsor_image"  class="fb-text-label">{!! trans('campi.sponsorfileinput') !!}</label>
                                 <input type="file" class="form-control" name="sponsor_image" id="sponsor_image" />
-                                <div style="color:red;font-size:11pt">{!! trans('campi.sponsorrules') !!}</div>
+                                <div style="color:red;font-size:11pt" class="mt-2">{!! trans('campi.sponsorrules') !!}</div>
+                            </div>
+                            <!-- mirco 05-05-2021 - add campo Link Sponsor -->
+                            <div class="fb-text form-group field-sponsor_image_link col-md-12">
+                                <label for="sponsor_image_link" class="fb-text-label">{!! trans('campi.firmalink') !!}</label>
+                                <input type="text" class="form-control" name="sponsorLink" id="sponsorLink">
                             </div>
                         </div>
 
-						<!-- mirco 05-05-2021 - add campo Link Sponsor -->
-						<div class="fb-text form-group field-sponsor_image_link">
-							<label for="sponsor_image_link" class="fb-text-label">{!! trans('campi.firmalink') !!}</label>
-							<input type="text" class="form-control" name="sponsorLink" id="sponsorLink">
-						</div>
+                        <!-- Layout 1, this field is can replace "More Than Work" Logo for "World" only, and if populated -->
+                        <div class="form-row" id="more_than_work_Container-estero">
+                            <div class="fb-text form-group field-email-domain col-md-12">
+                                <label for="mdw_replace_image"  class="fb-text-label">{!! trans('campi.mdw_label') !!}</label>
+                                <input type="file" class="form-control" name="mdw_replace_image" id="mdw_replace_image" />
+                                <div style="color:red;font-size:11pt" class="mt-2">{!! trans('campi.mdw_rules') !!}</div>
+                            </div>
+                            <!-- Link More Than Work -->
+                            <div class="fb-text form-group field-sponsor_image_link col-md-12">
+                                <label for="mdw_replace_link" class="fb-text-label">{!! trans('campi.mdw_link') !!}</label>
+                                <input type="text" class="form-control" name="mdw_replace_link" id="mdw_replace_link"
+                                value="https://www.gigroupholding.{{ Session::get('italia') === 'italia' ? 'it':'com' }}/">
+                            </div>
+                        </div>
+            @endif
+
+            {{-- Human Resources layout 3 --}}
+            @if(in_array(Session::get('tipoFlag'),['firmaP','firmaF']))
+                <div class="form-row my-3" id="container-field-human_resources">
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" name="is_human_resources" id="is_human_resources" value="1">
+                            <label class="custom-control-label" for="is_human_resources">{!! trans('campi.human_resources') !!}</label>
+                        </div>
+                    </div>
+                </div>
             @endif
 
             <div class="fb-button form-group field-caf">

@@ -65,6 +65,7 @@ class QueryController extends Controller
      * - Remove html from controller ✔
      * - Put some reasonable logic ✔
      * - Keep rendered code as-it-is to avoid output surprises ✔
+     * - Adjust view logic a bit
      */
 
     static function getSocialOutput($request)
@@ -102,6 +103,39 @@ class QueryController extends Controller
         return $social_output;
     }
 
+    static function manageFile($postFieldName)
+    {
+        // nicpaola 07-2020 - upload sponsor file
+        if (0 < $_FILES[$postFieldName]['error'])
+        {
+            $FilePath = null;
+        }
+        else
+        {
+            $FileName = time() . "_" . $_FILES[$postFieldName]['name'];
+            if (move_uploaded_file($_FILES[$postFieldName]['tmp_name'], storage_path() . '/app/uploads/sponsor_images/' . $FileName))
+            {
+                // RESIZE IMAGE TO FIT
+                $imageResized = new SimpleImage();
+                $imageResized
+                    ->fromFile(storage_path() . '/app/uploads/sponsor_images/' . $FileName)
+                    ->autoOrient()
+                    ->bestFit(160, 160)
+                    ->toFile(storage_path() . '/app/uploads/sponsor_images/r_' . $FileName, null, 100);
+
+                @unlink(storage_path() . '/app/uploads/sponsor_images/' . $FileName);
+
+                $FilePath = 'uploads/sponsor_images/r_' . $FileName;
+            }
+            else
+            {
+                $FilePath = null;
+            }
+        }
+
+        return $FilePath;
+    }
+
     public function getlayout(Request $request)
     {
 
@@ -116,38 +150,15 @@ class QueryController extends Controller
 
         $layoutID = $request->layout;
 
-        // nicpaola 07-2020 - upload sponsor file
-        if (0 < $_FILES['sponsor_image']['error'])
-        {
-            $sponsorFilePath = null;
-        }
-        else
-        {
-            $sponsorFileName = time() . "_" . $_FILES['sponsor_image']['name'];
-            if (move_uploaded_file($_FILES['sponsor_image']['tmp_name'], storage_path() . '/app/uploads/sponsor_images/' . $sponsorFileName))
-            {
-                // RESIZE IMAGE TO FIT
-                $imageResized = new SimpleImage();
-                $imageResized
-                    ->fromFile(storage_path() . '/app/uploads/sponsor_images/' . $sponsorFileName)
-                    ->autoOrient()
-                    ->bestFit(160, 160)
-                    ->toFile(storage_path() . '/app/uploads/sponsor_images/r_' . $sponsorFileName, null, 80);
+        $sponsorFilePath = self::manageFile('sponsor_image');
+        $moreThanWorkFilePath = self::manageFile('mdw_replace_image');
 
-                @unlink(storage_path() . '/app/uploads/sponsor_images/' . $sponsorFileName);
-
-                $sponsorFilePath = 'uploads/sponsor_images/r_' . $sponsorFileName;
-            }
-            else
-            {
-                $sponsorFilePath = null;
-            }
-        }
 
         /**
          * Pass those to the views
          */
         $viewData = [
+            'isItalia' => (Session::get('italia') === 'italia'),
             'ID_societa' => $request->societaC,
             'nome_societa' => $request->societaN,
 
@@ -177,7 +188,7 @@ class QueryController extends Controller
 
             'email' => $request->email ? strtolower($request->email) . $request->at . $request->emaildomain : null,
             'email_company' => strtolower($request->cmailF),
-            'email_filiale' => $request->emailBF ?? $request->email,
+            'email_filiale' => $request->emailBF ? $request->emailBF : (strtolower($request->email) . $request->at . $request->emaildomain),
             'email_domain' => $request->emaildomain,
 
             'domain' => $request->domain,
@@ -185,13 +196,19 @@ class QueryController extends Controller
             'social_count' => $request->socialCount,
             'social_output' => self::getSocialOutput($request),
 
-            'sponsor_image' => $sponsorFilePath ?? $request->sponsor, //$sponsorFilePath is uploaded by user while sponsor is from company
+            'sponsor_image' => $sponsorFilePath ? $sponsorFilePath : $request->sponsor, //$sponsorFilePath is uploaded by user while sponsor is from company
             'endorsement' => trim($request->endorsement),
             'endorsementLink' => trim($request->endorsementLink),
             'endorsement_width' => $request->endorsement_width,
 
+            'mdw_replace_link' => $request->mdw_replace_link,
+            'mdw_replace_image' => $moreThanWorkFilePath,
+
+            'is_human_resources' => $request->is_human_resources,
+
             'privacyC' => $request->privacyC
         ];
+
 
 
         if ($request->tipoFirma == 'firmaP' || $request->tipoFirma == 'firmaF')
@@ -573,9 +590,11 @@ class QueryController extends Controller
 				coalesce(s.urlweb,'') as urlweb,
 				coalesce(s.urlweb1,'') as urlweb1,
 				coalesce(s.dominio,'') as dominio,
-        coalesce(s.logo,'') as logoS,
-				coalesce(s.endorsement,'') as firmaImg,
-				coalesce(s.endorsement_link,'') as firmaImgLink,
+                coalesce(s.logo,'') as logoS,
+                coalesce(s.logo_width,'') as logo_width,
+				coalesce(s.endorsement,'') as endorsement,
+				coalesce(s.endorsement_link,'') as endorsementLink,
+				coalesce(s.endorsement_width,'') as endorsement_width,
 				coalesce(s.id,'') as idSocieta,s.privacy,
         n.*
 				FROM societas as s

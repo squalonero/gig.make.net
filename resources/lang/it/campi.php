@@ -53,7 +53,12 @@ return [
     'di'        => 'di',
     'NessunaDivisioneTrovata' => 'Nessuna divisione trovata', // nicpaola 07-2020
     'sponsorfileinput' => 'Immagine Sponsor', // nicpaola 07-2020
-    'sponsorrules' => 'L\'immagine sponsor deve essere obbligatoriamente in formato .jpg o .png.<br>Le dimensioni non devono superare i 400 kB <br> L\'immagine verrà automaticamente ridimensionata a 166px di larghezza.', // nicpaola 07-2020
+    'sponsorrules' => 'L\'immagine sponsor deve essere obbligatoriamente in formato .jpg o .png.<br>Le dimensioni non devono superare i 400 kB <br> L\'immagine verrà automaticamente ridimensionata a 160px di altezza o larghezza (basato sull\'orientamento dell\'immagine).', // nicpaola 07-2020
 		'firmalink' => 'Link Immagine Sponsor', //mirco 05-2021
-		'currentSponsor' => 'Immagine Sponsor corrente. Carica un file per sostituire l\'immagine sponsor corrente.'
+		'currentSponsor' => 'Immagine Sponsor corrente. Carica un file per sostituire l\'immagine sponsor corrente.',
+    //2022
+    'human_resources' => 'Applica logo #Changelives (solo per HR)',
+    'mdw_label' => 'Immagine sostitutiva logo "More than Work"',
+    'mdw_rules' => 'L\'immagine sponsor deve essere obbligatoriamente in formato .jpg o .png.<br>Le dimensioni non devono superare i 400 kB <br> L\'immagine verrà automaticamente ridimensionata a 145px di altezza o larghezza (basato sull\'orientamento dell\'immagin).',
+    'mdw_link' => 'Link logo "More than Work',
 ];

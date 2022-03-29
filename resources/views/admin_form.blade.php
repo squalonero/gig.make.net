@@ -1,7 +1,7 @@
 @extends("crudbooster::default.form")
 @section('content')
 <div class="alert alert-warning" role="alert">
-    Attenzione! Per ottenere la migliore qualità dalle immagini è consigliabile caricarle in formato SVG mantenendo la massima risoluzione,<br/>
+    Attenzione! Per ottenere la migliore qualità dalle immagini è consigliabile caricarle in formato VETTORIALE (SVG) mantenendo la massima risoluzione,<br/>
     la dimensione dell'immagine può essere specificata nell'apposito campo.<br/>
     Alcuni strumenti utili:
     <ul>

@@ -53,7 +53,13 @@ return [
     'di'        => 'of',
     'NessunaDivisioneTrovata' => 'No division found', // nicpaola 07-2020
     'sponsorfileinput' => 'Sponsor image', // nicpaola 07-2020
-    'sponsorrules' => 'Sponsor image must be in .jpg or .png format. The size must not exceed 400 kB', // nicpaola 07-2020
+    'sponsorrules' => 'Sponsor image must be in .jpg or .png format.<br>The size must not exceed 400 kB.<br>The uploaded image will be resized to 166px width or height (based on image orientation)', // nicpaola 07-2020
 		'firmalink' => 'Sponsor image link', //mirco 05-2021
-		'currentSponsor' => 'Current sponsor image. Upload your file to replace the current sponsor image.'
+		'currentSponsor' => 'Current sponsor image. Upload your file to replace the current sponsor image.',
+    //2022
+
+    'human_resources' => 'Apply #Changelives logo (HR only)',
+    'mdw_label' => 'Replacement image for "More than Work" logo',
+    'mdw_rules' => 'Uploaded image must be in .jpg or .png format.<br>The size must not exceed 400 kB.<br>The uploaded image will be resized to 145px width or height (based on image orientation)',
+    'mdw_link' => '"More than Work" logo link',
 ];

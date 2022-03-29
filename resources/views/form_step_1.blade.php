@@ -92,7 +92,7 @@
     </div>
 
     <div class="row layout1" style="display:none;">
-        <!-- firmePers1 = layout 1-->
+        <!-- firmePers1 = layout 1 -->
         @include('form_step_2')
     </div>
 
