@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\user;
+
 use App;
 use App\Http\Controllers\Controller;
 use DB;
@@ -21,21 +22,19 @@ class UserController extends Controller
 
 
 
-    public function index(){
+	public function index()
+	{
 		//var_dump(CRUDBooster::myPrivilegeName());exit();
 
 		if (CRUDBooster::myPrivilegeName() !== NULL)
-	{
+		{
 
-     	return view('user.nazioni');
+			return view('user.nazioni');
+		}
+		else
+		{
 
-	}else{
-
-		return view('login');
-
+			return view('login');
+		}
 	}
-
-    }
-
-
 }

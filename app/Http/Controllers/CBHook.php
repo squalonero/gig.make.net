@@ -14,6 +14,10 @@ class CBHook extends Controller {
 	|
 	*/
 	public function afterLogin() {
-		return view('admin');
+
+		if(Session::get('admin_name') === 'user')
+		{
+			return redirect()->to('/user')->send();
+		}
 	}
 }
