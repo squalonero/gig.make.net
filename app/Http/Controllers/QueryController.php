@@ -103,7 +103,7 @@ class QueryController extends Controller
         return $social_output;
     }
 
-    static function manageFile($postFieldName)
+    static function manageFile($postFieldName , $fit = 160)
     {
         // nicpaola 07-2020 - upload sponsor file
         if (0 < $_FILES[$postFieldName]['error'])
@@ -120,7 +120,7 @@ class QueryController extends Controller
                 $imageResized
                     ->fromFile(storage_path() . '/app/uploads/sponsor_images/' . $FileName)
                     ->autoOrient()
-                    ->bestFit(160, 160)
+                    ->bestFit($fit, $fit)
                     ->toFile(storage_path() . '/app/uploads/sponsor_images/r_' . $FileName, null, 100);
 
                 @unlink(storage_path() . '/app/uploads/sponsor_images/' . $FileName);
@@ -150,8 +150,8 @@ class QueryController extends Controller
 
         $layoutID = $request->layout;
 
-        $sponsorFilePath = self::manageFile('sponsor_image');
-        $moreThanWorkFilePath = self::manageFile('mdw_replace_image');
+        $sponsorFilePath = self::manageFile('sponsor_image', 160);
+        $moreThanWorkFilePath = self::manageFile('mdw_replace_image', 145);
 
 
         /**
