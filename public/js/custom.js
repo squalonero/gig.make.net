@@ -314,7 +314,7 @@ function getFieldEstero(campoId, val)
             $('#sponsorPreview').remove();
             if (data[0].sponsorFilePath)
             {
-                $('#sponsorContainer label').after(`
+                $('#sponsorContainer label[for="sponsor_image"]').after(`
 								<div style="margin-bottom:20px;" id="sponsorPreview">
 								<span><img data-backend-sponsor="/${ data[0].sponsorFilePath }" src="/${ data[0].sponsorFilePath }" style="max-width:100px;"></span>
 								<span style="margin-left:20px;">${ trans.currentSponsor }</span>
@@ -493,7 +493,7 @@ function getField(val)
             $('#sponsorPreview').remove();
             if (data[0].sponsorFilePath)
             {
-                $('#sponsorContainer label').after(`
+                $('#sponsorContainer label[for="sponsor_image"]').after(`
 								<div style="margin-bottom:20px;" id="sponsorPreview">
 								<span><img data-backend-sponsor="/${ data[0].sponsorFilePath }" src="/${ data[0].sponsorFilePath }" style="max-width:100px;"></span>
 								<span style="margin-left:20px;">${ trans.currentSponsor }</span>
