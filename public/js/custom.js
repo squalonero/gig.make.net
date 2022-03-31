@@ -3,14 +3,14 @@ const APPDOMAIN = location.protocol + "//" + location.hostname;
 function check()
 {
     var emptyFields = 0;
-    if (emailObb == 'bigliettiF')
+    if (tipoFlag == 'bigliettiF')
     {
         var arrayCampi = [
             'nome',
             'cognome',
             'qtbiglietti'
         ];
-    } else
+    } else if (tipoFlag == 'bigliettiP')
     {
         var arrayCampi = [
             'nome',
@@ -19,16 +19,29 @@ function check()
             'email'
         ];
     }
-    if (nazioneId != 11)
+    if (tipoFlag == 'firmaP' || tipoFlag == 'firmaf')
     {
-        var arrayCampi = [
-            'nome',
-            'cognome',
-            //'job',
-            'address',
-            'email'
-        ];
+        if (nazioneId != 11) //not italia
+        {
+            var arrayCampi = [
+                'nome',
+                'cognome',
+                //'job',
+                'address',
+                //'email'
+            ];
+        } else
+        { //italia
+            var arrayCampi = [
+                'nome',
+                'cognome',
+                //'job',
+                //'address',
+                //'email'
+            ];
+        }
     }
+
     for (var key in arrayCampi)
     {
         if ($('#' + arrayCampi[key]).val() == '')

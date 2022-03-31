@@ -105,7 +105,7 @@
     <script src="js/custom.js?time=<?= time() ?>"></script>
 
 <script>
-    var emailObb = "<?php echo Session::get('tipoFlag');?>";
+    var tipoFlag = "<?php echo Session::get('tipoFlag');?>";
     var nazioneId = <?php echo Session::get('nazione');?>;
     $( function() {
 

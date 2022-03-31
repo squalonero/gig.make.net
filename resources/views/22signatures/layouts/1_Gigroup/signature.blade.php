@@ -37,13 +37,13 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 					{{ $viewData['address'] }}
 				</div>
 
-				<br style="line-height:0" />
+				<br style="line-height:0;content:'';" />
 				@if ($viewData['address_2'])
 					<div style="{{ $style_default }} font-size:9pt;">
 						{{ $viewData['address_2'] }}
 					</div>
 
-				<br style="line-height:0" />
+				<br style="line-height:0;content:'';" />
 				@endif
 
 				@if ($viewData['address_3'])
@@ -63,13 +63,13 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 					{{ $viewData['address_it'] }}
 				</div>
 
-				<br style="line-height:0" />
+				<br style="line-height:0;content:'';" />
 				@if ($viewData['address_it_2'])
 					<div style="{{ $style_default }} font-size:9pt;">
 						{{ $viewData['address_it_2'] }}
 					</div>
 
-				<br style="line-height:0" />
+				<br style="line-height:0;content:'';" />
 				@endif
 
 				@if ($viewData['address_it_3'])
@@ -80,7 +80,7 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 			@endif
 
 			@if ($viewData['cell'])
-				<br style="line-height:0" />
+				<br style="line-height:0;content:'';" />
 				<div style="{{ $style_default }} font-size:9pt;">
 					<span style="display:inline-block;width:16px">
 						<strong style="{{ $style_default }} letter-spacing:7px; font-size:9pt; font-weight:700;">M </strong>
@@ -90,7 +90,7 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 			@endif
 
 			@if ($viewData['tel'])
-				<br style="line-height:0" />
+				<br style="line-height:0;content:'';" />
 				<div style="{{ $style_default }} font-size:9pt;">
 					<span style="display:inline-block;width:16px">
 						<strong style="{{ $style_default }} letter-spacing:7px; font-size:9pt; font-weight:700;">T </strong>
@@ -100,19 +100,19 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 			@endif
 
 			@if ($viewData['skype'])
-				<br style="line-height:0" />
+				<br style="line-height:0;content:'';" />
 				<div style="{{ $style_default }} font-size:9pt;">
 					<strong style="font-weight:700;">Skype </strong>{{ $viewData['skype'] }}
 				</div>
 			@endif
 
 			@if ($viewData['email'])
-				<br style="line-height:0" />
+				<br style="line-height:0;content:'';" />
 				<div style="{{ $style_default }} font-size:9pt;">
 					<strong style="font-weight:700;">E-mail </strong>{{ $viewData['email'] }}
 				</div>
 			@elseif($viewData['email_company'])
-				<br style="line-height:0" />
+				<br style="line-height:0;content:'';" />
 				<div style="{{ $style_default }} font-size:9pt;">
 					<strong style="font-weight:700;">E-mail </strong>{{ $viewData['email_company'] }}
 				</div>
@@ -159,7 +159,7 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 					@else
 						<a href="https://www.gigroupholding.{{ $viewData['isItalia'] ? 'it' : 'com' }}/">
 				@endif
-				<img src="{{ $viewData['mdw_replace_image'] ? $viewData['mdw_replace_image'] : asset('img/morethanwork.svg') }} " alt="Logo More than work" width="145" />
+				<img src="{{ $viewData['mdw_replace_image'] ? $viewData['mdw_replace_image'] : asset('img/Morethanwork.png') }} " alt="Logo More than work" width="145" />
 				</a>
 			</div>
 			{{-- End logo More Than Work --}}

@@ -217,7 +217,7 @@
                 <div class="form-row">
 
                     <div class="fb-text form-group field-email col-md-6">
-                        <label for="email"  class="fb-text-label">{!! trans('campi.email') !!}<span class="red">*</span></label>
+                        <label for="email"  class="fb-text-label">{!! trans('campi.email') !!}</label>
                         <input type="text" class="form-control" name="email" id="email">
                         <div style="display:none;" id="check-email">{!! trans('campi.campo') !!} {!! trans('campi.email') !!} {!! trans('campi.required') !!}!</div>
                     </div>
