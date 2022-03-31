@@ -127,7 +127,7 @@
 						<a href="{{ $viewData['endorsementLink'] }}">
 					@endif
 
-					    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['endorsement'] }} " alt="endorsement" {{ $endorsement_width }}/>
+					    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['endorsement'] }} " alt="endorsement" {{ $endorsement_width }} />
 
 					@if ($viewData['endorsementLink'])
 						</a>
