@@ -30,9 +30,9 @@ class UpdateSocietasTableAddWidths extends Migration
     {
         //
         Schema::table('societas', function (Blueprint $table) {
-            $table->dropColumn('logo_width');
-            $table->dropColumn('endorsement_width');
-            $table->dropColumn('sponsor_width');
+             $table->dropColumn('logo_width');
+             $table->dropColumn('endorsement_width');
+             $table->dropColumn('sponsor_width');
         });
     }
 }
