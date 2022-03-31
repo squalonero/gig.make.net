@@ -105,7 +105,12 @@ Logo #ChangeLives
 
 		{{-- Social --}}
 		@if ($viewData['social_count'] > 0)
-                {!! $viewData['social_output'] !!}
+		<div style="display:flex; align-items:center;">
+               <span style="
+			   	font:700 8pt/10pt 'Lato', sans-serif;
+				color:rgb(0, 20, 90);
+				margin-right:5px;">Follow us</span> {!! $viewData['social_output'] !!}
+		</div>
         @endif
 		{{-- End Social --}}
 

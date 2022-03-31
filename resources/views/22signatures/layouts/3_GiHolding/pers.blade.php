@@ -2,7 +2,7 @@
 @section('signature-specific')
 	@if ($viewData['name'] && $viewData['lastname'])
 		<span style="font:700 11pt/13pt 'Lato', sans-serif; color:rgb(0, 20, 90);" class="nome">
-			{{ $viewData['name'] }} {{ $viewData['lastname'] }}
+			{{ ucfirst(strtolower($viewData['name'])) }} {{ ucfirst(strtolower($viewData['lastname'])) }}
 		</span>
 		<br />
 	@endif
