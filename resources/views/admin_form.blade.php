@@ -1,12 +1,12 @@
 @extends("crudbooster::default.form")
 @section('content')
 <div class="alert alert-warning" role="alert">
-    Attenzione! Per ottenere la migliore qualità dalle immagini è consigliabile caricarle in formato VETTORIALE (SVG) mantenendo la massima risoluzione,<br/>
-    la dimensione dell'immagine può essere specificata nell'apposito campo.<br/>
-    Alcuni strumenti utili:
+    Attenzione! Per ottenere la migliore qualità dalle immagini nelle firme e la compatibilità tra client di posta è obbligatorio:
     <ul>
-        <li><a href="https://png2svg.com/it/" target="_blank" class="alert-link">Convertitore PNG 2 SVG</a></li>
-        <li><a href="https://convertio.co/it/" target="_blank" class="alert-link">Convertio.co</a></li>
+        <li>Che l'immgine sia in formato jpg o png</li>
+        <li>Che l'immgine sia in scala 1:1</li>
+        <li>Che l'immagine abbia il metodo colore RGB</li>
+        <li>Che l'immagine sia a 72 dpi</li>
     </ul>
 
 </div>
