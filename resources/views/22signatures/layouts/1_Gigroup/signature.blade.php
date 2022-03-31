@@ -143,7 +143,7 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 						<a href="{{ $viewData['endorsementLink'] }}">
 					@endif
 
-					<img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['endorsement'] }} " alt="endorsement" {{ $endorsement_width }} />
+					<img src="https://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['endorsement'] }} " alt="endorsement" {{ $endorsement_width }} />
 
 					@if ($viewData['endorsementLink'])
 						</a>

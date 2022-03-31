@@ -68,10 +68,11 @@ class QueryController extends Controller
      * - Adjust view logic a bit
      */
 
-    static function getSocialOutput($request)
+    static function getSocialOutput($request, $layoutID)
     {
         $totalSocial = $request->socialCount;
         $social_output = '';
+        $social_width = $layoutID == 1 ? '30' : '15';
         // check if at least a social has been compiled
         $oneSocialCompiled = false;
         for ($socialIndex = 0; $socialIndex < $totalSocial; $socialIndex++)
@@ -86,8 +87,17 @@ class QueryController extends Controller
 
         if ($oneSocialCompiled)
         {
-            $social_output .= '<div style="font-size:10pt"><br /></div>';
-            $social_output .= '<div style="text-align:left;height:30px;">';
+
+            if ($layoutID == 1)
+            {
+                $social_output .= '<div style="font-size:10pt"><br /></div>';
+                $social_output .= '<div style="text-align:left;height:30px;">';
+            }
+            if ($layoutID == 3)
+            {
+                $social_output .= '<div style="">';
+            }
+
             for ($socialIndex = 0; $socialIndex < $totalSocial; $socialIndex++)
             {
                 $socialHrefVarName = 'social_' . $socialIndex;
@@ -95,7 +105,9 @@ class QueryController extends Controller
                 $socialLabelVarName = 'socialLabel_' . $socialIndex;
                 if (trim($request->$socialHrefVarName) != '')
                 {
-                    $social_output .= '<a href="' . $request->$socialHrefVarName . '" target="_blank" style="text-decoration:none"><img src="http://' . $_SERVER['HTTP_HOST'] . '/' . $request->$socialImgVarName . '" style="width:30px" width="30" alt="" /></a><span style="color:#fff">&nbsp;</span>';
+                    $social_output .= '<a href="' . $request->$socialHrefVarName . '" target="_blank" style="text-decoration:none;vertical-align:middle;">
+                    <img src="https://' . $_SERVER['HTTP_HOST'] . '/' . $request->$socialImgVarName . '" style="width:'.$social_width.'px" width="'.$social_width.'" alt="" />
+                    </a><span style="color:#fff">&nbsp;</span>';
                 }
             }
             $social_output .= '</div>';
@@ -103,7 +115,7 @@ class QueryController extends Controller
         return $social_output;
     }
 
-    static function manageFile($postFieldName , $fit = 160)
+    static function manageFile($postFieldName, $fit = 160)
     {
         // nicpaola 07-2020 - upload sponsor file
         if (0 < $_FILES[$postFieldName]['error'])
@@ -194,7 +206,7 @@ class QueryController extends Controller
             'domain' => $request->domain,
 
             'social_count' => $request->socialCount,
-            'social_output' => self::getSocialOutput($request),
+            'social_output' => self::getSocialOutput($request, $layoutID),
 
             'sponsor_image' => $sponsorFilePath ? $sponsorFilePath : $request->sponsor, //$sponsorFilePath is uploaded by user while sponsor is from company
             'endorsement' => trim($request->endorsement),
