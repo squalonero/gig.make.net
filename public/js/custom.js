@@ -165,6 +165,10 @@ $('#caf').on('click', function ()
             processData: false,
             contentType: false,
             timeout: 10000,
+            complete:function(){
+                //console.log(this);
+                $('#embed').attr('src', APPDOMAIN + '/getlayout?' + _getData).show();
+            },
             success: function (msg)
             {
                 $('#stampa').attr('href', APPDOMAIN + '/getlayout?' + _getData);
@@ -175,7 +179,8 @@ $('#caf').on('click', function ()
 
                 if (req == 'caf')
                 {
-                    $('#embedDiv').html(msg).show();
+                    //console.log(this);
+                    //$('#embedDiv').html(msg).show();
                 }
 
             },
@@ -188,6 +193,10 @@ $('#caf').on('click', function ()
     {
         $('#divFirma').css('display', 'none');
     }
+});
+
+$('iframe#embed').on('load change', function(){
+    this.style.height = (this.contentWindow.document.body.scrollHeight + 50) + 'px';
 });
 
 $('#email').focusout(function ()

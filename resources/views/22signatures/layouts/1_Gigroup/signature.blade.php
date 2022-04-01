@@ -128,7 +128,7 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 			</div>
 
 			{{-- Social --}}
-			@if ($viewData['social_count'] > 0)
+			@if ($viewData['social_exist'])
 				{!! $viewData['social_output'] !!}
 			@endif
 			{{-- End Social --}}
@@ -153,7 +153,8 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 			{{-- End Endorsement image --}}
 
 			{{-- Logo More Than Work --}}
-			<div style="text-align:left; margin:10px 0px">
+			{!! MyFuncs::spaceHTML('10px') !!}
+			<div style="text-align:left;">
 				@if ($viewData['mdw_replace_link'])
 					<a href="{{ $viewData['mdw_replace_link'] }}">
 					@else
@@ -165,7 +166,8 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 			{{-- End logo More Than Work --}}
 
 			@if ($viewData['sponsor_image'])
-				<div style="text-align:left; margin:10px 0px">
+				{!! MyFuncs::spaceHTML('10px') !!}
+				<div style="text-align:left;">
 					@if ($viewData['sponsorLink'])
 						<a href="{{ $viewData['sponsorLink'] }}">
 					@endif

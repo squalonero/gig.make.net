@@ -205,7 +205,7 @@ class QueryController extends Controller
 
             'domain' => $request->domain,
 
-            'social_count' => $request->socialCount,
+            'social_exist' => (bool) self::getSocialOutput($request, $layoutID),
             'social_output' => self::getSocialOutput($request, $layoutID),
 
             'sponsor_image' => $sponsorFilePath ? $sponsorFilePath : $request->sponsor, //$sponsorFilePath is uploaded by user while sponsor is from company

@@ -43,7 +43,10 @@ Logo #ChangeLives
 		@yield('signature-specific')
 
 		{{-- Company Logo --}}
-		<span style="display:block; margin-top:15px; height: auto;">
+
+		{!! MyFuncs::spaceHTML('15px') !!}
+
+		<span style="display:block; height: auto;">
 			<img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['logoSC'] }}" {{ $logo_width }}>
 		</span>
 		{{-- End Company Logo --}}
@@ -115,9 +118,10 @@ Logo #ChangeLives
 		@endif
 
 		{{-- Social --}}
-		@if ($viewData['social_count'] > 0)
+		@if ($viewData['social_exist'])
 			<br style="line-height:0;content:'';" />
-			<table style="margin-top:10px;">
+			{!! MyFuncs::spaceHTML('10px') !!}
+			<table>
 				<tr>
 					<td>
 						<div style="
@@ -134,7 +138,10 @@ Logo #ChangeLives
 
 		{{-- Human Resources in place of Endorsement image (if checked) --}}
 		@if ($viewData['is_human_resources'])
-			<div style="margin-top:10px;">
+
+			{!! MyFuncs::spaceHTML('10px') !!}
+
+			<div>
 				@if ($viewData['endorsementLink'])
 					<a href="{{ $viewData['endorsementLink'] }}">
 				@endif
@@ -146,9 +153,11 @@ Logo #ChangeLives
 					</a>
 				@endif
 			</div>
-			{{-- Endorsement image --}}
+			{{-- Endorsement image (in this layout is Logo More Than Work) --}}
 		@elseif ($viewData['endorsement'])
-			<div style="margin-top:10px;">
+
+			{!! MyFuncs::spaceHTML('10px') !!}
+			<div>
 				@if ($viewData['endorsementLink'])
 					<a href="{{ $viewData['endorsementLink'] }}">
 				@endif
@@ -162,14 +171,6 @@ Logo #ChangeLives
 			</div>
 		@endif
 		{{-- End Endorsement image --}}
-
-		{{-- Logo More Than Work --}}
-		{{-- <div style="text-align:left; margin:10px 0px">
-			<a href="https://www.gigroupholding.it/">
-				<img src="{{ asset('img/morethanwork.svg') }} " alt="Logo More than work" width="145"/>
-			</a>
-		</div> --}}
-		{{-- End Logo More Than Work --}}
 
 	</div>
 

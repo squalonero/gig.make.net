@@ -22,6 +22,11 @@ use App;
 class MyFuncs
 {
 
+    static function spaceHTML($height = '10px')
+    {
+        return '<span style="display:block;height:'.$height.'"></span>';
+    }
+
     public static function getCombo($table,$campo,$idForm,$valore = ''){
         $where = '';
         if($valore != '' && $valore > 0){
