@@ -5,9 +5,10 @@ $style_default = "
 	font:700 8pt/10pt 'Lato', sans-serif;
 	color:rgb(0, 20, 90);
 	";
-$logo_width = $viewData['logo_width'] ? 'width="' . $viewData['logo_width'] . '" style=max-width:' . $viewData['logo_width'] . 'px' : '';
-$endorsement_width = $viewData['endorsement_width'] ? 'width="' . $viewData['endorsement_width'] . '" style=max-width:' . $viewData['endorsement_width'] . 'px' : '';
-$sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_width'] . '" style=max-width:' . $viewData['sponsor_width'] . 'px' : '';
+// $logo_width = $viewData['logo_width'] ? 'width="' . $viewData['logo_width'] . '" style=max-width:' . $viewData['logo_width'] . 'px' : '';
+// $endorsement_width = $viewData['endorsement_width'] ? 'width="' . $viewData['endorsement_width'] . '" style=max-width:' . $viewData['endorsement_width'] . 'px' : '';
+// $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_width'] . '" style=max-width:' . $viewData['sponsor_width'] . 'px' : '';
+// $logo_width = $endorsement_width = $sponsor_width = 'style=width:auto;height:auto;display:block;border:0;';
 @endphp
 
 {{-- SIGNATURE INFO
@@ -47,11 +48,20 @@ Logo #ChangeLives
 		{!! MyFuncs::spaceHTML('15px') !!}
 
 		<span style="display:block; height: auto;">
+				<!--[if gte mso 9]>
+				   <v:image
+					src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['logoSC'] }}"
+					style="position:relative;top:1;left:1;width:50;height:50">
+					</v:image>
+				<![endif]-->
 			<img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['logoSC'] }}" {{ $logo_width }}>
 		</span>
 		{{-- End Company Logo --}}
 		<br style="line-height:0;content:'';" />
-		<span style="{{ $style_default }} margin-top:10px;" class="domain">www.{{ $viewData['domain'] }}</span>
+
+		{!! MyFuncs::spaceHTML('10px') !!}
+
+		<span style="{{ $style_default }}" class="domain">www.{{ $viewData['domain'] }}</span>
 
 		@if ($viewData['tel'])
 			<br style="line-height:0;content:'';" />
@@ -123,13 +133,11 @@ Logo #ChangeLives
 			{!! MyFuncs::spaceHTML('10px') !!}
 			<table>
 				<tr>
-					<td>
-						<div style="
-						font:700 8pt/10pt 'Lato', sans-serif;
-						color:rgb(0, 20, 90);
-						">Follow us</div>
+					<td valign="middle" style="vertical-align:middle;font:700 8pt/10pt 'Lato', sans-serif;
+					color:rgb(0, 20, 90);">
+					Follow us
 					</td>
-					<td>{!! $viewData['social_output'] !!}</td>
+						{!! $viewData['social_output'] !!}
 				</tr>
 
 			</table>

@@ -29,116 +29,114 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 
 			{{-- Estero @notverified --}}
 			@if ($viewData['address'])
-				<div style="font-size:10pt">
-					<br />
-				</div>
+				<div style="font-size:10pt"><br /></div> {{-- Spacer --}}
 
-				<div style="{{ $style_default }} font-size:9pt;">
+				<span style="{{ $style_default }} font-size:9pt;">
 					{{ $viewData['address'] }}
-				</div>
+				</span>
 
 				<br style="line-height:0;content:'';" />
 				@if ($viewData['address_2'])
-					<div style="{{ $style_default }} font-size:9pt;">
+					<span style="{{ $style_default }} font-size:9pt;">
 						{{ $viewData['address_2'] }}
-					</div>
+					</span>
 
 				<br style="line-height:0;content:'';" />
 				@endif
 
 				@if ($viewData['address_3'])
-					<div style="{{ $style_default }} font-size:9pt;">
+					<span style="{{ $style_default }} font-size:9pt;">
 						{{ $viewData['address_3'] }}
-					</div>
+					</span>
 				@endif
 			@endif
 			{{-- End Estero @notverified --}}
 
 			@if ($viewData['address_it'])
-				<div style="font-size:10pt">
-					<br />
-				</div>
+				<div style="font-size:10pt"><br /></div> {{-- Spacer --}}
 
-				<div style="{{ $style_default }} font-size:9pt;">
+				<span style="{{ $style_default }} font-size:9pt;">
 					{{ $viewData['address_it'] }}
-				</div>
+				</span>
 
-				<br style="line-height:0;content:'';" />
 				@if ($viewData['address_it_2'])
-					<div style="{{ $style_default }} font-size:9pt;">
+					<br style="line-height:0;content:'';" />
+					<span style="{{ $style_default }} font-size:9pt;">
 						{{ $viewData['address_it_2'] }}
-					</div>
-
-				<br style="line-height:0;content:'';" />
+					</span>
 				@endif
 
 				@if ($viewData['address_it_3'])
-					<div style="{{ $style_default }} font-size:9pt;">
+					<br style="line-height:0;content:'';" />
+					<span style="{{ $style_default }} font-size:9pt;">
 						{{ $viewData['address_it_3'] }}
-					</div>
+					</span>
 				@endif
 			@endif
 
 			@if ($viewData['cell'])
 				<br style="line-height:0;content:'';" />
-				<div style="{{ $style_default }} font-size:9pt;">
+				<span style="{{ $style_default }} font-size:9pt;">
 					<span style="display:inline-block;width:16px">
 						<strong style="{{ $style_default }} letter-spacing:7px; font-size:9pt; font-weight:700;">M </strong>
 					</span>
 					{{ $viewData['cell'] }}
-				</div>
+				</span>
 			@endif
 
 			@if ($viewData['tel'])
 				<br style="line-height:0;content:'';" />
-				<div style="{{ $style_default }} font-size:9pt;">
+				<span style="{{ $style_default }} font-size:9pt;">
 					<span style="display:inline-block;width:16px">
 						<strong style="{{ $style_default }} letter-spacing:7px; font-size:9pt; font-weight:700;">T </strong>
 					</span>
 					{{ $viewData['tel'] }}
-				</div>
+				</span>
 			@endif
 
 			@if ($viewData['skype'])
 				<br style="line-height:0;content:'';" />
-				<div style="{{ $style_default }} font-size:9pt;">
+				<span style="{{ $style_default }} font-size:9pt;">
 					<strong style="font-weight:700;">Skype </strong>{{ $viewData['skype'] }}
-				</div>
+				</span>
 			@endif
 
 			@if ($viewData['email'])
 				<br style="line-height:0;content:'';" />
-				<div style="{{ $style_default }} font-size:9pt;">
+				<span style="{{ $style_default }} font-size:9pt;">
 					<strong style="font-weight:700;">E-mail </strong>{{ $viewData['email'] }}
-				</div>
+				</span>
 			@elseif($viewData['email_company'])
 				<br style="line-height:0;content:'';" />
-				<div style="{{ $style_default }} font-size:9pt;">
+				<span style="{{ $style_default }} font-size:9pt;">
 					<strong style="font-weight:700;">E-mail </strong>{{ $viewData['email_company'] }}
-				</div>
+				</span>
 			@endif
 
 			<div style="font-size:8pt;"><br /></div>
-			<div style="{{ $style_default }} font-weight:bold; font-size:10pt;">
+			<span style="{{ $style_default }} font-weight:bold; font-size:10pt;">
 				<a href="http://www.{{ $viewData['domain'] }}"
 					style="{{ $style_default }} font-weight:bold; font-size:10pt; text-decoration:none;"
 					target="_blank">
 					www.{{ $viewData['domain'] }}
 				</a>
-			</div>
+			</span>
 
 			{{-- Social --}}
 			@if ($viewData['social_exist'])
-				{!! $viewData['social_output'] !!}
+			<div style="font-size:10pt"><br /></div>
+			<table style="border-spacing:0">
+				<tr>
+					{!! $viewData['social_output'] !!}
+				</tr>
+			</table>
 			@endif
 			{{-- End Social --}}
 
 			{{-- Endorsement image --}}
 			@if ($viewData['endorsement'])
-				<div style="font-size:10pt">
-					<br />
-				</div>
-				<div style="text-align:left;">
+				<div style="font-size:10pt"><br /></div> {{-- Spacer --}}
+				<span style="text-align:left;">
 					@if ($viewData['endorsementLink'])
 						<a href="{{ $viewData['endorsementLink'] }}">
 					@endif
@@ -148,13 +146,13 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 					@if ($viewData['endorsementLink'])
 						</a>
 					@endif
-				</div>
+				</span>
 			@endif
 			{{-- End Endorsement image --}}
 
 			{{-- Logo More Than Work --}}
-			{!! MyFuncs::spaceHTML('10px') !!}
-			<div style="text-align:left;">
+			<div style="font-size:10pt"><br /></div> {{-- Spacer --}}
+			<span style="text-align:left;">
 				@if ($viewData['mdw_replace_link'])
 					<a href="{{ $viewData['mdw_replace_link'] }}">
 					@else
@@ -162,12 +160,12 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 				@endif
 				<img src="{{ $viewData['mdw_replace_image'] ? $viewData['mdw_replace_image'] : asset('img/Morethanwork.png') }} " alt="Logo More than work" width="145" />
 				</a>
-			</div>
+			</span>
 			{{-- End logo More Than Work --}}
 
 			@if ($viewData['sponsor_image'])
-				{!! MyFuncs::spaceHTML('10px') !!}
-				<div style="text-align:left;">
+				<div style="font-size:10pt"><br /></div> {{-- Spacer --}}
+				<span style="text-align:left;">
 					@if ($viewData['sponsorLink'])
 						<a href="{{ $viewData['sponsorLink'] }}">
 					@endif
@@ -177,20 +175,18 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 					@if ($viewData['sponsorLink'])
 						</a>
 					@endif
-				</div>
+				</span>
 			@endif
 
 		</div>
 
 		@if ($viewData['privacyC'])
-			<div style="text-align:left;">
-				<div style="font-size:10pt">
-					<br />
-				</div>
+			<span style="text-align:left;">
+				<div style="font-size:10pt"><br /></div> {{-- Spacer --}}
 				<span style="text-align:left; font-size:7pt; color:#65656A; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;">
 					{{ $viewData['privacyC'] }}<br />
 				</span>
-			</div>
+			</span>
 		@endif
 	</div>
 

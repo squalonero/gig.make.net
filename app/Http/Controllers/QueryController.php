@@ -87,30 +87,32 @@ class QueryController extends Controller
 
         if ($oneSocialCompiled)
         {
-
-            if ($layoutID == 1)
-            {
-                $social_output .= '<div style="font-size:10pt"><br /></div>';
-                $social_output .= '<div style="text-align:left;height:30px;">';
-            }
-            if ($layoutID == 3)
-            {
-                $social_output .= '<div style="">';
-            }
+            $layout_style_link = '';
+            $layout_style_img = '';
 
             for ($socialIndex = 0; $socialIndex < $totalSocial; $socialIndex++)
             {
+
                 $socialHrefVarName = 'social_' . $socialIndex;
                 $socialImgVarName = 'socialImage_' . $socialIndex;
                 $socialLabelVarName = 'socialLabel_' . $socialIndex;
                 if (trim($request->$socialHrefVarName) != '')
                 {
-                    $social_output .= '<a href="' . $request->$socialHrefVarName . '" target="_blank" style="text-decoration:none;vertical-align:middle;">
-                    <img src="https://' . $_SERVER['HTTP_HOST'] . '/' . $request->$socialImgVarName . '" style="width:'.$social_width.'px" width="'.$social_width.'" alt="" />
-                    </a><span style="color:#fff">&nbsp;</span>';
+                    if ($layoutID == 3)
+                    {
+                        $layout_style_link .= 'display:inline-block;line-height: 0;font-size: 15px;';
+                    }
+                    $social_output .= '<td valign="middle" style="vertical-align: middle;">';
+                    $social_output .= '<a href="' . $request->$socialHrefVarName . '"
+                    target="_blank" style="width:' . $social_width . 'px;text-decoration:none;' . $layout_style_link . '">
+                    <img src="https://' . $_SERVER['HTTP_HOST'] . '/' . $request->$socialImgVarName . '" style="width:' . $social_width . 'px" width="' . $social_width . '" alt="" />
+                    </a>';
+
+                    $social_output .= '</td>';
+
                 }
             }
-            $social_output .= '</div>';
+
         }
         return $social_output;
     }

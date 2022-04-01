@@ -24,7 +24,13 @@ class MyFuncs
 
     static function spaceHTML($height = '10px')
     {
-        return '<span style="display:block;height:'.$height.'"></span>';
+        return '<p style="
+        display:block;
+        height:'.$height.';
+        line-height:'.$height.';
+        font-size:'.$height.';
+        margin:0;
+        "><br/></p>';
     }
 
     public static function getCombo($table,$campo,$idForm,$valore = ''){
