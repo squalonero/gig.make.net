@@ -89,6 +89,7 @@ class QueryController extends Controller
         {
             $layout_style_link = '';
             $layout_style_img = '';
+            $td_style = '';
 
             for ($socialIndex = 0; $socialIndex < $totalSocial; $socialIndex++)
             {
@@ -101,8 +102,9 @@ class QueryController extends Controller
                     if ($layoutID == 3)
                     {
                         $layout_style_link .= 'display:inline-block;line-height: 0;font-size: 15px;';
+                        $td_style = 'padding-left:4px';
                     }
-                    $social_output .= '<td valign="middle" style="vertical-align: middle;">';
+                    $social_output .= '<td valign="middle" style="vertical-align: middle;'.$td_style.'">';
                     $social_output .= '<a href="' . $request->$socialHrefVarName . '"
                     target="_blank" style="width:' . $social_width . 'px;text-decoration:none;' . $layout_style_link . '">
                     <img src="https://' . $_SERVER['HTTP_HOST'] . '/' . $request->$socialImgVarName . '" style="width:' . $social_width . 'px" width="' . $social_width . '" alt="" />

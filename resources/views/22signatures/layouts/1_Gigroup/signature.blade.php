@@ -9,9 +9,9 @@ $style_default = '
 	color:#646464;
 	font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;
 	';
-$logo_width = $viewData['logo_width'] ? 'width="' . $viewData['logo_width'] . '" style=max-width:' . $viewData['logo_width'] . 'px' : '';
-$endorsement_width = $viewData['endorsement_width'] ? 'width="' . $viewData['endorsement_width'] . '" style=max-width:' . $viewData['endorsement_width'] . 'px' : '';
-$sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_width'] . '" style=max-width:' . $viewData['sponsor_width'] . 'px' : '';
+// $logo_width = $viewData['logo_width'] ? 'width="' . $viewData['logo_width'] . '" style=max-width:' . $viewData['logo_width'] . 'px' : '';
+// $endorsement_width = $viewData['endorsement_width'] ? 'width="' . $viewData['endorsement_width'] . '" style=max-width:' . $viewData['endorsement_width'] . 'px' : '';
+// $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_width'] . '" style=max-width:' . $viewData['sponsor_width'] . 'px' : '';
 @endphp
 @section('content')
 	<div style="text-align:left;">
@@ -158,7 +158,7 @@ $sponsor_width = $viewData['sponsor_width'] ? 'width="' . $viewData['sponsor_wid
 					@else
 						<a href="https://www.gigroupholding.{{ $viewData['isItalia'] ? 'it' : 'com' }}/">
 				@endif
-				<img src="{{ $viewData['mdw_replace_image'] ? $viewData['mdw_replace_image'] : asset('img/Morethanwork.png') }} " alt="Logo More than work" width="145" />
+				<img src="{{ $viewData['mdw_replace_image'] ? $viewData['mdw_replace_image'] : asset('img/Morethanwork.png') }} " alt="Logo More than work" />
 				</a>
 			</span>
 			{{-- End logo More Than Work --}}

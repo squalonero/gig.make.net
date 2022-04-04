@@ -131,7 +131,7 @@ Logo #ChangeLives
 		@if ($viewData['social_exist'])
 			<br style="line-height:0;content:'';" />
 			{!! MyFuncs::spaceHTML('10px') !!}
-			<table>
+			<table style="border-spacing:0">
 				<tr>
 					<td valign="middle" style="vertical-align:middle;font:700 8pt/10pt 'Lato', sans-serif;
 					color:rgb(0, 20, 90);">

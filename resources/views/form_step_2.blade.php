@@ -179,7 +179,7 @@
                         </div>
                     @elseif(Session::get('nazione') == 11)
                         <div class="fb-text form-group field-email col-md-6">
-                            <label for="email"  class="fb-text-label">{!! trans('campi.email') !!}<span class="red">*</span></label>
+                            <label for="email"  class="fb-text-label">{!! trans('campi.email') !!} @if(Session::get('tipoFlag') != 'firmaP' ) <span class="red">*</span> @endif </label>
                             <input type="text" class="form-control" name="email" id="email">
                             <div style="display:none;" id="check-email">{!! trans('campi.campo') !!} {!! trans('campi.email') !!} {!! trans('campi.required') !!}!</div>
                         </div>
@@ -195,7 +195,7 @@
                         </div>
                         @else
                         <div class="fb-text form-group field-email col-md-6">
-                            <label for="email"  class="fb-text-label">{!! trans('campi.email') !!}<span class="red">*</span></label>
+                            <label for="email"  class="fb-text-label">{!! trans('campi.email') !!} @if(Session::get('tipoFlag') != 'firmaP' ) <span class="red">*</span> @endif</label>
                             <input type="text" class="form-control" name="email" id="email">
                             <div style="display:none;" id="check-email">{!! trans('campi.campo') !!} {!! trans('campi.email') !!} {!! trans('campi.required') !!}!</div>
                         </div>
@@ -299,6 +299,7 @@
             @endif
 
             {{-- Human Resources layout 3 --}}
+            {{ Session::get('tipoFlag') }}
             @if(in_array(Session::get('tipoFlag'),['firmaP','firmaF']))
                 <div class="form-row my-3" id="container-field-human_resources">
                     <div class="form-group">

@@ -327,9 +327,16 @@ function getFieldEstero(campoId, val)
                 $('#container-field-skype').hide();
                 $('#container-field-fax').hide();
                 $('#more_than_work_Container-estero').hide(); //only layout 1 + Estero
+
+                $('#container-field-human_resources').show();
             }
             else
             {
+                $('#sponsorContainer').show();
+                $('#container-field-skype').show();
+                $('#container-field-fax').show();
+                $('#more_than_work_Container-estero').show(); //only layout 1 + Estero
+
                 $('#container-field-human_resources').hide();
             }
 
@@ -503,9 +510,15 @@ function getField(val)
                 $('#sponsorContainer').hide();
                 $('#container-field-skype').hide();
                 $('#container-field-fax').hide();
+
+                $('#container-field-human_resources').show();
             }
             else
             {
+                $('#sponsorContainer').show();
+                $('#container-field-skype').show();
+                $('#container-field-fax').show();
+
                 $('#container-field-human_resources').hide();
             }
 
