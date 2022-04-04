@@ -299,7 +299,6 @@
             @endif
 
             {{-- Human Resources layout 3 --}}
-            {{ Session::get('tipoFlag') }}
             @if(in_array(Session::get('tipoFlag'),['firmaP','firmaF']))
                 <div class="form-row my-3" id="container-field-human_resources">
                     <div class="form-group">

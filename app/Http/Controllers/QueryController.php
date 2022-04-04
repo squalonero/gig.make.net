@@ -65,7 +65,8 @@ class QueryController extends Controller
      * - Remove html from controller ✔
      * - Put some reasonable logic ✔
      * - Keep rendered code as-it-is to avoid output surprises ✔
-     * - Adjust view logic a bit
+     * - Adjust view logic a bit ✔
+     * - Adjust Socials ✔
      */
 
     static function getSocialOutput($request, $layoutID)
@@ -95,8 +96,18 @@ class QueryController extends Controller
             {
 
                 $socialHrefVarName = 'social_' . $socialIndex;
-                $socialImgVarName = 'socialImage_' . $socialIndex;
+                //$socialImgVarName = 'socialImage_' . $socialIndex;
                 $socialLabelVarName = 'socialLabel_' . $socialIndex;
+
+                $jpg = 'img/social/Layout'.$layoutID.'/'.$request->$socialLabelVarName.'.jpg';
+                $png = 'img/social/Layout'.$layoutID.'/'.$request->$socialLabelVarName.'.png';
+
+                if(file_exists(public_path($jpg)))
+                    $socialIcon = asset($jpg);
+
+                if(file_exists(public_path($png)))
+                    $socialIcon = asset($png);
+
                 if (trim($request->$socialHrefVarName) != '')
                 {
                     if ($layoutID == 3)
@@ -107,7 +118,7 @@ class QueryController extends Controller
                     $social_output .= '<td valign="middle" style="vertical-align: middle;'.$td_style.'">';
                     $social_output .= '<a href="' . $request->$socialHrefVarName . '"
                     target="_blank" style="width:' . $social_width . 'px;text-decoration:none;' . $layout_style_link . '">
-                    <img src="https://' . $_SERVER['HTTP_HOST'] . '/' . $request->$socialImgVarName . '" style="width:' . $social_width . 'px" width="' . $social_width . '" alt="" />
+                    <img src="'. $socialIcon . '" style="width:' . $social_width . 'px" width="' . $social_width . '" alt="" />
                     </a>';
 
                     $social_output .= '</td>';

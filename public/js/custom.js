@@ -362,14 +362,28 @@ function getFieldEstero(campoId, val)
                 {
                     if (data[0].socialArray[socialIndex].url == null)
                         data[0].socialArray[socialIndex].url = "";
+
                     socialStringHtml += '<div class="fb-text form-group field-email col-md-1">';
+
+                    let socialImg = function(){
+                        let layout = data[0].layoutS;
+                        let imgUrl = APPDOMAIN + '/img/social/Layout' + layout + '/' + data[0].socialArray[socialIndex].label;
+
+                        if(UrlExists(imgUrl+'.jpg'))
+                            return imgUrl+'.jpg';
+
+                        if(UrlExists(imgUrl+'.png'))
+                            return imgUrl+'.png';
+                    };
+
                     if (data[0].socialArray[socialIndex].url != null && data[0].socialArray[socialIndex].url.trim() != "")
                     {
-                        socialStringHtml += '<img class="socialImage" src="' + data[0].socialArray[socialIndex].image + '" />';
+                        socialStringHtml += '<img class="socialImage" src="' + socialImg() + '" />';
                     } else
                     {
-                        socialStringHtml += '<img class="socialImage" src="' + data[0].socialArray[socialIndex].image + '" style="margin-bottom:22px" />';
+                        socialStringHtml += '<img class="socialImage" src="' + socialImg() + '" style="margin-bottom:22px" />';
                     }
+
                     socialStringHtml += '<input type="hidden" name="socialImage_' + socialIndex + '" id="socialImage_' + socialIndex + '" value="' + data[0].socialArray[socialIndex].image + '" />' +
                         '<input type="hidden" name="socialLabel_' + socialIndex + '" id="socialLabel_' + socialIndex + '" value="' + data[0].socialArray[socialIndex].label + '" />' +
                         '</div>' +
@@ -770,3 +784,14 @@ $('#okCopia').click(function ()
 {
     copiaContenuto('firma');
 });
+
+
+function UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status != 404)
+        return true;
+    else
+        return false;
+}
