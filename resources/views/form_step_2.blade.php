@@ -256,14 +256,14 @@
             <!-- fine dominio -->
             @if(in_array(Session::get('tipoFlag'),['firmaP','firmaF']))
                         <!-- nicpaola 07-2020 - add campi skype -->
-                        <div class="form-row" id="container-field-skype">
+                        {{-- <div class="form-row" id="container-field-skype">
                             <div class="fb-text form-group field-email col-md-1">
                             </div>
                             <div class="fb-text form-group field-email-domain col-md-11">
                                 <label for="skype"  class="fb-text-label">Skype</label>
                                 <input type="text" class="form-control" name="skype" id="skype">
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- nicpaola 07-2020 - add campi social -->
                         <div class="form-row" id="socialContainer"></div>

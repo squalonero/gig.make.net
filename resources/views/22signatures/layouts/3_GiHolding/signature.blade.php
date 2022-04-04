@@ -48,12 +48,12 @@ Logo #ChangeLives
 		{!! MyFuncs::spaceHTML('15px') !!}
 
 		<span style="display:block; height: auto;">
-				<!--[if gte mso 9]>
-				   <v:image
-					src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['logoSC'] }}"
-					style="position:relative;top:1;left:1;width:50;height:50">
-					</v:image>
-				<![endif]-->
+			<!--[if gte mso 9]>
+					<v:image
+						src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['logoSC'] }}"
+						style="position:relative;top:1;left:1;width:50;height:50">
+						</v:image>
+					<![endif]-->
 			<img src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['logoSC'] }}" {{ $logo_width }}>
 		</span>
 		{{-- End Company Logo --}}
@@ -66,14 +66,21 @@ Logo #ChangeLives
 		@if ($viewData['tel'])
 			<br style="line-height:0;content:'';" />
 			<span style="{{ $style_default }}">
-				T. {{ $viewData['tel'] }}
+				T {{ $viewData['tel'] }}
 			</span>
 		@endif
 
 		@if ($viewData['cell'])
 			<br style="line-height:0;content:'';" />
 			<span style="{{ $style_default }}">
-				M. {{ $viewData['cell'] }}
+				M {{ $viewData['cell'] }}
+			</span>
+		@endif
+
+		@if ($viewData['fax'])
+			<br style="line-height:0;content:'';" />
+			<span style="{{ $style_default }}">
+				F {{ $viewData['fax'] }}
 			</span>
 		@endif
 
@@ -106,26 +113,28 @@ Logo #ChangeLives
 			@endif
 		@endif
 		{{-- End Estero @notverified --}}
-		@if ($viewData['address_it'])
+
+		@if ($viewData['address_it_via_civico'])
 			<br style="line-height:0;content:'';" />
 			<span style="{{ $style_default }}">
-				{{ $viewData['address_it'] }}
+				{{ $viewData['address_it_via_civico'] }}
 			</span>
-
-			@if ($viewData['address_it_2'])
-				<br style="line-height:0;content:'';" />
-				<span style="{{ $style_default }}">
-					{{ $viewData['address_it_2'] }}
-				</span>
-			@endif
-
-			@if ($viewData['address_it_3'])
-				<br style="line-height:0;content:'';" />
-				<span style="{{ $style_default }}">
-					{{ $viewData['address_it_3'] }}
-				</span>
-			@endif
 		@endif
+
+		@if ($viewData['address_it_cap_citta'])
+			<br style="line-height:0;content:'';" />
+			<span style="{{ $style_default }}">
+				{{ $viewData['address_it_cap_citta'] }}
+			</span>
+		@endif
+
+		{{-- @if ($viewData['address_it_full'])
+			<br style="line-height:0;content:'';" />
+			<span style="{{ $style_default }}">
+				{{ $viewData['address_it_full'] }}
+			</span>
+		@endif --}}
+
 
 		{{-- Social --}}
 		@if ($viewData['social_exist'])
@@ -134,10 +143,10 @@ Logo #ChangeLives
 			<table style="border-spacing:0">
 				<tr>
 					<td valign="middle" style="vertical-align:middle;font:700 8pt/10pt 'Lato', sans-serif;
-					color:rgb(0, 20, 90);">
-					Follow us
+						color:rgb(0, 20, 90);">
+						Follow us
 					</td>
-						{!! $viewData['social_output'] !!}
+					{!! $viewData['social_output'] !!}
 				</tr>
 
 			</table>
@@ -146,7 +155,6 @@ Logo #ChangeLives
 
 		{{-- Human Resources in place of Endorsement image (if checked) --}}
 		@if ($viewData['is_human_resources'])
-
 			{!! MyFuncs::spaceHTML('10px') !!}
 
 			<div>
@@ -163,7 +171,6 @@ Logo #ChangeLives
 			</div>
 			{{-- Endorsement image (in this layout is Logo More Than Work) --}}
 		@elseif ($viewData['endorsement'])
-
 			{!! MyFuncs::spaceHTML('10px') !!}
 			<div>
 				@if ($viewData['endorsementLink'])

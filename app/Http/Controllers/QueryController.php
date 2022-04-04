@@ -204,9 +204,9 @@ class QueryController extends Controller
             'address' => $request->address,
             'address_2' => $request->address_2,
             'address_3' => $request->address_3,
-            'address_it_1' => $request->indirizzoC1,
-            'address_it_2' => $request->indirizzoC2,
-            'address_it' => $request->indirizzoC,
+            'address_it_via_civico' => $request->indirizzoC1,
+            'address_it_cap_citta' => $request->indirizzoC2,
+            'address_it_full' => $request->indirizzoC,
 
             'cell' => $request->cell ? $request->cellnaz . ' ' . $request->precell . ' ' . $request->cell : null,
             'tel' => $request->telefono ? $request->prefnaz . ' ' . $request->preftel . ' ' . $request->telefono : null,

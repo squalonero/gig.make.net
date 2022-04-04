@@ -21,7 +21,7 @@ $style_default = '
 		<span
 			style="font-weight:bold; font-size:13pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;">
 			<div style='display:inline-block'>
-				<img class="logoS" src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['logoSC'] }}" {{ $logo_width }} >
+				<img class="logoS" src="http://{{ $_SERVER['HTTP_HOST'] }}/{{ $viewData['logoSC'] }}" {{ $logo_width }}>
 			</div>
 		</span>
 
@@ -41,7 +41,7 @@ $style_default = '
 						{{ $viewData['address_2'] }}
 					</span>
 
-				<br style="line-height:0;content:'';" />
+					<br style="line-height:0;content:'';" />
 				@endif
 
 				@if ($viewData['address_3'])
@@ -52,27 +52,28 @@ $style_default = '
 			@endif
 			{{-- End Estero @notverified --}}
 
-			@if ($viewData['address_it'])
+			@if ($viewData['address_it_via_civico'])
 				<div style="font-size:10pt"><br /></div> {{-- Spacer --}}
 
 				<span style="{{ $style_default }} font-size:9pt;">
-					{{ $viewData['address_it'] }}
+					{{ $viewData['address_it_via_civico'] }}
 				</span>
-
-				@if ($viewData['address_it_2'])
-					<br style="line-height:0;content:'';" />
-					<span style="{{ $style_default }} font-size:9pt;">
-						{{ $viewData['address_it_2'] }}
-					</span>
-				@endif
-
-				@if ($viewData['address_it_3'])
-					<br style="line-height:0;content:'';" />
-					<span style="{{ $style_default }} font-size:9pt;">
-						{{ $viewData['address_it_3'] }}
-					</span>
-				@endif
 			@endif
+
+			@if ($viewData['address_it_cap_citta'])
+				<br style="line-height:0;content:'';" />
+				<span style="{{ $style_default }} font-size:9pt;">
+					{{ $viewData['address_it_cap_citta'] }}
+				</span>
+			@endif
+
+			{{-- @if ($viewData['address_it_full'])
+				<br style="line-height:0;content:'';" />
+				<span style="{{ $style_default }} font-size:9pt;">
+					{{ $viewData['address_it_full'] }}
+				</span>
+			@endif --}}
+
 
 			@if ($viewData['cell'])
 				<br style="line-height:0;content:'';" />
@@ -94,12 +95,22 @@ $style_default = '
 				</span>
 			@endif
 
-			@if ($viewData['skype'])
+			@if ($viewData['fax'])
+				<br style="line-height:0;content:'';" />
+				<span style="{{ $style_default }} font-size:9pt;">
+					<span style="display:inline-block;width:16px">
+						<strong style="{{ $style_default }} letter-spacing:7px; font-size:9pt; font-weight:700;">F </strong>
+					</span>
+					{{ $viewData['fax'] }}
+				</span>
+			@endif
+
+			{{-- @if ($viewData['skype'])
 				<br style="line-height:0;content:'';" />
 				<span style="{{ $style_default }} font-size:9pt;">
 					<strong style="font-weight:700;">Skype </strong>{{ $viewData['skype'] }}
 				</span>
-			@endif
+			@endif --}}
 
 			@if ($viewData['email'])
 				<br style="line-height:0;content:'';" />
@@ -124,12 +135,12 @@ $style_default = '
 
 			{{-- Social --}}
 			@if ($viewData['social_exist'])
-			<div style="font-size:10pt"><br /></div>
-			<table style="border-spacing:0">
-				<tr>
-					{!! $viewData['social_output'] !!}
-				</tr>
-			</table>
+				<div style="font-size:10pt"><br /></div>
+				<table style="border-spacing:0">
+					<tr>
+						{!! $viewData['social_output'] !!}
+					</tr>
+				</table>
 			@endif
 			{{-- End Social --}}
 

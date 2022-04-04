@@ -325,7 +325,7 @@ function getFieldEstero(campoId, val)
             {
                 $('#sponsorContainer').hide();
                 $('#container-field-skype').hide();
-                $('#container-field-fax').hide();
+                //$('#container-field-fax').hide();
                 $('#more_than_work_Container-estero').hide(); //only layout 1 + Estero
 
                 $('#container-field-human_resources').show();
@@ -334,7 +334,7 @@ function getFieldEstero(campoId, val)
             {
                 $('#sponsorContainer').show();
                 $('#container-field-skype').show();
-                $('#container-field-fax').show();
+                //$('#container-field-fax').show();
                 $('#more_than_work_Container-estero').show(); //only layout 1 + Estero
 
                 $('#container-field-human_resources').hide();
@@ -523,7 +523,7 @@ function getField(val)
             {
                 $('#sponsorContainer').hide();
                 $('#container-field-skype').hide();
-                $('#container-field-fax').hide();
+                //$('#container-field-fax').hide();
 
                 $('#container-field-human_resources').show();
             }
@@ -531,7 +531,7 @@ function getField(val)
             {
                 $('#sponsorContainer').show();
                 $('#container-field-skype').show();
-                $('#container-field-fax').show();
+                //$('#container-field-fax').show();
 
                 $('#container-field-human_resources').hide();
             }
@@ -559,10 +559,22 @@ function getField(val)
             {
                 for (var socialIndex = 0; socialIndex < data[0].socialArray.length; socialIndex++)
                 {
+
+                    let socialImg = function(){
+                        let layout = data[0].layoutS;
+                        let imgUrl = APPDOMAIN + '/img/social/Layout' + layout + '/' + data[0].socialArray[socialIndex].label;
+
+                        if(UrlExists(imgUrl+'.jpg'))
+                            return imgUrl+'.jpg';
+
+                        if(UrlExists(imgUrl+'.png'))
+                            return imgUrl+'.png';
+                    };
+
                     if (data[0].socialArray[socialIndex].url == null)
                         data[0].socialArray[socialIndex].url = "";
                     socialStringHtml += '<div class="fb-text form-group field-email col-md-1">' +
-                        '<img class="socialImage" src="' + data[0].socialArray[socialIndex].image + '" />' +
+                        '<img class="socialImage" src="' + socialImg() + '" />' +
                         '<input type="hidden" name="socialImage_' + socialIndex + '" id="socialImage_' + socialIndex + '" value="' + data[0].socialArray[socialIndex].image + '" />' +
                         '<input type="hidden" name="socialLabel_' + socialIndex + '" id="socialLabel_' + socialIndex + '" value="' + data[0].socialArray[socialIndex].label + '" />' +
                         '</div>' +
