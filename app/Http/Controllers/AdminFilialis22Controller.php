@@ -364,6 +364,14 @@
 	    public function hook_before_edit(&$postdata,$id) {
 	        //Your code here
 
+			if(!isset($postdata['tel']))
+				$postdata['tel'] = '';
+
+			if(!isset($postdata['fax']))
+				$postdata['fax'] = '';
+
+			if(!isset($postdata['email']))
+				$postdata['email'] = '';
 	    }
 
 	    /*

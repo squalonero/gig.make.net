@@ -283,7 +283,7 @@
                         </div>
 
                         <!-- Layout 1, this field is can replace "More Than Work" Logo for "World" only, and if populated -->
-                        <div class="form-row" id="more_than_work_Container-estero">
+                        {{-- <div class="form-row" id="more_than_work_Container-estero">
                             <div class="fb-text form-group field-email-domain col-md-12">
                                 <label for="mdw_replace_image"  class="fb-text-label">{!! trans('campi.mdw_label') !!}</label>
                                 <input type="file" class="form-control" name="mdw_replace_image" id="mdw_replace_image" />
@@ -295,7 +295,7 @@
                                 <input type="text" class="form-control" name="mdw_replace_link" id="mdw_replace_link"
                                 value="https://www.gigroupholding.{{ Session::get('italia') === 'italia' ? 'it':'com' }}/">
                             </div>
-                        </div>
+                        </div> --}}
             @endif
 
             {{-- Human Resources layout 3 --}}

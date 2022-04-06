@@ -8,7 +8,7 @@
     <span style="font-weight:bold; font-size:9pt; color:#015379; font-family:Helvetica,Futura,Tahoma,Arial,sans-serif;">
         <img src="{{ $protocol. $_SERVER['HTTP_HOST'] .'/' .$viewData['logoSC'] }}" {{ $logo_width }} />
     </span><br/><br/>
-    {{ ucfirst($viewData['name']) . ' ' . ucfirst($viewData['lastname']) }}
+    {{ ucfirst(strtolower($viewData['name'])) . ' ' . ucfirst(strtolower($viewData['lastname'])) }}
 
     @if($viewData['job_it'] != '')
         <br />  {{ $viewData['job_it'] }}
