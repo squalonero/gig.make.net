@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name=".gitkeep" server="185.81.4.25" local="132971578356564457" remote="132926920200000000" Dst="2" />
+<file name="2016_08_07_145904_add_table_cms_apicustom.php" server="185.81.4.25" local="132971578359132560" remote="132926920200000000" Dst="2" />
+<file name="2016_08_07_150834_add_table_cms_dashboard.php" server="185.81.4.25" local="132971578359222320" remote="132926920200000000" Dst="2" />
+<file name="2016_08_07_151210_add_table_cms_logs.php" server="185.81.4.25" local="132971578359836563" remote="132926920200000000" Dst="2" />
+<file name="2016_08_07_151211_add_details_cms_logs.php" server="185.81.4.25" local="132971578360116565" remote="132926920200000000" Dst="2" />
+<file name="2016_08_07_152014_add_table_cms_privileges.php" server="185.81.4.25" local="132971578360346423" remote="132926920200000000" Dst="2" />
+<file name="2016_08_07_152214_add_table_cms_privileges_roles.php" server="185.81.4.25" local="132971578360756348" remote="132926920200000000" Dst="2" />
+<file name="2016_08_07_152320_add_table_cms_settings.php" server="185.81.4.25" local="132971578361216172" remote="132926920200000000" Dst="2" />
+<file name="2016_08_07_152421_add_table_cms_users.php" server="185.81.4.25" local="132971578361645768" remote="132926920200000000" Dst="2" />
+<file name="2016_08_07_154624_add_table_cms_menus_privileges.php" server="185.81.4.25" local="132971578361785675" remote="132926920200000000" Dst="2" />
+<file name="2016_08_07_154624_add_table_cms_moduls.php" server="185.81.4.25" local="132971578362275110" remote="132926920200000000" Dst="2" />
+<file name="2016_08_17_225409_add_status_cms_users.php" server="185.81.4.25" local="132971578362965321" remote="132926920200000000" Dst="2" />
+<file name="2016_08_20_125418_add_table_cms_notifications.php" server="185.81.4.25" local="132971578363459105" remote="132926920200000000" Dst="2" />
+<file name="2016_09_04_033706_add_table_cms_email_queues.php" server="185.81.4.25" local="132971578363778246" remote="132926920200000000" Dst="2" />
+<file name="2016_09_16_035347_add_group_setting.php" server="185.81.4.25" local="132971578364237017" remote="132926920200000000" Dst="2" />
+<file name="2016_09_16_045425_add_label_setting.php" server="185.81.4.25" local="132971578364676625" remote="132926920200000000" Dst="2" />
+<file name="2016_09_17_104728_create_nullable_cms_apicustom.php" server="185.81.4.25" local="132971578365016493" remote="132926920200000000" Dst="2" />
+<file name="2016_10_01_141740_add_method_type_apicustom.php" server="185.81.4.25" local="132971578365485999" remote="132926920200000000" Dst="2" />
+<file name="2016_10_01_141846_add_parameters_apicustom.php" server="185.81.4.25" local="132971578365790518" remote="132926920200000000" Dst="2" />
+<file name="2016_10_01_141934_add_responses_apicustom.php" server="185.81.4.25" local="132971578366398891" remote="132926920200000000" Dst="2" />
+<file name="2016_10_01_144826_add_table_apikey.php" server="185.81.4.25" local="132971578366847894" remote="132926920200000000" Dst="2" />
+<file name="2016_11_14_141657_create_cms_menus.php" server="185.81.4.25" local="132971578367042471" remote="132926920200000000" Dst="2" />
+<file name="2016_11_15_132350_create_cms_email_templates.php" server="185.81.4.25" local="132971578367471329" remote="132926920200000000" Dst="2" />
+<file name="2016_11_15_190410_create_cms_statistics.php" server="185.81.4.25" local="132971578367930095" remote="132926920200000000" Dst="2" />
+<file name="2016_11_17_102740_create_cms_statistic_components.php" server="185.81.4.25" local="132971578368139539" remote="132926920200000000" Dst="2" />
+<file name="2017_06_06_164501_add_deleted_at_cms_moduls.php" server="185.81.4.25" local="132971578368563495" remote="132926920200000000" Dst="2" />
+<file name="2022_03_28_115613_update_societas_table_add_sponsor.php" server="185.81.4.25" local="132971578369171868" remote="132932024400000000" Dst="2" />
+<file name="2022_03_28_144546_update_societas_table_add_widths.php" server="185.81.4.25" local="132971578369391279" remote="132931978800000000" Dst="2" />
+</dwsync>

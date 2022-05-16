@@ -1,0 +1,1 @@
+<img src="{{asset('img/head.png')}}" class="head">
