@@ -462,7 +462,7 @@ class QueryController extends Controller
         $str = '';
         if (count($result) > 0)
         {
-            $str = '<option value disabled selected>' . trans("campi.seldiv") . '</option>';
+            $str = '<option value="" selected>' . trans("campi.seldiv") . '</option>';
             foreach ($result as $r)
             {
                 $str .= '<option value ="' . $r->id . '">' . $r->divisione . '</option>';
@@ -852,7 +852,7 @@ class QueryController extends Controller
                 $rowArray[19] = $value['professione'];
                 if (!is_null($value['cell']) && trim($value['cell']) != "")
                 {
-                    $rowArray[20] = "m.";
+                    $rowArray[20] = "M.";
                     $rowArray[21] = $value['cellnaz'] . " " . $value['prefcell'] . " " . $value['cell'];
                 }
                 else
@@ -862,7 +862,7 @@ class QueryController extends Controller
                 }
                 if (!is_null($value['telefono']) && trim($value['telefono']) != "")
                 {
-                    $rowArray[22] = "t.";
+                    $rowArray[22] = "T.";
                     $rowArray[23] = $value['prefnaz'] . " " . $value['preftel'] . " " . $value['telefono'];
                 }
                 else

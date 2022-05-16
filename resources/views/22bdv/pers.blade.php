@@ -18,7 +18,7 @@
 
     </span><br/><br/>
 
-    {{ ucfirst(strtolower($viewData['name'])) . ' ' . ucfirst(strtolower($viewData['lastname'])) }}
+    {{ ucwords(strtolower($viewData['name'])) . ' ' . ucwords(strtolower($viewData['lastname'])) }}
 
 
 
