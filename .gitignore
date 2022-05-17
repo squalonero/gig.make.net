@@ -1,5 +1,9 @@
-/vendor/
-!vendor\crocodicstudio\crudbooster\src\views\default\table.blade.php
+
+**/vendor/*
+!**/vendor/crocodicstudio/
+vendor/crocodicstudio/crudbooster/*
+!**/vendor/crocodicstudio/crudbooster/src
+
 node_modules/
 npm-debug.log
 yarn-error.log
