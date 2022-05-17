@@ -798,10 +798,10 @@ $('#okCopia').click(function ()
 });
 
 
-function UrlExists(url) {
+async function UrlExists(url) {
     var http = new XMLHttpRequest();
     http.open('IMAGE_URL_CHECKER', url, false);
-    http.send();
+    await http.send();
     if (http.status != 404)
         return true;
     else
