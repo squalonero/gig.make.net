@@ -165,7 +165,8 @@ $('#caf').on('click', function ()
             processData: false,
             contentType: false,
             timeout: 10000,
-            complete:function(){
+            complete: function ()
+            {
                 //console.log(this);
                 $('#embed').attr('src', APPDOMAIN + '/getlayout?' + _getData).show();
             },
@@ -195,7 +196,8 @@ $('#caf').on('click', function ()
     }
 });
 
-$('iframe#embed').on('load change', function(){
+$('iframe#embed').on('load change', function ()
+{
     this.style.height = (this.contentWindow.document.body.scrollHeight + 50) + 'px';
 });
 
@@ -365,15 +367,12 @@ function getFieldEstero(campoId, val)
 
                     socialStringHtml += '<div class="fb-text form-group field-email col-md-1">';
 
-                    let socialImg = function(){
+                    let socialImg = function ()
+                    {
                         let layout = data[0].layoutS;
                         let imgUrl = APPDOMAIN + '/img/social/Layout' + layout + '/' + data[0].socialArray[socialIndex].label;
 
-                        if(UrlExists(imgUrl+'.jpg'))
-                            return imgUrl+'.jpg';
-
-                        if(UrlExists(imgUrl+'.png'))
-                            return imgUrl+'.png';
+                        return imgUrl + '.png'
                     };
 
                     if (data[0].socialArray[socialIndex].url != null && data[0].socialArray[socialIndex].url.trim() != "")
@@ -560,15 +559,13 @@ function getField(val)
                 for (var socialIndex = 0; socialIndex < data[0].socialArray.length; socialIndex++)
                 {
 
-                    let socialImg = function(){
+                    let socialImg = function ()
+                    {
                         let layout = data[0].layoutS;
                         let imgUrl = APPDOMAIN + '/img/social/Layout' + layout + '/' + data[0].socialArray[socialIndex].label;
 
-                        if(UrlExists(imgUrl+'.jpg'))
-                            return imgUrl+'.jpg';
+                        return imgUrl + '.png';
 
-                        if(UrlExists(imgUrl+'.png'))
-                            return imgUrl+'.png';
                     };
 
                     if (data[0].socialArray[socialIndex].url == null)
@@ -798,12 +795,16 @@ $('#okCopia').click(function ()
 });
 
 
-async function UrlExists(url) {
-    var http = new XMLHttpRequest();
-    http.open('IMAGE_URL_CHECKER', url, false);
-    await http.send();
-    if (http.status != 404)
-        return true;
-    else
-        return false;
+function UrlExists(url)
+{
+    console.log(`Testing ${url} ...`)
+    return new Promise(function (resolve, reject)
+    {
+        var http = new XMLHttpRequest();
+        http.open('GET', url, true);
+        http.onload = function () {
+            return http.status
+        };
+        http.send();
+    })
 }
