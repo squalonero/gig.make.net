@@ -99,13 +99,13 @@ class QueryController extends Controller
                 //$socialImgVarName = 'socialImage_' . $socialIndex;
                 $socialLabelVarName = 'socialLabel_' . $socialIndex;
 
-                $jpg = 'img/social/Layout'.$layoutID.'/'.$request->$socialLabelVarName.'.jpg';
-                $png = 'img/social/Layout'.$layoutID.'/'.$request->$socialLabelVarName.'.png';
+                $jpg = 'img/social/Layout' . $layoutID . '/' . $request->$socialLabelVarName . '.jpg';
+                $png = 'img/social/Layout' . $layoutID . '/' . $request->$socialLabelVarName . '.png';
 
-                if(file_exists(public_path($jpg)))
+                if (file_exists(public_path($jpg)))
                     $socialIcon = asset($jpg);
 
-                if(file_exists(public_path($png)))
+                if (file_exists(public_path($png)))
                     $socialIcon = asset($png);
 
                 if (trim($request->$socialHrefVarName) != '')
@@ -115,17 +115,15 @@ class QueryController extends Controller
                         $layout_style_link .= 'display:inline-block;line-height: 0;font-size: 15px;';
                         $td_style = 'padding-left:4px';
                     }
-                    $social_output .= '<td valign="middle" style="vertical-align: middle;'.$td_style.'">';
+                    $social_output .= '<td valign="middle" style="vertical-align: middle;' . $td_style . '">';
                     $social_output .= '<a href="' . $request->$socialHrefVarName . '"
                     target="_blank" style="width:' . $social_width . 'px;text-decoration:none;' . $layout_style_link . '">
-                    <img src="'. $socialIcon . '" style="width:' . $social_width . 'px" width="' . $social_width . '" alt="" />
+                    <img src="' . $socialIcon . '" style="width:' . $social_width . 'px" width="' . $social_width . '" alt="" />
                     </a>';
 
                     $social_output .= '</td>';
-
                 }
             }
-
         }
         return $social_output;
     }
@@ -701,7 +699,7 @@ class QueryController extends Controller
             'updated_at'    => date('Y-m-d H:i:s')
         );
         $insert = DB::table('filialis')->insert($data);
-        return json_encode(['success'=>$insert]);
+        return json_encode(['success' => $insert]);
     }
     public function esporta(Request $request)
     {
@@ -815,7 +813,7 @@ class QueryController extends Controller
 
         header('Set-Cookie: fileDownload=true; path=/');
         header('Cache-Control: max-age=60, must-revalidate');
-        header("Content-type: text/csv");
+        header("Content-type: text/csv; charset=UTF-8");
         header('Content-Disposition: attachment; filename="EsportazioneOrdini-' . time() . '.csv"');
 
         $fp = fopen('php://output', 'wb');
@@ -959,7 +957,7 @@ class QueryController extends Controller
                     $rowArray[29] = "";
                 }
 
-                fputcsv($fp, $rowArray, ";");
+                fputcsv($fp, array_map('utf8_decode', array_values($rowArray)), ";");
             }
 
             // UPDATE IN LAVORAZIONE
