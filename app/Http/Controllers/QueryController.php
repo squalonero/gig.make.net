@@ -701,7 +701,7 @@ class QueryController extends Controller
             'updated_at'    => date('Y-m-d H:i:s')
         );
         $insert = DB::table('filialis')->insert($data);
-        return json_encode($insert);
+        return json_encode(['success'=>$insert]);
     }
     public function esporta(Request $request)
     {

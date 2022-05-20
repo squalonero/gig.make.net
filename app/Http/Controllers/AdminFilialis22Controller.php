@@ -416,27 +416,43 @@
 
                     if(checked.length > 0){
 
-                        for(i=0; i< checked.length; i++){
+                        // for(i=0; i< checked.length; i++){
 
-                            $.ajax({
+                        //     $.ajax({
 
-                                type:'get',
+                        //         type:'get',
+                        //         url: '/duplicarec',
+                        //         data:{'id':checked[i]},
+                        //         success: function(data){
+                        //         //console.log(data);
+                        //         }
 
-                                url: '/duplicarec',
+                        //     });
 
-                                data:{'id':checked[i]},
+                        // }
 
-                                success: function(data){
+						Promise.all(checked.map(function(val){
+							return new Promise(function(res, rej){
+								$.ajax({
 
-                                //console.log(data);
+									type:'get',
+									url: '/duplicarec',
+									data:	{'id':val},
+									success: function(data){
+										res(data)
+									}
 
-                                }
+								})
+							})
 
-                            });
+						})) //promise All
+						.then(function(data){
+							console.log(`Duplicate done. Result below:`)
+							console.log(data)
+							location.reload()
+						})
 
-                        }
-
-                        $(window.location).attr(\"href\", \"/admin/filialis22\");
+                        //$(window.location).attr(\"href\", \"/admin/filialis22\");
 
                     }else{
 
