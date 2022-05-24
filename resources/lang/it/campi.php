@@ -96,7 +96,7 @@ return [
 
     'selsoc'    =>'Seleziona Società',
 
-    'seldiv'        =>'Seleziona Divisione',
+    'seldiv'        =>'Nessuna Divisione',
 
     'selfil'    =>'Seleziona Filiale',
 
