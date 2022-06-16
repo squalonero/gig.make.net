@@ -1,4 +1,9 @@
-/vendor/
+
+**/vendor/*
+!**/vendor/crocodicstudio/
+vendor/crocodicstudio/crudbooster/*
+!**/vendor/crocodicstudio/crudbooster/src
+
 node_modules/
 npm-debug.log
 yarn-error.log
