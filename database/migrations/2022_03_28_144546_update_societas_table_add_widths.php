@@ -14,11 +14,15 @@ class UpdateSocietasTableAddWidths extends Migration
     public function up()
     {
         //
-        Schema::table('societas', function (Blueprint $table) {
-            $table->integer('logo_width')->after('logo');
-            $table->integer('endorsement_width')->after('endorsement');
-            $table->integer('sponsor_width')->after('sponsor_img');
-        });
+        if (!Schema::hasColumn('societas', 'logo_width'))
+        {
+            Schema::table('societas', function (Blueprint $table)
+            {
+                $table->integer('logo_width')->after('logo');
+                $table->integer('endorsement_width')->after('endorsement');
+                $table->integer('sponsor_width')->after('sponsor_img');
+            });
+        }
     }
 
     /**
@@ -29,10 +33,11 @@ class UpdateSocietasTableAddWidths extends Migration
     public function down()
     {
         //
-        Schema::table('societas', function (Blueprint $table) {
-             $table->dropColumn('logo_width');
-             $table->dropColumn('endorsement_width');
-             $table->dropColumn('sponsor_width');
+        Schema::table('societas', function (Blueprint $table)
+        {
+            $table->dropColumn('logo_width');
+            $table->dropColumn('endorsement_width');
+            $table->dropColumn('sponsor_width');
         });
     }
 }
