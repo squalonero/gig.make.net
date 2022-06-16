@@ -969,7 +969,7 @@ class QueryController extends Controller
             }
 
             // UPDATE IN LAVORAZIONE
-            //DB::table('ordinis')->where('intEvaso', 'Nuovo')->update(['intEvaso' => 'In Lavorazione']);
+            DB::table('ordinis')->where('intEvaso', 'Nuovo')->update(['intEvaso' => 'In Lavorazione']);
         }
 
         fclose($fp);
