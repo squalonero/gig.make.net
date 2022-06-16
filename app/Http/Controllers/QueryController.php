@@ -813,12 +813,18 @@ class QueryController extends Controller
 
         header('Set-Cookie: fileDownload=true; path=/');
         header('Cache-Control: max-age=60, must-revalidate');
-        header("Content-type: text/csv; charset=UTF-8");
+        header("Content-type: application/octet-stream;");
         header('Content-Disposition: attachment; filename="EsportazioneOrdini-' . time() . '.csv"');
 
         $fp = fopen('php://output', 'wb');
         $headerArray = explode(";", "Codice Dipendente;Cognome;Nome;Professione;Codice Societa;Societa;Divisione;Codice Filiale;Filiale;Qt.a;Business;Concatena CDC;Concatena Location;Data Presentazione;File;Stato;Tripletta;Tripletta esiste;Nome Cognome;Professione;m.;Mobile;t.;Tel.;Indirizzo;CAP;Città;Prov;Mail;Sito");
-        fputcsv($fp, $headerArray, ";");
+
+        //UTF 8 BOM ENCODING FOR ACCENTED LETTERS
+        //this should be printed each time before printing anything to the csv
+        fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF)); //try this also
+        //fprintf($fp, chr(255) . chr(254));           //or this
+
+        fputcsv($fp, $headerArray, "\t");
 
         if (!empty($data))
         {
@@ -957,11 +963,13 @@ class QueryController extends Controller
                     $rowArray[29] = "";
                 }
 
-                fputcsv($fp, array_map('utf8_decode', array_values($rowArray)), ";");
+                //fprintf($fp, chr(255) . chr(254));
+                fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF));
+                fputcsv($fp, $rowArray, "\t");
             }
 
             // UPDATE IN LAVORAZIONE
-            DB::table('ordinis')->where('intEvaso', 'Nuovo')->update(['intEvaso' => 'In Lavorazione']);
+            //DB::table('ordinis')->where('intEvaso', 'Nuovo')->update(['intEvaso' => 'In Lavorazione']);
         }
 
         fclose($fp);
