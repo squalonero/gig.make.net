@@ -814,9 +814,11 @@ class QueryController extends Controller
         header('Set-Cookie: fileDownload=true; path=/');
         header('Cache-Control: max-age=60, must-revalidate');
         // header("Content-type: application/octet-stream;");
-        header("Content-type: text/csv; charset=UTF-8");
-        header('Content-Disposition: attachment; filename="EsportazioneOrdini-' . time() . '.csv"');
-
+        header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8");
+        header('Content-Disposition: attachment; filename="EsportazioneOrdini-' . time() . '.xslx"');
+        header('Content-Transfer-Encoding: binary');
+        ob_clean();
+        flush();
         echo "\xEF\xBB\xBF"; // UTF-8 BOM header
 
         $fp = fopen('php://output', 'wb');
@@ -827,7 +829,7 @@ class QueryController extends Controller
         //fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF)); //try this also
         //fwrite($fp, "sep=\t".PHP_EOL);
         //fprintf($fp, chr(255) . chr(254));           //or this
-        fputcsv($fp, $headerArray, "\\t"); //chr(9) tabulator, like \t
+        fputcsv($fp, $headerArray, "\t"); //chr(9) tabulator, like \t
 
         if (!empty($data))
         {
@@ -967,7 +969,7 @@ class QueryController extends Controller
                     $rowArray[29] = "";
                 }
 
-                fputcsv($fp, $rowArray, "\\t");
+                fputcsv($fp, $rowArray, "\t");
             }
 
             // UPDATE IN LAVORAZIONE
