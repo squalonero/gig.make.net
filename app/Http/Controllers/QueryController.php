@@ -815,7 +815,7 @@ class QueryController extends Controller
         header('Cache-Control: max-age=60, must-revalidate');
         // header("Content-type: application/octet-stream;");
         header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8");
-        header('Content-Disposition: attachment; filename="EsportazioneOrdini-' . time() . '.xslx"');
+        header('Content-Disposition: attachment; filename="EsportazioneOrdini-' . time() . '.xlsx"');
         header('Content-Transfer-Encoding: binary');
         ob_clean();
         flush();
