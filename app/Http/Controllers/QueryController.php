@@ -831,6 +831,7 @@ class QueryController extends Controller
         {
             foreach ($data as $key => $value)
             {
+                fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF));
                 $i = $key + 2;
 
                 $rowArray = array();
