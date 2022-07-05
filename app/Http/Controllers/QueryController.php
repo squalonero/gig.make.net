@@ -827,8 +827,7 @@ class QueryController extends Controller
         //fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF)); //try this also
         //fwrite($fp, "sep=\t".PHP_EOL);
         //fprintf($fp, chr(255) . chr(254));           //or this
-        echo "sep=\t";
-        fputcsv($fp, $headerArray); //chr(9) tabulator, like \t
+        fputcsv($fp, $headerArray, "\\t"); //chr(9) tabulator, like \t
 
         if (!empty($data))
         {
@@ -968,7 +967,7 @@ class QueryController extends Controller
                     $rowArray[29] = "";
                 }
 
-                fputcsv($fp, $rowArray);
+                fputcsv($fp, $rowArray, "\\t");
             }
 
             // UPDATE IN LAVORAZIONE
