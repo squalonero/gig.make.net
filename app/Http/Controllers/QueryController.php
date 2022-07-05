@@ -817,7 +817,7 @@ class QueryController extends Controller
         header("Content-type: text/csv; charset=UTF-8");
         header('Content-Disposition: attachment; filename="EsportazioneOrdini-' . time() . '.csv"');
 
-        echo "\xEF\xBB\xBF"; // UTF-8 BOM header
+        echo "\xEF\xBB\xBFsep=\t"; // UTF-8 BOM header
 
         $fp = fopen('php://output', 'wb');
         $headerArray = explode(";", "Codice Dipendente;Cognome;Nome;Professione;Codice Societa;Societa;Divisione;Codice Filiale;Filiale;Qt.a;Business;Concatena CDC;Concatena Location;Data Presentazione;File;Stato;Tripletta;Tripletta esiste;Nome Cognome;Professione;M.;Mobile;T.;Tel.;Indirizzo;CAP;Città;Prov;Mail;Sito");
