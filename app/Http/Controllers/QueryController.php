@@ -817,15 +817,16 @@ class QueryController extends Controller
         header("Content-type: text/csv; charset=UTF-8");
         header('Content-Disposition: attachment; filename="EsportazioneOrdini-' . time() . '.csv"');
 
+        echo "\xEF\xBB\xBF"; // UTF-8 BOM header
+
         $fp = fopen('php://output', 'wb');
         $headerArray = explode(";", "Codice Dipendente;Cognome;Nome;Professione;Codice Societa;Societa;Divisione;Codice Filiale;Filiale;Qt.a;Business;Concatena CDC;Concatena Location;Data Presentazione;File;Stato;Tripletta;Tripletta esiste;Nome Cognome;Professione;M.;Mobile;T.;Tel.;Indirizzo;CAP;Città;Prov;Mail;Sito");
 
         //UTF 8 BOM ENCODING FOR ACCENTED LETTERS
         //this should be printed each time before printing anything to the csv
-        fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF)); //try this also
+        //fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF)); //try this also
         //fwrite($fp, "sep=\t".PHP_EOL);
         //fprintf($fp, chr(255) . chr(254));           //or this
-
         fputcsv($fp, $headerArray, chr(9)); //chr(9) tabulator, like \t
 
         if (!empty($data))
@@ -966,8 +967,6 @@ class QueryController extends Controller
                     $rowArray[29] = "";
                 }
 
-                //fprintf($fp, chr(255) . chr(254));
-                fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF));
                 fputcsv($fp, $rowArray, chr(9));
             }
 
