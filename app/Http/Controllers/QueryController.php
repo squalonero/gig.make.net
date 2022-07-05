@@ -822,6 +822,7 @@ class QueryController extends Controller
         //UTF 8 BOM ENCODING FOR ACCENTED LETTERS
         //this should be printed each time before printing anything to the csv
         fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF)); //try this also
+        fwrite($fp, "sep=\t".PHP_EOL);
         //fprintf($fp, chr(255) . chr(254));           //or this
 
         fputcsv($fp, $headerArray, "\t");
