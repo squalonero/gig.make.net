@@ -813,7 +813,8 @@ class QueryController extends Controller
 
         header('Set-Cookie: fileDownload=true; path=/');
         header('Cache-Control: max-age=60, must-revalidate');
-        header("Content-type: application/octet-stream;");
+        // header("Content-type: application/octet-stream;");
+        header("Content-type: text/csv; charset=UTF-8");
         header('Content-Disposition: attachment; filename="EsportazioneOrdini-' . time() . '.csv"');
 
         $fp = fopen('php://output', 'wb');
@@ -821,8 +822,7 @@ class QueryController extends Controller
 
         //UTF 8 BOM ENCODING FOR ACCENTED LETTERS
         //this should be printed each time before printing anything to the csv
-        fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF)); //try this also
-        fwrite($fp, "sep=\t".PHP_EOL);
+        //fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF)); //try this also
         //fprintf($fp, chr(255) . chr(254));           //or this
 
         fputcsv($fp, $headerArray, "\t");
@@ -831,7 +831,7 @@ class QueryController extends Controller
         {
             foreach ($data as $key => $value)
             {
-                fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF));
+                //fprintf($fp, chr(0xEF).chr(0xBB).chr(0xBF));
                 $i = $key + 2;
 
                 $rowArray = array();
