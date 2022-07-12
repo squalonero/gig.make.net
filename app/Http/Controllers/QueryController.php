@@ -814,7 +814,7 @@ class QueryController extends Controller
         header('Set-Cookie: fileDownload=true; path=/');
         header('Cache-Control: max-age=60, must-revalidate');
         // header("Content-type: application/octet-stream;");
-        header("Content-Type: application/vnd.ms-excel");
+        header("Content-Type: text/csv");
         header('Content-Disposition: attachment; filename="EsportazioneOrdini-' . time() . '.csv"');
         header('Content-Transfer-Encoding: binary');
         ob_clean();
